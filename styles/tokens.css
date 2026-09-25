@@ -1,0 +1,24 @@
+:root {
+  /* Placeholder palette pending brand assets confirmation */
+  --color-primary: #003359; 
+  --color-secondary: #006699;
+  --color-accent: #C5A97C;
+  --color-bg: #FFFFFF;
+  --color-text: #333333;
+  --color-surface: #F5F7FA;
+  --color-error: #D32F2F;
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+  
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --scroll-behavior: auto;
+    --transition-duration: 0.01ms;
+  }
+}

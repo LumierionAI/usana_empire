@@ -1,0 +1,25 @@
+{
+  "name": "usana-empire",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "state": "node scripts/generate-project-state.js"
+  },
+  "dependencies": {
+    "idb": "^8.0.2",
+    "papaparse": "^5.5.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "fake-indexeddb": "^6.0.0",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "specFile": "USANA-Empire-Final-Technical-Specification.md",
+  "phases": [
+    {
+      "name": "Phase 0 — Foundation/setup",
+      "items": [
+        { "label": "Vite project initialized (package.json)", "check": "package.json" },
+        { "label": "Vite config", "check": "vite.config.js" },
+        { "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml" },
+        { "label": "Design tokens stylesheet", "check": "styles/tokens.css" }
+      ]
+    },
+    {
+      "name": "Phase 1 — Core architecture",
+      "items": [
+        { "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js" },
+        { "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js" },
+        { "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js" },
+        { "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js" },
+        { "label": "Shared components dir (NavBar, ToolShell, DataTable, ImportWizard)", "check": "src/shared/components" }
+      ]
+    },
+    {
+      "name": "Phase 2 — Core features (System A)",
+      "items": [
+        { "label": "Landing page markup", "check": "index.html" },
+        { "label": "Landing scroll-engine.js", "check": "src/landing/scroll-engine.js" },
+        { "label": "Landing progress-rail.js", "check": "src/landing/progress-rail.js" },
+        { "label": "sections.json content", "check": "content/sections.json" },
+        { "label": "Product page", "check": "product/index.html" },
+        { "label": "products.json content", "check": "content/products.json" },
+        { "label": "Business page", "check": "business/index.html" },
+        { "label": "compensation.json content", "check": "content/compensation.json" }
+      ]
+    },
+    {
+      "name": "Phase 3 — Core features (System B)",
+      "items": [
+        { "label": "Genealogy Simulator view", "check": "tools/genealogy/index.html" },
+        { "label": "Receipt Generator view", "check": "tools/receipts/index.html" },
+        { "label": "Financial Ledger view", "check": "tools/ledger/index.html" },
+        { "label": "Prospect Planner view", "check": "tools/prospects/index.html" },
+        { "label": "Product Guidance view", "check": "tools/guidance/index.html" },
+        { "label": "guidance-rules.json", "check": "src/tools/guidance/guidance-rules.json" }
+      ]
+    },
+    {
+      "name": "Phase 4 — UI/UX polish",
+      "items": [
+        { "label": "Portrait/landscape composition pass (manual QA)", "check": null, "manual": true },
+        { "label": "Accessibility pass — keyboard nav, contrast, reduced-motion (manual QA)", "check": null, "manual": true }
+      ]
+    },
+    {
+      "name": "Phase 5 — Integration",
+      "items": [
+        { "label": "json-backup.js (full workspace export/import)", "check": "src/shared/import-export/json-backup.js" },
+        { "label": "csv.js (CSV import/export)", "check": "src/shared/import-export/csv.js" }
+      ]
+    },
+    {
+      "name": "Phase 6 — Testing",
+      "items": [
+        { "label": "Unit tests directory populated", "check": "tests/unit" },
+        { "label": "E2E tests directory populated", "check": "tests/e2e" }
+      ]
+    },
+    {
+      "name": "Phase 7 — Deployment",
+      "items": [
+        { "label": "Deployed to GitHub Pages at least once (manual confirmation)", "check": null, "manual": true }
+      ]
+    }
+  ],
+  "openDecisions": [
+    "Single-admin confirmation — blocks Phase 3 multi-user/auth work only, not Phase 0-2",
+    "Existing Receipt Generator file review — blocks Phase 3 Receipt Generator specifically",
+    "Product Guidance grounding content/source — blocks Phase 3 Product Guidance specifically",
+    "Brand assets / final palette — should resolve by Phase 2, blocks Phase 4 polish",
+    "USANA distributor policy review — blocks any public content going live, not local dev"
+  ]
+}
