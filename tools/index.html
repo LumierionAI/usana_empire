@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools Hub - USANA Empire</title>
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    .page-container {
+      padding: var(--spacing-xl) var(--spacing-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .tools-grid {
+      display: grid;
+      gap: var(--spacing-md);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+    }
+    .tool-card {
+      background: var(--color-surface);
+      padding: var(--spacing-md);
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: var(--color-text);
+      display: block;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: var(--color-primary); }
+    .tool-card h2 { margin-top: 0; color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+  <main class="page-container">
+    <h1>Business Tools Workspace</h1>
+    <p>Private operations toolkit. All data is stored locally on your device via IndexedDB.</p>
+    <div class="tools-grid">
+      <a href="/tools/genealogy/" class="tool-card">
+        <h2>Genealogy Simulator</h2>
+        <p>Model downline growth and estimate volume.</p>
+      </a>
+      <a href="/tools/receipts/" class="tool-card">
+        <h2>Receipt Generator</h2>
+        <p>Manage customer purchases and replenishment reminders.</p>
+      </a>
+      <a href="/tools/ledger/" class="tool-card">
+        <h2>Financial Ledger</h2>
+        <p>Track revenues, expenses, and calculate net profit.</p>
+      </a>
+      <a href="/tools/prospects/" class="tool-card">
+        <h2>Prospect Planner</h2>
+        <p>CRM for tracking contacts and follow-ups.</p>
+      </a>
+      <a href="/tools/guidance/" class="tool-card">
+        <h2>Product Guidance</h2>
+        <p>Rule-based product recommendations.</p>
+      </a>
+    </div>
+  </main>
+  <script type="module">
+    import { createNavBar } from '../src/shared/components/NavBar.js';
+    document.getElementById('nav-mount').appendChild(createNavBar());
+  </script>
+</body>
+</html>

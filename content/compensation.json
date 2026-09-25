@@ -1,0 +1,41 @@
+[
+  {
+    "id": "retail-margin",
+    "name": "Retail Margin",
+    "description": "The difference between the Preferred Price and the retail price you charge your customers.",
+    "type": "retail",
+    "source": {
+      "title": "USANA Compensation Plan Documentation",
+      "version": "2024.1",
+      "effectiveDate": "2024-01-01",
+      "retrievedDate": "2026-09-26",
+      "url": "https://www.usana.com/comp-plan"
+    }
+  },
+  {
+    "id": "weekly-commissions",
+    "name": "Weekly Commissions",
+    "description": "Earn up to 20% on the Group Sales Volume (GSV) in your smaller leg.",
+    "type": "sponsorship",
+    "source": {
+      "title": "USANA Compensation Plan Documentation",
+      "version": "2024.1",
+      "effectiveDate": "2024-01-01",
+      "retrievedDate": "2026-09-26",
+      "url": "https://www.usana.com/comp-plan"
+    }
+  },
+  {
+    "id": "lifetime-matching",
+    "name": "Lifetime Matching Bonus",
+    "description": "Receive a percentage of the commission volume produced by your personally sponsored Premier Platinum PaceSetters.",
+    "type": "matching",
+    "source": {
+      "title": "USANA Compensation Plan Documentation",
+      "version": "2024.1",
+      "effectiveDate": "2024-01-01",
+      "retrievedDate": "2026-09-26",
+      "url": "https://www.usana.com/comp-plan"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "rule-foundational",
+    "match": {
+      "goals": ["foundational", "immunity", "energy"]
+    },
+    "recommendation": {
+      "productId": "cellsentials",
+      "productName": "CellSentials",
+      "rationale": "Provides a comprehensive foundation of essential vitamins, minerals, and antioxidants to support overall cellular health and daily energy metabolism.",
+      "source": "USANA Product Information - CellSentials (askthescientists.com)"
+    }
+  },
+  {
+    "id": "rule-cardio-joint",
+    "match": {
+      "goals": ["heart", "joints", "brain"]
+    },
+    "recommendation": {
+      "productId": "biomega",
+      "productName": "BiOmega",
+      "rationale": "Supplies high-quality, ultra-pure omega-3 fatty acids which are clinically shown to support healthy cardiovascular function and joint comfort.",
+      "source": "USANA Product Information - BiOmega (askthescientists.com)"
+    }
+  }
+]

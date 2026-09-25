@@ -1,0 +1,45 @@
+[
+  {
+    "id": "cellsentials",
+    "name": "CellSentials",
+    "category": "nutritionals",
+    "overview": "Core cellular nutrition system supplying essential vitamins, minerals, and antioxidants.",
+    "benefits": [
+      "Provides comprehensive nutritional support",
+      "Supplies foundational micronutrients"
+    ],
+    "bodySystems": ["Immune", "Cardiovascular", "Cellular"],
+    "usage": "Take two tablets of Core Minerals and two tablets of Vita Antioxidant twice daily, preferably with food.",
+    "warnings": [
+      "Keep out of reach of children.",
+      "Consult your physician if you are pregnant, nursing, taking a prescription drug, or have a medical condition."
+    ],
+    "officialUrl": "https://www.usana.com/products/cellsentials",
+    "source": {
+      "title": "USANA Product Information - CellSentials",
+      "retrievedDate": "2026-09-26",
+      "url": "https://askthescientists.com/qa/cellsentials/"
+    }
+  },
+  {
+    "id": "biomega",
+    "name": "BiOmega",
+    "category": "nutritionals",
+    "overview": "High-quality, ultra-pure omega-3 fatty acid supplement.",
+    "benefits": [
+      "Supports healthy joint function",
+      "Promotes cardiovascular wellness"
+    ],
+    "bodySystems": ["Cardiovascular", "Nervous", "Skeletal"],
+    "usage": "Take two capsules daily, preferably with food.",
+    "warnings": [
+      "Keep out of reach of children."
+    ],
+    "officialUrl": "https://www.usana.com/products/biomega",
+    "source": {
+      "title": "USANA Product Information - BiOmega",
+      "retrievedDate": "2026-09-26",
+      "url": "https://askthescientists.com/qa/biomega/"
+    }
+  }
+]

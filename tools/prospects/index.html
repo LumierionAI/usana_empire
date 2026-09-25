@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prospect Planner - USANA Empire</title>
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    
+    /* Layout */
+    .crm-layout {
+      display: grid;
+      gap: var(--spacing-md);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .crm-layout { grid-template-columns: 350px 1fr; }
+    }
+
+    /* Form Panel */
+    .panel {
+      background: var(--color-surface);
+      padding: var(--spacing-md);
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .panel h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid var(--color-primary); padding-bottom: 0.5rem; }
+    
+    .form-group { margin-bottom: var(--spacing-sm); }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 0.25rem; font-size: 0.85rem; }
+    .form-group input, .form-group select, .form-group textarea { 
+      width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit;
+    }
+    .form-row { display: flex; gap: var(--spacing-sm); }
+    .form-row .form-group { flex: 1; }
+    
+    .btn { padding: 0.5rem 1rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; margin-top: var(--spacing-sm); }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-secondary { background: #e5e7eb; color: #374151; }
+
+    /* Views */
+    .view-controls { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+    .view-btn { padding: 0.5rem 1rem; border: 1px solid var(--color-primary); background: transparent; color: var(--color-primary); border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .view-btn.active { background: var(--color-primary); color: #fff; }
+
+    .view-container { display: none; }
+    .view-container.active { display: block; }
+
+    /* Kanban Board View */
+    .board-container {
+      display: flex;
+      gap: var(--spacing-md);
+      overflow-x: auto;
+      padding-bottom: var(--spacing-md);
+      align-items: flex-start;
+    }
+    .board-column {
+      background: #f3f4f6;
+      border-radius: 6px;
+      min-width: 280px;
+      max-width: 280px;
+      padding: var(--spacing-sm);
+      border: 1px solid #e5e7eb;
+    }
+    .board-column h3 { margin: 0 0 var(--spacing-sm) 0; font-size: 0.95rem; color: #4b5563; text-transform: uppercase; border-bottom: 2px solid #d1d5db; padding-bottom: 4px; }
+    
+    .prospect-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .prospect-card:hover { border-color: var(--color-primary); }
+    .prospect-card .name { font-weight: bold; font-size: 1rem; margin-bottom: 4px; }
+    .prospect-card .meta { font-size: 0.8rem; color: #6b7280; }
+    
+    /* Temp Badges */
+    .temp-badge { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+    .temp-hot { background-color: #ef4444; }
+    .temp-warm { background-color: #f59e0b; }
+    .temp-cold { background-color: #3b82f6; }
+
+    /* DataTable Overrides */
+    .data-table-container { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .data-table th { background: var(--color-surface); color: var(--text-main); padding: 0.75rem; font-size: 0.85rem; }
+    .data-table td { padding: 0.75rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div id="app-mount"></div>
+
+  <script type="module">
+    import { createToolShell } from '../../src/shared/components/ToolShell.js';
+    import { createDataTable } from '../../src/shared/components/DataTable.js';
+    import { storageAdapter } from '../../src/shared/storage-adapter.js';
+
+    // --- State ---
+    let prospects = [];
+    let editingId = null;
+
+    // --- UI Scaffolding ---
+    function renderApp() {
+      const container = document.createElement('div');
+      container.className = 'crm-layout';
+      
+      container.innerHTML = `
+        <aside class="panel">
+          <h2 id="form-title">Add New Prospect</h2>
+          <form id="prospect-form">
+            <div class="form-group">
+              <label for="p-name">Name *</label>
+              <input type="text" id="p-name" required>
+            </div>
+            <div class="form-group">
+              <label for="p-contact">Contact Info (Phone/Email)</label>
+              <input type="text" id="p-contact">
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="p-status">Status</label>
+                <select id="p-status">
+                  <option value="new">New</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="presented">Presented</option>
+                  <option value="follow-up">Follow-up</option>
+                  <option value="customer">Customer</option>
+                  <option value="business-partner">Business Partner</option>
+                  <option value="not-interested">Not Interested</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="p-temp">Temperature</label>
+                <select id="p-temp">
+                  <option value="cold">Cold</option>
+                  <option value="warm">Warm</option>
+                  <option value="hot">Hot</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="p-last-contact">Last Contact Date</label>
+                <input type="date" id="p-last-contact">
+              </div>
+              <div class="form-group">
+                <label for="p-next-followup">Next Follow-up Date</label>
+                <input type="date" id="p-next-followup">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="p-notes">Notes</label>
+              <textarea id="p-notes" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-submit">Save Prospect</button>
+            <button type="button" class="btn btn-secondary" id="btn-cancel" style="display:none;">Cancel Edit</button>
+          </form>
+        </aside>
+        
+        <section class="main-view">
+          <div class="view-controls">
+            <button class="view-btn active" id="btn-board">Board View</button>
+            <button class="view-btn" id="btn-list">List View</button>
+          </div>
+          
+          <div id="view-board" class="view-container active">
+            <div class="board-container" id="board-mount"></div>
+          </div>
+          
+          <div id="view-list" class="view-container">
+            <div id="table-mount"></div>
+          </div>
+        </section>
+      `;
+      return container;
+    }
+
+    const appMount = document.getElementById('app-mount');
+    appMount.appendChild(createToolShell('Prospect Planner', renderApp()));
+
+    // --- DOM Elements ---
+    const form = document.getElementById('prospect-form');
+    const formTitle = document.getElementById('form-title');
+    const btnCancel = document.getElementById('btn-cancel');
+    const boardMount = document.getElementById('board-mount');
+    const tableMount = document.getElementById('table-mount');
+
+    const btnBoard = document.getElementById('btn-board');
+    const btnList = document.getElementById('btn-list');
+    const viewBoard = document.getElementById('view-board');
+    const viewList = document.getElementById('view-list');
+
+    // --- View Toggling ---
+    btnBoard.addEventListener('click', () => {
+      btnBoard.classList.add('active'); btnList.classList.remove('active');
+      viewBoard.classList.add('active'); viewList.classList.remove('active');
+    });
+
+    btnList.addEventListener('click', () => {
+      btnList.classList.add('active'); btnBoard.classList.remove('active');
+      viewList.classList.add('active'); viewBoard.classList.remove('active');
+    });
+
+    // --- Form Logic ---
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const entryData = {
+        id: editingId || crypto.randomUUID(),
+        name: document.getElementById('p-name').value.trim(),
+        contact: document.getElementById('p-contact').value.trim(),
+        status: document.getElementById('p-status').value,
+        temperature: document.getElementById('p-temp').value,
+        lastContactDate: document.getElementById('p-last-contact').value,
+        nextFollowupDate: document.getElementById('p-next-followup').value,
+        notes: document.getElementById('p-notes').value.trim(),
+        createdAt: editingId ? prospects.find(p => p.id === editingId).createdAt : new Date().toISOString()
+      };
+
+      await storageAdapter.set('prospects', entryData);
+      resetForm();
+      await loadData();
+    });
+
+    btnCancel.addEventListener('click', resetForm);
+
+    function resetForm() {
+      form.reset();
+      editingId = null;
+      formTitle.textContent = 'Add New Prospect';
+      btnCancel.style.display = 'none';
+      document.getElementById('btn-submit').textContent = 'Save Prospect';
+    }
+
+    window.editProspect = (id) => {
+      const prospect = prospects.find(p => p.id === id);
+      if (!prospect) return;
+
+      editingId = id;
+      formTitle.textContent = 'Edit Prospect';
+      
+      document.getElementById('p-name').value = prospect.name || '';
+      document.getElementById('p-contact').value = prospect.contact || '';
+      document.getElementById('p-status').value = prospect.status || 'new';
+      document.getElementById('p-temp').value = prospect.temperature || 'cold';
+      document.getElementById('p-last-contact').value = prospect.lastContactDate || '';
+      document.getElementById('p-next-followup').value = prospect.nextFollowupDate || '';
+      document.getElementById('p-notes').value = prospect.notes || '';
+      
+      btnCancel.style.display = 'block';
+      document.getElementById('btn-submit').textContent = 'Update Prospect';
+    };
+
+    // --- Rendering ---
+    function renderBoard() {
+      const columns = [
+        { id: 'new', title: 'New' },
+        { id: 'contacted', title: 'Contacted' },
+        { id: 'presented', title: 'Presented / Follow-up', match: ['presented', 'follow-up'] },
+        { id: 'closed', title: 'Closed / Partners', match: ['customer', 'business-partner'] },
+        { id: 'inactive', title: 'Not Interested', match: ['not-interested', 'inactive'] }
+      ];
+
+      boardMount.innerHTML = '';
+
+      columns.forEach(col => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'board-column';
+        colDiv.innerHTML = `<h3>${col.title}</h3>`;
+        
+        const colProspects = prospects.filter(p => 
+          col.match ? col.match.includes(p.status) : p.status === col.id
+        );
+
+        colProspects.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'prospect-card';
+          card.onclick = () => window.editProspect(p.id);
+          
+          let followUpHtml = p.nextFollowupDate 
+            ? `<div class="meta" style="margin-top: 4px; color: var(--color-primary);"><strong>Due:</strong> ${p.nextFollowupDate}</div>` 
+            : '';
+
+          card.innerHTML = `
+            <div class="name">
+              <span class="temp-badge temp-${p.temperature}" title="${p.temperature}"></span>
+              ${p.name}
+            </div>
+            <div class="meta">${p.contact || 'No contact info'}</div>
+            ${followUpHtml}
+          `;
+          colDiv.appendChild(card);
+        });
+
+        boardMount.appendChild(colDiv);
+      });
+    }
+
+    function renderTable() {
+      // Format data for DataTable
+      const formattedData = prospects.map(p => ({
+        'Name': `<strong>${p.name}</strong> <span style="font-size: 0.75rem; text-transform: uppercase;">(${p.temperature})</span>`,
+        'Contact': p.contact || '-',
+        'Status': p.status.toUpperCase(),
+        'Last Contact': p.lastContactDate || '-',
+        'Next Follow-up': p.nextFollowupDate || '-',
+        'Action': `<button class="btn-outline" style="padding: 2px 6px; font-size: 0.75rem; cursor:pointer;" onclick="window.editProspect('${p.id}')">Edit</button>`
+      }));
+
+      tableMount.innerHTML = '';
+      tableMount.appendChild(createDataTable(['Name', 'Contact', 'Status', 'Last Contact', 'Next Follow-up', 'Action'], formattedData));
+    }
+
+    async function loadData() {
+      prospects = await storageAdapter.list('prospects') || [];
+      // Sort by follow-up date (closest first)
+      prospects.sort((a, b) => {
+        if (!a.nextFollowupDate) return 1;
+        if (!b.nextFollowupDate) return -1;
+        return new Date(a.nextFollowupDate) - new Date(b.nextFollowupDate);
+      });
+
+      renderBoard();
+      renderTable();
+    }
+
+    // Init
+    loadData();
+  </script>
+</body>
+</html>
