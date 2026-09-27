@@ -1,11 +1,11 @@
 import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig(({ command }) => ({
-  // Use the subpath only during the GitHub Actions build, otherwise use root
-  base: command === 'build' ? '/usana_empire/' : '/',
+export default defineConfig({
+  // Hardcode the subpath so Dev, Build, and Preview all match GitHub Pages exactly
+  base: '/usana_empire/',
   
-build: {
+  build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -25,4 +25,4 @@ build: {
     environment: 'node',
     include: ['tests/unit/**/*.{test,spec}.js'],
   },
-}));
+});
