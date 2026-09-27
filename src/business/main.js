@@ -6,7 +6,7 @@ document.getElementById('nav-mount').appendChild(createNavBar());
 
 async function initBusinessPlan() {
   try {
-    const response = await fetch('/content/compensation.json');
+    const response = await fetch(import.meta.env.BASE_URL + 'content/compensation.json');
     const sections = await response.json();
     
     const mainContent = document.getElementById('main-content');

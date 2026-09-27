@@ -81,7 +81,7 @@ function createSection(p, index) {
 
 async function loadProducts() {
   try {
-    const response = await fetch('/content/products.json');
+    const response = await fetch(import.meta.env.BASE_URL + 'content/products.json');
     const products = await response.json();
     
     // Split data into the two hubs

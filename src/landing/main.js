@@ -6,7 +6,7 @@ document.getElementById('nav-mount').appendChild(createNavBar());
 
 async function initLanding() {
   try {
-    const response = await fetch('/content/sections.json');
+    const response = await fetch(import.meta.env.BASE_URL + 'content/sections.json');
     const sections = await response.json();
     
     const mainContent = document.getElementById('main-content');
