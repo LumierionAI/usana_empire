@@ -5,6 +5,18 @@
  * @returns {HTMLElement} The assembled shell
  */
 export function createToolShell(title, contentNode) {
+  const base = import.meta.env.BASE_URL;
+  
+  const header = document.createElement('header');
+  header.className = 'tool-header';
+  header.innerHTML = `
+    <a href="${base}app/tools/" class="back-link">&larr; Back to Tools</a>
+    <h1 class="tool-title">${title}</h1>
+    <div class="tool-actions">
+      <button class="btn-export">Export CSV</button>
+      <button class="btn-import">Import CSV</button>
+    </div>
+  `;
   const shell = document.createElement('div');
   shell.className = 'tool-shell';
   

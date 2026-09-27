@@ -37,20 +37,20 @@
         { "label": "Landing scroll-engine.js", "check": "src/landing/scroll-engine.js" },
         { "label": "Landing progress-rail.js", "check": "src/landing/progress-rail.js" },
         { "label": "sections.json content", "check": "content/sections.json" },
-        { "label": "Product page", "check": "product/index.html" },
-        { "label": "products.json content", "check": "content/products.json" },
-        { "label": "Business page", "check": "business/index.html" },
+        { "label": "Product page", "check": "app/product/index.html" },
+        { "label": "products.json content", "check": "public/content/products.json" },
+        { "label": "Business page", "check": "app/business/index.html" },
         { "label": "compensation.json content", "check": "content/compensation.json" }
       ]
     },
     {
       "name": "Phase 3 — Core features (System B)",
       "items": [
-        { "label": "Genealogy Simulator view", "check": "tools/genealogy/index.html" },
-        { "label": "Receipt Generator view", "check": "tools/receipts/index.html" },
-        { "label": "Financial Ledger view", "check": "tools/ledger/index.html" },
-        { "label": "Prospect Planner view", "check": "tools/prospects/index.html" },
-        { "label": "Product Guidance view", "check": "tools/guidance/index.html" },
+        { "label": "Genealogy Simulator view", "check": "app/tools/genealogy/index.html" },
+        { "label": "Receipt Generator view", "check": "app/tools/receipts/index.html" },
+        { "label": "Financial Ledger view", "check": "app/tools/ledger/index.html" },
+        { "label": "Prospect Planner view", "check": "app/tools/prospects/index.html" },
+        { "label": "Product Guidance view", "check": "app/tools/guidance/index.html" },
         { "label": "guidance-rules.json", "check": "src/tools/guidance/guidance-rules.json" }
       ]
     },
