@@ -3,7 +3,7 @@
     "id": "cellsentials",
     "name": "CellSentials",
     "kicker": "Essential Nutrition",
-    "image": "/cellsentials.png",
+    "image": "cellsentials.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A comprehensive cellular nutrition system combining Core Minerals and Vita Antioxidant.",
@@ -12,13 +12,16 @@
       "Nourishes, protects, and renews cells",
       "Delivers optimal immune and energy support"
     ],
-    "idealFor": ["Healthy adults", "Foundational daily support"]
+    "idealFor": [
+      "Healthy adults",
+      "Foundational daily support"
+    ]
   },
   {
     "id": "mini-cellsentials",
     "name": "Mini CellSentials",
     "kicker": "Essential Nutrition",
-    "image": "/mini-cellsentials.png",
+    "image": "mini-cellsentials.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A smaller version of the CellSentials system designed for easier swallowing.",
@@ -26,13 +29,16 @@
       "Delivers the same high-quality vitamins, minerals, and antioxidants as standard CellSentials",
       "Formulated in a smaller, easy-to-swallow tablet format"
     ],
-    "idealFor": ["Adults and teenagers", "Difficulty swallowing pills"]
+    "idealFor": [
+      "Adults and teenagers",
+      "Difficulty swallowing pills"
+    ]
   },
   {
     "id": "usanimals",
     "name": "Usanimals",
     "kicker": "Essential Nutrition",
-    "image": "/usanimals.png",
+    "image": "usanimals.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A daily chewable multivitamin formulated specifically for children.",
@@ -41,13 +47,15 @@
       "Supports healthy growth and immune function",
       "Aids in proper bone development"
     ],
-    "idealFor": ["Children ages 2 to 12"]
+    "idealFor": [
+      "Children ages 2 to 12"
+    ]
   },
   {
     "id": "usana-probiotic",
     "name": "USANA Probiotic",
     "kicker": "Optimizer",
-    "image": "/usana-probiotic.png",
+    "image": "usana-probiotic.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A dairy-free and sugar-free probiotic supplement containing beneficial bacterial strains (Bifidobacterium and Lactobacillus).",
@@ -56,13 +64,16 @@
       "Promotes optimal immune function",
       "Maintains a balanced gut microbiome"
     ],
-    "idealFor": ["Digestive health support", "Occasional mild stomach upset"]
+    "idealFor": [
+      "Digestive health support",
+      "Occasional mild stomach upset"
+    ]
   },
   {
     "id": "vitamin-d",
     "name": "Vitamin D",
     "kicker": "Optimizer",
-    "image": "/vitamin-d.png",
+    "image": "vitamin-d.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A high-potency vitamin D supplement to complement dietary intake.",
@@ -71,13 +82,16 @@
       "Promotes normal immune function and cardiovascular health",
       "Assists in maintaining mood balance"
     ],
-    "idealFor": ["Limited sun exposure", "Adult daily supplementation"]
+    "idealFor": [
+      "Limited sun exposure",
+      "Adult daily supplementation"
+    ]
   },
   {
     "id": "proflavanol-c100",
     "name": "Proflavanol C100",
     "kicker": "Optimizer",
-    "image": "/proflavanol-c100.png",
+    "image": "proflavanol-c100.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A powerful antioxidant supplement combining grape seed extract and vitamin C.",
@@ -86,13 +100,16 @@
       "Promotes robust immune function and healthy skin",
       "Protects cells against oxidative stress"
     ],
-    "idealFor": ["Heart health support", "Comprehensive antioxidant protection"]
+    "idealFor": [
+      "Heart health support",
+      "Comprehensive antioxidant protection"
+    ]
   },
   {
     "id": "digestive-enzyme",
     "name": "Digestive Enzyme",
     "kicker": "Optimizer",
-    "image": "/digestive-enzyme.png",
+    "image": "digestive-enzyme.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A broad-spectrum enzyme supplement that includes artichoke extract.",
@@ -101,13 +118,16 @@
       "Optimizes nutrient absorption from meals",
       "Relieves occasional gas and bloating"
     ],
-    "idealFor": ["Occasional digestive discomfort", "Heavy meal consumption"]
+    "idealFor": [
+      "Occasional digestive discomfort",
+      "Heavy meal consumption"
+    ]
   },
   {
     "id": "procalm-plus",
     "name": "ProCalm+",
     "kicker": "Optimizer",
-    "image": "/procalm-plus.png",
+    "image": "procalm-plus.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A daily supplement formulated with adaptogenic herbs including ashwagandha, saffron, and lemon balm.",
@@ -116,13 +136,16 @@
       "Helps maintain a balanced and calm mood",
       "Supports normal emotional responses"
     ],
-    "idealFor": ["Busy lifestyles", "Everyday stress management"]
+    "idealFor": [
+      "Busy lifestyles",
+      "Everyday stress management"
+    ]
   },
   {
     "id": "magnecal-d",
     "name": "MagneCal D",
     "kicker": "Optimizer",
-    "image": "/magnecal-d.png",
+    "image": "magnecal-d.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A bone health supplement providing balanced levels of magnesium, calcium, and vitamin D.",
@@ -131,13 +154,16 @@
       "Aids in proper muscle function and relaxation",
       "Promotes efficient energy metabolism through an optimized absorption ratio"
     ],
-    "idealFor": ["Bone strength maintenance", "Muscle health support"]
+    "idealFor": [
+      "Bone strength maintenance",
+      "Muscle health support"
+    ]
   },
   {
     "id": "biomega",
     "name": "BiOmega",
     "kicker": "Optimizer",
-    "image": "/biomega.png",
+    "image": "biomega.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "An ultra-pure fish oil supplement rich in EPA and DHA omega-3 fatty acids.",
@@ -146,13 +172,16 @@
       "Promotes optimal cognitive performance",
       "Supports healthy pregnancies"
     ],
-    "idealFor": ["Heart, brain, and joint support", "Pregnant women"]
+    "idealFor": [
+      "Heart, brain, and joint support",
+      "Pregnant women"
+    ]
   },
   {
     "id": "coquinone-30",
     "name": "CoQuinone 30",
     "kicker": "Optimizer",
-    "image": "/coquinone-30.png",
+    "image": "coquinone-30.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A bioavailable supplement combining coenzyme Q10 (CoQ10) and alpha-lipoic acid.",
@@ -161,13 +190,17 @@
       "Promotes cardiovascular health",
       "Maintains healthy muscle function"
     ],
-    "idealFor": ["Older adults", "Athletes", "Sustained energy seekers"]
+    "idealFor": [
+      "Older adults",
+      "Athletes",
+      "Sustained energy seekers"
+    ]
   },
   {
     "id": "copaprime-plus",
     "name": "CopaPrime+",
     "kicker": "Optimizer",
-    "image": "/copaprime-plus.png",
+    "image": "copaprime-plus.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A cognitive support formula featuring American ginseng, bacopa monnieri, and coffee fruit extract.",
@@ -176,13 +209,17 @@
       "Promotes overall brain health",
       "Protects neural cells from oxidative stress"
     ],
-    "idealFor": ["Students", "Working professionals", "Cognitive sharpness maintenance"]
+    "idealFor": [
+      "Students",
+      "Working professionals",
+      "Cognitive sharpness maintenance"
+    ]
   },
   {
     "id": "palmetto-plus",
     "name": "Palmetto Plus",
     "kicker": "Optimizer",
-    "image": "/palmetto-plus.png",
+    "image": "palmetto-plus.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A men's health supplement featuring saw palmetto extract, lycopene, and soy isoflavones.",
@@ -191,13 +228,16 @@
       "Assists in maintaining normal urinary flow",
       "Provides targeted antioxidant protection"
     ],
-    "idealFor": ["Adult men", "Men over 40"]
+    "idealFor": [
+      "Adult men",
+      "Men over 40"
+    ]
   },
   {
     "id": "poly-c",
     "name": "Poly C",
     "kicker": "Optimizer",
-    "image": "/poly-c.png",
+    "image": "poly-c.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A proprietary blend of mineral ascorbates providing a highly effective form of vitamin C.",
@@ -206,13 +246,16 @@
       "Aids in collagen synthesis",
       "Provides antioxidant defense without irritating the stomach"
     ],
-    "idealFor": ["Gentle daily immune boost", "Stomach-sensitive individuals"]
+    "idealFor": [
+      "Gentle daily immune boost",
+      "Stomach-sensitive individuals"
+    ]
   },
   {
     "id": "procosa",
     "name": "Procosa",
     "kicker": "Optimizer",
-    "image": "/procosa.png",
+    "image": "procosa.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A joint health supplement containing vegetarian glucosamine, vitamin C, and a bioavailable curcumin complex.",
@@ -221,13 +264,17 @@
       "Helps maintain healthy and resilient cartilage",
       "Delivers enhanced curcumin absorption for targeted support"
     ],
-    "idealFor": ["Active individuals", "Athletes", "Occasional joint stiffness"]
+    "idealFor": [
+      "Active individuals",
+      "Athletes",
+      "Occasional joint stiffness"
+    ]
   },
   {
     "id": "visionex",
     "name": "Visionex",
     "kicker": "Optimizer",
-    "image": "/visionex.png",
+    "image": "visionex.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "An eye health supplement formulated with lutein, zeaxanthin, vitamin C, and bilberry extract.",
@@ -236,13 +283,16 @@
       "Supports long-term visual performance",
       "Maintains the health of the macula and retina"
     ],
-    "idealFor": ["Heavy digital screen users", "Long-term eye health preservation"]
+    "idealFor": [
+      "Heavy digital screen users",
+      "Long-term eye health preservation"
+    ]
   },
   {
     "id": "hepasil-dtx",
     "name": "Hepasil DTX",
     "kicker": "Optimizer",
-    "image": "/hepasil-dtx.png",
+    "image": "hepasil-dtx.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A comprehensive liver support formula featuring milk thistle extract and alpha-lipoic acid.",
@@ -251,13 +301,16 @@
       "Protects liver cells from oxidative damage",
       "Maintains a healthy metabolism"
     ],
-    "idealFor": ["Liver health maintenance", "Detoxification support"]
+    "idealFor": [
+      "Liver health maintenance",
+      "Detoxification support"
+    ]
   },
   {
     "id": "pure-rest-sf",
     "name": "Pure Rest SF",
     "kicker": "Optimizer",
-    "image": "/pure-rest-sf.png",
+    "image": "pure-rest-sf.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A fast-acting, sugar-free melatonin supplement in a dissolvable tablet format.",
@@ -266,13 +319,17 @@
       "Supports deep and restful sleep",
       "Non-habit forming formula"
     ],
-    "idealFor": ["Occasional sleeplessness", "Shift workers", "Jet lag recovery"]
+    "idealFor": [
+      "Occasional sleeplessness",
+      "Shift workers",
+      "Jet lag recovery"
+    ]
   },
   {
     "id": "proglucamune",
     "name": "Proglucamune",
     "kicker": "Optimizer",
-    "image": "/proglucamune.png",
+    "image": "proglucamune.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "An immune support supplement utilizing baker's yeast beta-glucan alongside shiitake and reishi mushroom extracts.",
@@ -281,13 +338,17 @@
       "Helps the body adapt to occasional stress",
       "Supports overall cellular resilience"
     ],
-    "idealFor": ["Daily immune support", "High-stress periods", "Seasonal changes"]
+    "idealFor": [
+      "Daily immune support",
+      "High-stress periods",
+      "Seasonal changes"
+    ]
   },
   {
     "id": "advanced-collagen",
     "name": "USANA Advanced Collagen",
     "kicker": "Optimizer",
-    "image": "/advanced-collagen.png",
+    "image": "advanced-collagen.png",
     "buyLink": "https://empire.usana.com/shop",
     "category": "nutritionals",
     "overview": "A skin health drink mix providing types I and III bovine collagen peptides, biotin, hyaluronic acid, and vitamin C.",
@@ -296,13 +357,16 @@
       "Reduces the appearance of fine lines",
       "Strengthens hair and nails"
     ],
-    "idealFor": ["Anti-aging skin benefits", "Hair and nail strength"]
+    "idealFor": [
+      "Anti-aging skin benefits",
+      "Hair and nail strength"
+    ]
   },
   {
     "id": "creamy-foam-cleanser",
     "name": "Creamy Foam Cleanser",
     "kicker": "Step 1: Cleanse",
-    "image": "/creamy-foam-cleanser.png",
+    "image": "creamy-foam-cleanser.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A lightweight, lathering facial wash formulated with mild exfoliants, sugar squalane, and Olivol24.",
@@ -311,13 +375,17 @@
       "Retains moisture to prevent over-drying",
       "Gently refines skin texture"
     ],
-    "idealFor": ["Oily skin", "Normal skin", "Combination skin"]
+    "idealFor": [
+      "Oily skin",
+      "Normal skin",
+      "Combination skin"
+    ]
   },
   {
     "id": "biphase-makeup-remover",
     "name": "Bi-Phase Makeup Remover",
     "kicker": "Step 1: Cleanse",
-    "image": "/biphase-makeup-remover.png",
+    "image": "biphase-makeup-remover.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A non-comedogenic, dual-phase formula containing cucumber fruit complex and oil-free emollients.",
@@ -326,13 +394,17 @@
       "Conditions and hydrates the skin",
       "Leaves no greasy residue"
     ],
-    "idealFor": ["All skin types", "Sensitive skin", "Acne-prone skin"]
+    "idealFor": [
+      "All skin types",
+      "Sensitive skin",
+      "Acne-prone skin"
+    ]
   },
   {
     "id": "perfecting-toner",
     "name": "Perfecting Toner",
     "kicker": "Step 2: Prep",
-    "image": "/perfecting-toner.png",
+    "image": "perfecting-toner.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A pH-balancing toner infused with signaling peptides, skin-firming extracts, and a superfood adaptogen hydration complex.",
@@ -341,13 +413,16 @@
       "Controls oil production",
       "Primes the skin for optimal product absorption"
     ],
-    "idealFor": ["All skin types", "Protection from environmental stressors"]
+    "idealFor": [
+      "All skin types",
+      "Protection from environmental stressors"
+    ]
   },
   {
     "id": "vitalizing-serum",
     "name": "Vitalizing Serum",
     "kicker": "Step 3: Correct",
-    "image": "/vitalizing-serum.png",
+    "image": "vitalizing-serum.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A water-based, anti-aging serum packed with highly concentrated bioactive peptides (BioPeptide-CS), antioxidants, and bakuchiol.",
@@ -356,13 +431,16 @@
       "Improves skin elasticity",
       "Promotes a brighter, more even skin tone"
     ],
-    "idealFor": ["Visible signs of aging", "Maintaining a firm, radiant complexion"]
+    "idealFor": [
+      "Visible signs of aging",
+      "Maintaining a firm, radiant complexion"
+    ]
   },
   {
     "id": "resurfacing-serum",
     "name": "Resurfacing Serum",
     "kicker": "Step 3: Correct",
-    "image": "/resurfacing-serum.png",
+    "image": "resurfacing-serum.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A multi-tasking serum combining alpha hydroxy acids (AHAs), beta hydroxy acids (BHAs), niacinamide, and peptides.",
@@ -371,13 +449,17 @@
       "Refines and minimizes pore size",
       "Significantly improves uneven skin tone and texture"
     ],
-    "idealFor": ["Dullness & hyperpigmentation", "Large pores", "Uneven texture"]
+    "idealFor": [
+      "Dullness & hyperpigmentation",
+      "Large pores",
+      "Uneven texture"
+    ]
   },
   {
     "id": "triple-action-eye-cream",
     "name": "Triple Action Eye Cream",
     "kicker": "Step 3: Correct",
-    "image": "/triple-action-eye-cream.png",
+    "image": "triple-action-eye-cream.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A peptide-rich, ultra-hydrating cream formulated specifically for the delicate skin around the eyes, mouth, and chin.",
@@ -386,13 +468,17 @@
       "Brightens dark circles",
       "Delivers long-lasting hydration and blue light protection"
     ],
-    "idealFor": ["Under-eye puffiness", "Dark circles", "Signs of aging around eyes and mouth"]
+    "idealFor": [
+      "Under-eye puffiness",
+      "Dark circles",
+      "Signs of aging around eyes and mouth"
+    ]
   },
   {
     "id": "protective-day-lotion",
     "name": "Protective Day Lotion",
     "kicker": "Step 4: Hydrate",
-    "image": "/protective-day-lotion.png",
+    "image": "protective-day-lotion.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A lightweight liquid daily moisturizer with broad-spectrum UV filters and the Olivol Botanical Blend.",
@@ -401,13 +487,16 @@
       "Protects against premature aging from sun exposure",
       "Moisturizes without adding excess oil or grease"
     ],
-    "idealFor": ["Oily skin", "Combination skin"]
+    "idealFor": [
+      "Oily skin",
+      "Combination skin"
+    ]
   },
   {
     "id": "contouring-face-neck-creme",
     "name": "Contouring Face & Neck Crème",
     "kicker": "Step 4: Hydrate",
-    "image": "/contouring-face-neck-creme.png",
+    "image": "contouring-face-neck-creme.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "An advanced, targeted anti-aging cream featuring Feminage™ and potent active ingredients.",
@@ -416,13 +505,17 @@
       "Dramatically improves elasticity",
       "Reduces visible wrinkles on the face and neck"
     ],
-    "idealFor": ["Mature skin", "Adults 35+ addressing sagging", "Deep wrinkles"]
+    "idealFor": [
+      "Mature skin",
+      "Adults 35+ addressing sagging",
+      "Deep wrinkles"
+    ]
   },
   {
     "id": "exfoliating-charcoal-mask",
     "name": "Exfoliating Charcoal Mask",
     "kicker": "Enhance",
-    "image": "/exfoliating-charcoal-mask.png",
+    "image": "exfoliating-charcoal-mask.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A dual-action purifying treatment combining pollution-fighting charcoal, gentle hydrogel beads, and moisturizing botanical extracts.",
@@ -431,13 +524,17 @@
       "Draws out stubborn impurities",
       "Delivers deep 24-hour hydration"
     ],
-    "idealFor": ["Deep cleansing", "Reduced pore visibility", "Instant glow"]
+    "idealFor": [
+      "Deep cleansing",
+      "Reduced pore visibility",
+      "Instant glow"
+    ]
   },
   {
     "id": "hydrating-lifting-sheet-mask",
     "name": "Hydrating Sheet Mask",
     "kicker": "Enhance",
-    "image": "/hydrating-lifting-sheet-mask.png",
+    "image": "hydrating-lifting-sheet-mask.png",
     "buyLink": "https://www.usana.com/s/your-link",
     "category": "celavive",
     "overview": "A concentrated, pure cotton sheet mask infused with USANA's Cell-Signaling Complex and potent botanical extracts.",
@@ -446,6 +543,9 @@
       "Visibly lifts and smooths the skin",
       "Leaves a plump, youthful, and radiant appearance"
     ],
-    "idealFor": ["Quick moisture boost", "Instant tightening effect"]
+    "idealFor": [
+      "Quick moisture boost",
+      "Instant tightening effect"
+    ]
   }
 ]

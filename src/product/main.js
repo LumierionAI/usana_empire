@@ -1,6 +1,7 @@
 import { createNavBar } from '../shared/components/NavBar.js';
 import { buildProgressRail, updateActiveRail } from '../landing/progress-rail.js';
 import { initScrollEngine } from '../landing/scroll-engine.js';
+import { resolvePath } from '../shared/base-path.js';
 
 document.getElementById('nav-mount').appendChild(createNavBar());
 
@@ -54,7 +55,7 @@ function createSection(p, index) {
   sectionEl.innerHTML = `
     <div class="visual-wrapper">
       <a href="${p.buyLink || '#'}" target="_blank" class="product-image-link" title="Click to purchase ${p.name}">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+        <img src="${resolvePath(p.image)}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
       </a>
     </div>
     <div class="content-wrapper">
@@ -81,7 +82,7 @@ function createSection(p, index) {
 
 async function loadProducts() {
   try {
-    const response = await fetch(import.meta.env.BASE_URL + 'content/products.json');
+    const response = await fetch(resolvePath('content/products.json'));
     const products = await response.json();
     
     // Split data into the two hubs

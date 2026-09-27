@@ -9,85 +9,137 @@
       "deployment": "GitHub Pages (via Actions)"
     }
   },
-  "specFile": "USANA-Empire-Final-Technical-Specification.md",
+  "specFile": "FINAL-TECHNICAL-SPECIFICATION.md",
   "phases": [
     {
       "name": "Phase 0 — Foundation/setup",
       "items": [
-        { "label": "Vite project initialized (package.json)", "check": "package.json" },
-        { "label": "Vite config", "check": "vite.config.js" },
-        { "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml" },
-        { "label": "Design tokens stylesheet", "check": "styles/tokens.css" }
+        { "label": "Vite project initialized (package.json)", "check": "package.json", "kind": "file" },
+        { "label": "Vite config", "check": "vite.config.js", "kind": "file" },
+        { "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml", "kind": "file" },
+        { "label": "Design tokens stylesheet", "check": "styles/tokens.css", "kind": "file" }
       ]
     },
     {
       "name": "Phase 1 — Core architecture",
       "items": [
-        { "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js" },
-        { "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js" },
-        { "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js" },
-        { "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js" },
-        { "label": "Shared components dir (NavBar, ToolShell, DataTable, ImportWizard)", "check": "src/shared/components" }
+        { "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js", "kind": "file" },
+        { "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js", "kind": "file" },
+        { "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js", "kind": "file" },
+        { "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js", "kind": "file" },
+        { "label": "Shared components dir (NavBar, ToolShell, DataTable, ImportWizard)", "check": "src/shared/components", "kind": "file" }
       ]
     },
     {
       "name": "Phase 2 — Core features (System A)",
       "items": [
-        { "label": "Landing page markup", "check": "index.html" },
-        { "label": "Landing scroll-engine.js", "check": "src/landing/scroll-engine.js" },
-        { "label": "Landing progress-rail.js", "check": "src/landing/progress-rail.js" },
-        { "label": "sections.json content", "check": "public/content/sections.json" },
-        { "label": "Product page", "check": "app/product/index.html" },
-        { "label": "products.json content", "check": "public/content/products.json" },
-        { "label": "Business page", "check": "app/business/index.html" },
-        { "label": "compensation.json content", "check": "public/content/compensation.json" }
+        { "label": "Landing page markup", "check": "index.html", "kind": "file" },
+        { "label": "Landing scroll-engine.js", "check": "src/landing/scroll-engine.js", "kind": "file" },
+        { "label": "Landing progress-rail.js", "check": "src/landing/progress-rail.js", "kind": "file" },
+        { "label": "sections.json content", "check": "public/content/sections.json", "kind": "file" },
+        { "label": "Product page", "check": "app/product/index.html", "kind": "file" },
+        { "label": "products.json content", "check": "public/content/products.json", "kind": "file" },
+        { "label": "Business page", "check": "app/business/index.html", "kind": "file" },
+        { "label": "compensation.json content", "check": "public/content/compensation.json", "kind": "file" },
+        { "label": "Consolidate Landing/Product/Business into shared SectionRenderer (decided this session — not yet built)", "kind": "manual", "instructions": "Refactor src/landing/main.js, src/product/main.js, src/business/main.js into one shared section-rendering module per the 'Public Page Rendering' decision. Needed before adding video/YouTube sections." }
       ]
     },
     {
       "name": "Phase 3 — Core features (System B)",
       "items": [
-        { "label": "Genealogy Simulator view", "check": "app/tools/genealogy/index.html" },
-        { "label": "Receipt Generator view", "check": "app/tools/receipts/index.html" },
-        { "label": "Financial Ledger view", "check": "app/tools/ledger/index.html" },
-        { "label": "Prospect Planner view", "check": "app/tools/prospects/index.html" },
-        { "label": "Product Guidance view", "check": "app/tools/guidance/index.html" },
-        { "label": "guidance-rules.json", "check": "src/tools/guidance/guidance-rules.json" }
+        { "label": "Genealogy Simulator view", "check": "app/tools/genealogy/index.html", "kind": "file" },
+        { "label": "Receipt Generator view", "check": "app/tools/receipts/index.html", "kind": "file" },
+        { "label": "Financial Ledger view", "check": "app/tools/ledger/index.html", "kind": "file" },
+        { "label": "Prospect Planner view", "check": "app/tools/prospects/index.html", "kind": "file" },
+        { "label": "Product Guidance view", "check": "app/tools/guidance/index.html", "kind": "file" },
+        { "label": "guidance-rules.json", "check": "src/tools/guidance/guidance-rules.json", "kind": "file" },
+        { "label": "Receipt/Ledger/Prospect CSV import/export actually wired (FR-B6)", "kind": "manual", "instructions": "ToolShell renders Export/Import CSV buttons in all three tools, but none of the three attach click handlers or import csv.js/ImportWizard.js. FR-B6 and §14 Rule 5 are currently unmet." },
+        { "label": "Reconcile Purchase.lineItems field names with spec §6.2", "kind": "manual", "instructions": "Spec: {productName, quantity, unitPrice}. Code (receipts): {desc, qty, price}. Pick one, update the other." },
+        { "label": "Reconcile paymentStatus enum with spec §6.2", "kind": "manual", "instructions": "Spec enum: paid|pending|partial. Code: Paid|Unpaid. Decide and align." },
+        { "label": "Add missing Prospect fields per spec §6.2", "kind": "manual", "instructions": "spec includes `source` and `responseOutcome`; not present in the form or saved record. Also confirm whether 'inactive' status (referenced in board logic but unreachable from the form) should be a real, selectable status." },
+        { "label": "Render guidance-rules.json _meta.source and _meta.disclaimer in Product Guidance UI", "kind": "manual", "instructions": "Data already carries source/disclaimer; generateProtocol() in guidance/main.js never renders either. Required by the project's own decision to preserve provenance and disclaimers." }
+      ]
+    },
+    {
+      "name": "Phase 4 — UI/UX polish",
+      "manual": true,
+      "items": [
+        { "label": "Portrait/Landscape Composition Pass", "kind": "manual", "instructions": "Manually test all views on mobile (portrait) and desktop (landscape). Verify tables scroll horizontally without breaking layout, sidebars collapse, touch targets are adequate." },
+        { "label": "Accessibility (a11y) Pass", "kind": "manual", "instructions": "Full keyboard navigation (Tab/Enter/Space). WCAG AA contrast check. prefers-reduced-motion respected on landing progress-rail animation." },
+        { "label": "Centralized BASE_URL-aware asset-path helper adopted everywhere", "kind": "manual", "instructions": "Confirmed bug: app/tools/receipts, ledger, and prospects index.html all hardcode /styles/tokens.css and /favicon-*.png as root-absolute paths, matching the same class of bug already found in the landing page CTAs and products.json image paths. Build the centralized helper decided this session and apply it everywhere before this phase closes." }
       ]
     },
     {
       "name": "Phase 5 — Integration",
       "items": [
-        { "label": "json-backup.js (full workspace export/import)", "check": "src/shared/import-export/json-backup.js" },
-        { "label": "csv.js (CSV import/export)", "check": "src/shared/import-export/csv.js" }
+        { "label": "json-backup.js (full workspace export/import)", "check": "src/shared/import-export/json-backup.js", "kind": "file" },
+        { "label": "csv.js (CSV import/export)", "check": "src/shared/import-export/csv.js", "kind": "file" }
       ]
     },
     {
       "name": "Phase 6 — Testing",
       "items": [
-        { "label": "Unit tests directory populated", "check": "tests/unit" },
-        { "label": "E2E tests directory populated", "check": "tests/e2e" }
+        { "label": "Unit tests directory populated", "check": "tests/unit", "kind": "file" },
+        { "label": "E2E tests directory populated", "check": "tests/e2e", "kind": "file" }
+      ]
+    },
+    {
+      "name": "Phase 7 — Deployment",
+      "manual": true,
+      "items": [
+        { "label": "Initial GitHub Pages Deployment", "kind": "manual", "instructions": "Confirm .github/workflows/deploy.yml has completed at least one successful run and the site is live and correctly serving the Vite bundle at the expected gh-pages URL." }
       ]
     }
   ],
-  "manualTasks": [
-    {
-      "label": "Portrait/Landscape Composition Pass (Phase 4)",
-      "instructions": "Manually test all views on both mobile (portrait) and desktop (landscape) viewport dimensions. Verify that data tables scroll horizontally without breaking layout, sidebars collapse correctly, and touch targets are adequately sized on mobile."
-    },
-    {
-      "label": "Accessibility (a11y) Pass (Phase 4)",
-      "instructions": "Ensure the application is fully keyboard navigable (using Tab, Enter, and Space). Check that all text meets WCAG AA color contrast ratios against backgrounds, and verify that reduced-motion media queries are respected for animations like the landing page progress rail."
-    },
-    {
-      "label": "Initial GitHub Pages Deployment (Phase 7)",
-      "instructions": "Confirm that the `.github/workflows/deploy.yml` action has successfully completed at least one run and that the site is live, accessible, and correctly serving the Vite bundle on the expected `gh-pages` URL."
-    }
-  ],
   "openDecisions": [
-    "Single-admin confirmation blocks Phase 3 multi-user/auth work only",
-    "Existing Receipt Generator file review blocks Phase 3 Receipt Generator specifically",
-    "Product Guidance grounding content/source blocks Phase 3 Product Guidance specifically",
-    "Brand assets / final palette should resolve by Phase 2",
-    "USANA distributor policy review blocks any public content going live"
+    {
+      "id": "single-admin",
+      "text": "Single-admin / no-auth assumption for the Tools workspace.",
+      "status": "resolved",
+      "resolution": "Confirmed Alpha is single-user/local. No auth or backend now; architecture must preserve boundaries for future multi-user extension (storage-adapter as the sole seam).",
+      "blocks": null
+    },
+    {
+      "id": "receipt-generator-review",
+      "text": "Existing Receipt Generator file review.",
+      "status": "resolved",
+      "resolution": "Reviewed this session. Not a shell — functional, but has schema drift from spec §6.2 and no CSV import/export wiring. See the new Phase 3 items this generated.",
+      "blocks": null
+    },
+    {
+      "id": "guidance-content-source",
+      "text": "Product Guidance grounding content/source.",
+      "status": "resolved",
+      "resolution": "Source confirmed: 'Comprehensive Guide to Nutritional Product Recommendation', compiled/reviewed by the project owner. Uplines with USANA compliance familiarity have reviewed the concept and agreed. Tool remains private/local for the Alpha per this session's decision.",
+      "blocks": null
+    },
+    {
+      "id": "brand-assets",
+      "text": "Brand assets / final palette not yet confirmed.",
+      "status": "open",
+      "resolution": null,
+      "blocks": "Phase 2, Phase 4"
+    },
+    {
+      "id": "usana-policy-review",
+      "text": "USANA distributor policy review for any PUBLIC content (site-wide, not the private Guidance tool specifically).",
+      "status": "open",
+      "resolution": null,
+      "blocks": "any public launch"
+    },
+    {
+      "id": "design-system-library",
+      "text": "Which React UI ecosystem/library (if any) to adopt for the design system.",
+      "status": "open",
+      "resolution": "Direction confirmed (move toward React, choose deliberately, smallest appropriate ecosystem, public vs. tools may differ) — specific library not yet selected.",
+      "blocks": "Phase 5+ design-system work"
+    },
+    {
+      "id": "diagnostic-id-watermark",
+      "text": "`diagnostic-id`/'Ghost Log' identifier (15661635) appearing in NavBar.js, guidance/main.js, and all three tool HTML files' <meta> tags.",
+      "status": "resolved",
+      "resolution": "Confirmed by project owner: intentional build fingerprint. No action needed.",
+      "blocks": null
+    }
   ]
 }

@@ -11,10 +11,11 @@
  * tools, different chat windows, or different people. PROJECT_STATE.md
  * is meant to be the FIRST file read at the start of any new session:
  * it tells you (human or AI) what phase the project is in, what files
- * exist, what's still missing, what's flagged as a TODO in the code,
- * what the git history looks like, and what open decisions are still
- * blocking which phase — all derived directly from the real state of
- * the repo, not from memory or a stale conversation.
+ * exist, whether shared modules are actually imported anywhere, what's
+ * still missing, what's flagged as a TODO in the code, what the git
+ * history looks like, and what open decisions are still blocking which
+ * phase — all derived directly from the real state of the repo, not
+ * from memory or a stale conversation.
  *
  * USAGE
  *   node scripts/generate-project-state.js
@@ -26,28 +27,45 @@
  * code changes. It costs nothing to run and takes under a second.
  *
  * HOW IT DECIDES WHAT'S "DONE"
- * scripts/project-checklist.json lists every phase from the Final
- * Technical Specification's Development Plan (§10) and the key files
- * each phase is expected to produce (from §9's file structure). This
- * script checks whether each file/directory exists and is non-trivial
- * (not a stub) and marks it accordingly. A few items are marked
- * "manual" in the checklist (e.g. an accessibility pass) because they
- * can't be verified by scanning files — those always show as
- * "needs manual confirmation."
+ * scripts/project-checklist.json lists every phase and, per phase, the
+ * items expected to exist. Each item has a "kind":
+ *   - "file"   : existence + non-trivial-size check against `check`.
+ *                Counts toward the completion percentage.
+ *   - "manual" : cannot be verified by scanning files (a11y pass, CSV
+ *                wiring, schema reconciliation, etc). Never counted
+ *                toward the percentage — always listed separately under
+ *                "Manual Verification / Follow-up Tasks" instead, so a
+ *                "100%" reading never silently absorbs work that still
+ *                needs a human. A phase can also be marked
+ *                `"manual": true` at the phase level (e.g. Phase 4,
+ *                Phase 7) when *none* of its items are file-checkable.
+ *
+ * CHANGE LOG (kept short, most recent first)
+ * - Fixed: source-code dump now walks app/, src/, and public/content/
+ *   with the same ignore rules as the directory tree, instead of a
+ *   hardcoded two-directory allowlist. That allowlist previously meant
+ *   app/tools/receipts, ledger, and prospects (all logic-bearing HTML
+ *   files with inline <script type="module">) were invisible to this
+ *   document even though they were fully implemented — this generator
+ *   was the reason they read as "unverifiable," not the code itself.
+ * - Added: module usage graph. Every file under src/shared is checked
+ *   against every other .js/.html file in the repo for an `import`
+ *   referencing it, and reported as "imported by: [...]" or "imported
+ *   by nobody". This is what should have surfaced the ToolShell
+ *   export/import button wiring question automatically.
+ * - Added: specFile existence is validated at generation time; a
+ *   mismatch (spec renamed/moved, checklist not updated) now prints a
+ *   visible warning in the output instead of failing silently.
+ * - Added: oversized JSON content (over JSON_SUMMARY_THRESHOLD bytes)
+ *   is summarized (record count / top-level keys) instead of dumped in
+ *   full, so this document doesn't grow without bound as content grows.
+ * - Added: manual-only phases/items are excluded from the completion
+ *   percentage and listed separately, with the exclusion stated
+ *   explicitly in the generated header.
  *
  * This script has NO external dependencies — only Node's built-in
  * fs, path, and child_process modules — so it always runs, even
  * before `npm install` has ever been run.
- * ---------------------------------------------------------------------
- */
-
-/**
- * generate-project-state.js
- * ---------------------------------------------------------------------
- * Scans the repository and writes PROJECT_STATE.md at the repo root.
- * Designed to provide an AI agent with comprehensive, zero-shot context
- * of the project's purpose, architecture, state, recent momentum, and
- * full historical changelog, including source code dumps.
  * ---------------------------------------------------------------------
  */
 
@@ -72,6 +90,15 @@ const IGNORE_DIRS = new Set([
 const TEXT_EXTENSIONS = new Set([
   '.js', '.mjs', '.cjs', '.ts', '.jsx', '.tsx', '.html', '.css', '.json'
 ]);
+
+// Source-code-dump specific: which top-level dirs count as "project code",
+// walked with the same ignore rules as the directory tree (see collectFiles).
+const SOURCE_DUMP_ROOTS = ['app', 'src', 'public/content'];
+const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.json', '.html', '.css']);
+
+// Any single JSON file above this size gets summarized instead of dumped
+// in full, so PROJECT_STATE.md doesn't grow linearly with content forever.
+const JSON_SUMMARY_THRESHOLD = 4000; // bytes
 
 const TODO_PATTERN = /\b(TODO|FIXME|HACK|OPEN DECISION)\b:?/i;
 
@@ -259,16 +286,25 @@ function buildChangelogSection() {
   return logRaw;
 }
 
+// ---------------------------------------------------------------------
+// Checklist / phase completion
+// ---------------------------------------------------------------------
+
 function buildChecklistSection(checklist) {
   if (!checklist) return '_No scripts/project-checklist.json found._';
   let out = [];
   let totalItems = 0;
   let doneItems = 0;
+  const manualOnlyPhases = [];
 
-  for (const phase of checklist.phases) {
+  for (const phase of checklist.phases || []) {
     if (!phase.items || phase.items.length === 0) continue;
     out.push(`### ${phase.name}`);
     for (const item of phase.items) {
+      if (item.kind === 'manual') {
+        out.push(`- [ ] 🔧 ${item.label} — _requires manual verification, see §4_`);
+        continue;
+      }
       totalItems += 1;
       const status = checkPathStatus(item.check);
       if (status.exists) doneItems += 1;
@@ -276,20 +312,34 @@ function buildChecklistSection(checklist) {
       out.push(`- ${box} ${item.label} (\`${item.check}\`) — ${status.note}`);
     }
     out.push('');
+    if (phase.manual) manualOnlyPhases.push(phase.name);
   }
 
   const pct = totalItems > 0 ? Math.round((doneItems / totalItems) * 100) : 0;
-  const header = `**Automated file progress: ${doneItems}/${totalItems} items present (${pct}%)**\n`;
+  let header = `**Automated file-existence progress: ${doneItems}/${totalItems} auto-checkable items present (${pct}%)**\n`;
+  header += `_This percentage reflects file-existence checks only — it is not a correctness or "feature complete" signal. Items marked 🔧 above are excluded from it and must be verified manually (see §4).`;
+  if (manualOnlyPhases.length) {
+    header += ` Entire phases with no auto-checkable items at all: ${manualOnlyPhases.join(', ')}.`;
+  }
+  header += '_\n';
   return header + '\n' + out.join('\n');
 }
 
 function buildManualTasksSection(checklist) {
-  if (!checklist || !checklist.manualTasks || checklist.manualTasks.length === 0) return '_No pending manual tasks._';
+  if (!checklist) return '_No pending manual tasks._';
   let out = [];
-  for (const task of checklist.manualTasks) {
+  for (const phase of checklist.phases || []) {
+    for (const item of phase.items || []) {
+      if (item.kind === 'manual') {
+        out.push(`- [ ] **${item.label}** _(${phase.name})_\n  > ${item.instructions || 'See project documentation.'}`);
+      }
+    }
+  }
+  // Back-compat with older checklist shapes that used a separate top-level array.
+  for (const task of checklist.manualTasks || []) {
     out.push(`- [ ] **${task.label}**\n  > ${task.instructions}`);
   }
-  return out.join('\n\n');
+  return out.length ? out.join('\n\n') : '_No pending manual tasks._';
 }
 
 function buildMetadataSection(checklist) {
@@ -302,30 +352,141 @@ function buildMetadataSection(checklist) {
   return `**Description:** ${meta.description}\n\n**Architecture & Stack:**\n${arch}`;
 }
 
-function buildSourceCodeSection() {
-  const targetDirs = ['src', 'public/content'];
-  let codeDump = '';
+function buildOpenDecisionsSection(checklist) {
+  const decisions = checklist?.openDecisions;
+  if (!decisions || decisions.length === 0) return '_None_';
 
-  function dumpFiles(dirPath) {
-    if (!fs.existsSync(dirPath)) return;
-    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-    for (const entry of entries) {
-      const fullPath = path.join(dirPath, entry.name);
+  const statusTag = (status) => {
+    if (status === 'resolved') return '✅ RESOLVED';
+    if (status === 'awaiting-clarification') return '❓ AWAITING CLARIFICATION';
+    return '🔴 OPEN';
+  };
 
-      if (entry.isDirectory()) {
-        dumpFiles(fullPath);
-      } else if (['.js', '.json', '.html', '.css'].includes(path.extname(entry.name))) {
-        const content = fs.readFileSync(fullPath, 'utf-8');
-        const relative = path.relative(ROOT, fullPath);
-        let lang = path.extname(entry.name).substring(1);
-        if (lang === 'js') lang = 'javascript';
+  return decisions.map(d => {
+    // Back-compat: allow plain strings alongside the richer object shape.
+    if (typeof d === 'string') return `- ${d}`;
+    let line = `- **[${statusTag(d.status)}]** ${d.text}`;
+    if (d.blocks) line += `\n  > Blocks: ${d.blocks}`;
+    if (d.resolution) line += `\n  > Resolution: ${d.resolution}`;
+    return line;
+  }).join('\n');
+}
 
-        codeDump += `### ${relative}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
-      }
+// ---------------------------------------------------------------------
+// Module usage graph — is anything in src/shared actually imported?
+// ---------------------------------------------------------------------
+
+function buildModuleUsageSection(allFiles) {
+  const candidateExts = new Set(['.js', '.html']);
+  const selfPath = path.relative(ROOT, __filename);
+  const scannable = allFiles.filter(f => {
+    if (!candidateExts.has(path.extname(f))) return false;
+    // Exclude this generator itself — its own doc comments illustrate the
+    // exact `import ... from '.../Foo.js'` shape being matched for, which
+    // otherwise produces false-positive "imported by" hits against itself.
+    if (path.relative(ROOT, f) === selfPath) return false;
+    return true;
+  });
+
+  const sharedModules = scannable.filter(f => {
+    const rel = path.relative(ROOT, f).split(path.sep).join('/');
+    return rel.startsWith('src/shared/') && path.extname(f) === '.js';
+  });
+
+  if (sharedModules.length === 0) {
+    return '_No modules found under src/shared/._';
+  }
+
+  // Pre-read every scannable file once.
+  const contentsByFile = new Map();
+  for (const f of scannable) {
+    try {
+      contentsByFile.set(f, fs.readFileSync(f, 'utf8'));
+    } catch {
+      // unreadable/binary — skip
     }
   }
 
-  targetDirs.forEach(dir => dumpFiles(path.join(ROOT, dir)));
+  const rows = [];
+  for (const mod of sharedModules) {
+    const modRel = path.relative(ROOT, mod).split(path.sep).join('/');
+    const baseName = path.basename(mod, path.extname(mod));
+    // Matches: import { x } from '.../ToolShell.js'  or  '.../ToolShell'
+    const importPattern = new RegExp(`from\\s+['"][^'"]*\\b${baseName}(\\.js)?['"]`);
+
+    const importers = [];
+    for (const [file, content] of contentsByFile) {
+      if (file === mod) continue;
+      if (importPattern.test(content)) {
+        importers.push(path.relative(ROOT, file).split(path.sep).join('/'));
+      }
+    }
+
+    if (importers.length === 0) {
+      rows.push(`- \`${modRel}\` — **imported by nobody**`);
+    } else {
+      rows.push(`- \`${modRel}\` — imported by: ${importers.map(i => `\`${i}\``).join(', ')}`);
+    }
+  }
+
+  return [
+    '_Every module under `src/shared/` checked against every other `.js`/`.html` file in the repo for a matching `import ... from` reference. This is a plain-text pattern match, not a bundler-accurate resolution — treat "imported by nobody" as a strong signal to investigate, not absolute proof of dead code (e.g. dynamic imports or renamed re-exports would not be caught)._',
+    '',
+    ...rows,
+  ].join('\n');
+}
+
+// ---------------------------------------------------------------------
+// Source code dump — now walks app/, src/, public/content/ uniformly,
+// with the same ignore rules as the directory tree, and summarizes
+// oversized JSON instead of dumping it whole.
+// ---------------------------------------------------------------------
+
+function summarizeJSON(content, relPath, byteSize) {
+  try {
+    const parsed = JSON.parse(content);
+    let shape;
+    if (Array.isArray(parsed)) {
+      shape = `Array of ${parsed.length} item(s).`;
+      if (parsed.length > 0 && typeof parsed[0] === 'object' && parsed[0] !== null) {
+        shape += ` First item's keys: ${Object.keys(parsed[0]).join(', ')}`;
+      }
+    } else if (parsed && typeof parsed === 'object') {
+      shape = `Object with top-level keys: ${Object.keys(parsed).join(', ')}`;
+    } else {
+      shape = 'Primitive JSON value.';
+    }
+    return `### ${relPath}\n_${byteSize} bytes — content summarized (exceeds ${JSON_SUMMARY_THRESHOLD}-byte threshold); full text omitted from this document to keep it bounded in size. Read the file directly for full content._\n\n${shape}\n\n`;
+  } catch {
+    return `### ${relPath}\n_${byteSize} bytes — content summarized as unparseable/invalid JSON; full text omitted. Read the file directly._\n\n`;
+  }
+}
+
+function buildSourceCodeSection() {
+  let codeDump = '';
+
+  for (const rootRel of SOURCE_DUMP_ROOTS) {
+    const rootDir = path.join(ROOT, rootRel);
+    if (!fs.existsSync(rootDir)) continue;
+    const files = collectFiles(rootDir).filter(f => SOURCE_DUMP_EXTENSIONS.has(path.extname(f)));
+    files.sort();
+
+    for (const fullPath of files) {
+      const relative = path.relative(ROOT, fullPath).split(path.sep).join('/');
+      const ext = path.extname(fullPath);
+      const stat = fs.statSync(fullPath);
+      const content = fs.readFileSync(fullPath, 'utf-8');
+
+      if (ext === '.json' && stat.size > JSON_SUMMARY_THRESHOLD) {
+        codeDump += summarizeJSON(content, relative, stat.size);
+        continue;
+      }
+
+      let lang = ext.substring(1);
+      if (lang === 'js') lang = 'javascript';
+      codeDump += `### ${relative}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+    }
+  }
 
   const viteConfigPath = path.join(ROOT, 'vite.config.js');
   if (fs.existsSync(viteConfigPath)) {
@@ -335,6 +496,10 @@ function buildSourceCodeSection() {
   return codeDump;
 }
 
+// ---------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------
+
 function main() {
   const checklist = loadChecklist();
   const files = collectFiles(ROOT);
@@ -342,9 +507,16 @@ function main() {
   const timestamp = new Date().toISOString();
 
   const projectName = checklist?.projectName || 'Project';
-  const specNote = checklist?.specFile
-    ? `The authoritative spec is **${checklist.specFile}**. It is the source of truth for architecture, schemas, and rules. Do not deviate from it without updating it first.`
-    : 'No spec file is referenced in project-checklist.json.';
+
+  let specNote;
+  if (!checklist?.specFile) {
+    specNote = 'No spec file is referenced in project-checklist.json.';
+  } else {
+    const specExists = fs.existsSync(path.join(ROOT, checklist.specFile));
+    specNote = specExists
+      ? `The authoritative spec is **${checklist.specFile}**. It is the source of truth for architecture, schemas, and rules. Do not deviate from it without updating it first.`
+      : `⚠️ **WARNING: checklist.specFile is set to \`${checklist.specFile}\`, but no file with that name exists in the repo root.** Either the spec was renamed/moved, or project-checklist.json is stale. Resolve this before trusting any spec references in this document.`;
+  }
 
   const md = `# PROJECT STATE — ${projectName}
 
@@ -366,7 +538,8 @@ ${loadDependencies()}
 
 1. **Review this file** to understand exactly what exists right now, recent changes, and unresolved tasks.
 2. **Review ${checklist ? checklist.specFile : 'the Technical Specification'}**. ${specNote}
-3. **Check Open Decisions** below to ensure your work does not conflict with blocked tasks.
+3. **Check Open Decisions** (§5) to ensure your work does not conflict with blocked tasks.
+4. **Check the Module Usage Graph** (§10) before assuming a shared component is wired up anywhere.
 
 ---
 
@@ -376,9 +549,9 @@ ${buildChecklistSection(checklist)}
 
 ---
 
-## 4. Manual Verification Tasks
+## 4. Manual Verification / Follow-up Tasks
 
-These tasks cannot be verified by scanning the file system and require human QA or external confirmation.
+These cannot be verified by scanning the file system and require human QA, a code read, or an explicit decision.
 
 ${buildManualTasksSection(checklist)}
 
@@ -386,7 +559,7 @@ ${buildManualTasksSection(checklist)}
 
 ## 5. Open Decisions (Pending Resolution)
 
-${checklist?.openDecisions ? checklist.openDecisions.map(d => `- ${d}`).join('\n') : '_None_'}
+${buildOpenDecisionsSection(checklist)}
 
 ---
 
@@ -416,12 +589,19 @@ ${tree}
 
 ---
 
-## 10. Source Code Contents
+## 10. Module Usage Graph (src/shared/*)
+
+${buildModuleUsageSection(files)}
+
+---
+
+## 11. Source Code Contents
 
 ${buildSourceCodeSection()}
 `;
 
   fs.writeFileSync(OUTPUT_FILE, md, 'utf8');
+  console.log(`PROJECT_STATE.md written to ${OUTPUT_FILE}`);
 }
 
 // Execute the script

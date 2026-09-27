@@ -1,12 +1,13 @@
 import { createNavBar } from '../shared/components/NavBar.js';
 import { buildProgressRail, updateActiveRail } from './progress-rail.js';
 import { initScrollEngine } from './scroll-engine.js';
+import { resolvePath } from '../shared/base-path.js';
 
 document.getElementById('nav-mount').appendChild(createNavBar());
 
 async function initLanding() {
   try {
-    const response = await fetch(import.meta.env.BASE_URL + 'content/sections.json');
+    const response = await fetch(resolvePath('content/sections.json'));
     const sections = await response.json();
     
     const mainContent = document.getElementById('main-content');
