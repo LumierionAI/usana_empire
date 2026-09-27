@@ -36,11 +36,11 @@
         { "label": "Landing page markup", "check": "index.html" },
         { "label": "Landing scroll-engine.js", "check": "src/landing/scroll-engine.js" },
         { "label": "Landing progress-rail.js", "check": "src/landing/progress-rail.js" },
-        { "label": "sections.json content", "check": "content/sections.json" },
+        { "label": "sections.json content", "check": "public/content/sections.json" },
         { "label": "Product page", "check": "app/product/index.html" },
         { "label": "products.json content", "check": "public/content/products.json" },
         { "label": "Business page", "check": "app/business/index.html" },
-        { "label": "compensation.json content", "check": "content/compensation.json" }
+        { "label": "compensation.json content", "check": "public/content/compensation.json" }
       ]
     },
     {
