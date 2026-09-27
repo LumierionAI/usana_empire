@@ -6,13 +6,15 @@ export function createNavBar() {
   const nav = document.createElement('nav');
   nav.className = 'global-navbar';
   
+  const base = import.meta.env.BASE_URL;
+  
   nav.innerHTML = `
     <div class="nav-container">
-      <a href="/" class="nav-brand">USANA Empire</a>
+      <a href="${base}" class="nav-brand">USANA Empire</a>
       <ul class="nav-links">
-        <li><a href="/product/">Product</a></li>
-        <li><a href="/business/">Business</a></li>
-        <li><a href="/tools/">Tools</a></li>
+        <li><a href="${base}product/">Product</a></li>
+        <li><a href="${base}business/">Business</a></li>
+        <li><a href="${base}tools/">Tools</a></li>
       </ul>
     </div>
   `;
