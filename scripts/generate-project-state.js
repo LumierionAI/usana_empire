@@ -41,14 +41,13 @@
  * ---------------------------------------------------------------------
  */
 
-
 /**
  * generate-project-state.js
  * ---------------------------------------------------------------------
  * Scans the repository and writes PROJECT_STATE.md at the repo root.
  * Designed to provide an AI agent with comprehensive, zero-shot context
  * of the project's purpose, architecture, state, recent momentum, and
- * full historical changelog.
+ * full historical changelog, including source code dumps.
  * ---------------------------------------------------------------------
  */
 
@@ -208,11 +207,11 @@ function buildGitSection() {
   if (!isGitRepo()) {
     return '_This directory is not (yet) a git repository. Run `git init` to start tracking history._';
   }
-  
+
   let branch = safeRun('git branch --show-current') || safeRun('git rev-parse --abbrev-ref HEAD') || 'No commits yet (main)';
   const diffStat = safeRun('git log -3 --stat --oneline') || '_no recent changes to display_';
   const statusRaw = safeRun('git status --porcelain') || '';
-  
+
   let staged = [];
   let unstaged = [];
   let untracked = [];
@@ -255,7 +254,7 @@ function buildGitSection() {
 
 function buildChangelogSection() {
   if (!isGitRepo()) return '_No git repository found. Changelog unavailable._';
-  const logRaw = safeRun('git log --pretty=format:"- **%ad** | \`%h\` | %s" --date=short');
+  const logRaw = safeRun('git log --pretty=format:"- **%ad** | `%h` | %s" --date=short');
   if (!logRaw) return '_No commits yet._';
   return logRaw;
 }
@@ -301,6 +300,39 @@ function buildMetadataSection(checklist) {
     .join('\n');
 
   return `**Description:** ${meta.description}\n\n**Architecture & Stack:**\n${arch}`;
+}
+
+function buildSourceCodeSection() {
+  const targetDirs = ['src', 'public/content'];
+  let codeDump = '';
+
+  function dumpFiles(dirPath) {
+    if (!fs.existsSync(dirPath)) return;
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
+
+      if (entry.isDirectory()) {
+        dumpFiles(fullPath);
+      } else if (['.js', '.json', '.html', '.css'].includes(path.extname(entry.name))) {
+        const content = fs.readFileSync(fullPath, 'utf-8');
+        const relative = path.relative(ROOT, fullPath);
+        let lang = path.extname(entry.name).substring(1);
+        if (lang === 'js') lang = 'javascript';
+
+        codeDump += `### ${relative}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+      }
+    }
+  }
+
+  targetDirs.forEach(dir => dumpFiles(path.join(ROOT, dir)));
+
+  const viteConfigPath = path.join(ROOT, 'vite.config.js');
+  if (fs.existsSync(viteConfigPath)) {
+    codeDump += `### vite.config.js\n\`\`\`javascript\n${fs.readFileSync(viteConfigPath, 'utf-8')}\n\`\`\`\n\n`;
+  }
+
+  return codeDump;
 }
 
 function main() {
@@ -381,9 +413,16 @@ ${buildChangelogSection()}
 \`\`\`
 ${tree}
 \`\`\`
+
+---
+
+## 10. Source Code Contents
+
+${buildSourceCodeSection()}
 `;
 
   fs.writeFileSync(OUTPUT_FILE, md, 'utf8');
 }
 
+// Execute the script
 main();

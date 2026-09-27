@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USANA Empire | Product Portfolio</title>
+  <meta name="diagnostic-id" content="15661635">
+  <title>USANA Empire | The Business Opportunity</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,26 +16,17 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="/styles/tokens.css" />
   <link rel="stylesheet" href="/styles/base.css" />
-  <link rel="stylesheet" href="/styles/product.css" />
+  <link rel="stylesheet" href="/styles/landing.css" />
+  <link rel="stylesheet" href="/styles/business.css" />
 </head>
 <body>
   <div id="nav-mount"></div>
-  
-  <div class="view-toggles">
-    <button class="toggle-btn active" id="btn-nutritionals">Nutritionals</button>
-    <button class="toggle-btn" id="btn-celavive">Celavive Skincare</button>
-  </div>
-
   <aside id="rail-mount"></aside>
-  
-  <main id="view-nutritionals" class="snap-container"></main>
-  
-  <main id="view-celavive" class="snap-container hidden">
-    <!-- Celavive stages will be dynamically injected here in a future update -->
-  </main>
+  <main id="main-content" class="snap-container"></main>
 
-  <script type="module" src="/src/product/main.js"></script>
+  <script type="module" src="/src/business/main.js"></script>
 </body>
 </html>

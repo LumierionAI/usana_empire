@@ -5,18 +5,18 @@ export default defineConfig(({ command }) => ({
   // Use the subpath only during the GitHub Actions build, otherwise use root
   base: command === 'build' ? '/usana_empire/' : '/',
   
-  build: {
+build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        product: resolve(__dirname, 'product/index.html'),
-        business: resolve(__dirname, 'business/index.html'),
-        tools: resolve(__dirname, 'tools/index.html'),
-        genealogy: resolve(__dirname, 'tools/genealogy/index.html'),
-        guidance: resolve(__dirname, 'tools/guidance/index.html'),
-        receipts: resolve(__dirname, 'tools/receipts/index.html'),
-        ledger: resolve(__dirname, 'tools/ledger/index.html'),
-        prospects: resolve(__dirname, 'tools/prospects/index.html'),
+        product: resolve(__dirname, 'app/product/index.html'),
+        business: resolve(__dirname, 'app/business/index.html'),
+        tools: resolve(__dirname, 'app/tools/index.html'),
+        genealogy: resolve(__dirname, 'app/tools/genealogy/index.html'),
+        guidance: resolve(__dirname, 'app/tools/guidance/index.html'),
+        receipts: resolve(__dirname, 'app/tools/receipts/index.html'),
+        ledger: resolve(__dirname, 'app/tools/ledger/index.html'),
+        prospects: resolve(__dirname, 'app/tools/prospects/index.html'),
       },
     },
   },

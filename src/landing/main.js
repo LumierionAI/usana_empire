@@ -28,8 +28,8 @@ async function initLanding() {
       if (sec.id === 'hero') {
         contentHTML += `
           <div class="cta-group">
-            <a href="/product/" class="btn btn-primary">Discover Nutrition</a>
-            <a href="/business/" class="btn btn-outline">The Opportunity</a>
+            <a href="/app/product/" class="btn btn-primary">Discover Nutrition</a>
+            <a href="/app/business/" class="btn btn-outline">The Opportunity</a>
           </div>
         `;
       } else if (sec.id === 'opportunity') {
