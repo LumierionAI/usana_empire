@@ -3,139 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USANA Empire</title>
+  <title>USANA Empire | The Science of Exceptional Health</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="/styles/tokens.css" />
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: var(--font-sans);
-      background: var(--color-bg);
-      color: var(--color-text);
-    }
-    
-    .snap-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-    }
-    
-    .snap-section {
-      height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: var(--spacing-xl);
-      box-sizing: border-box;
-      position: relative;
-    }
-    
-    @media (prefers-reduced-motion: reduce) {
-      .snap-container {
-        scroll-behavior: auto;
-      }
-    }
-
-    /* Local rail styles for the presentation deck */
-    .progress-rail {
-      position: fixed;
-      right: var(--spacing-md);
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      z-index: 100;
-    }
-    
-    .rail-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--color-surface);
-      border: 2px solid var(--color-primary);
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    
-    .rail-dot.active {
-      background: var(--color-primary);
-    }
-
-    .cta-group {
-      margin-top: var(--spacing-lg);
-      display: flex;
-      gap: var(--spacing-md);
-    }
-
-    .btn {
-      padding: var(--spacing-sm) var(--spacing-md);
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    .btn-primary {
-      background: var(--color-primary);
-      color: var(--color-bg);
-    }
-
-    .btn-secondary {
-      background: var(--color-secondary);
-      color: var(--color-bg);
-    }
-  </style>
+  <link rel="stylesheet" href="/styles/landing.css" />
+  <link rel="stylesheet" href="/styles/base.css" />
 </head>
 <body>
   <div id="nav-mount"></div>
   <aside id="rail-mount"></aside>
   <main id="main-content" class="snap-container"></main>
 
-  <script type="module">
-    import { createNavBar } from './src/shared/components/NavBar.js';
-    import { buildProgressRail, updateActiveRail } from './src/landing/progress-rail.js';
-    import { initScrollEngine } from './src/landing/scroll-engine.js';
-
-    document.getElementById('nav-mount').appendChild(createNavBar());
-
-    async function initLanding() {
-      const response = await fetch('/content/sections.json');
-      const sections = await response.json();
-      
-      const mainContent = document.getElementById('main-content');
-      
-      sections.forEach(sec => {
-        const sectionEl = document.createElement('section');
-        sectionEl.className = 'snap-section';
-        sectionEl.id = sec.id;
-        
-        let contentHTML = `<h2>${sec.title}</h2><p>${sec.content}</p>`;
-        
-        if (sec.id === 'hero') {
-          contentHTML += `
-            <div class="cta-group">
-              <a href="/product/" class="btn btn-primary">Explore Products</a>
-              <a href="/business/" class="btn btn-secondary">Explore the Business</a>
-            </div>
-          `;
-        }
-        
-        sectionEl.innerHTML = contentHTML;
-        mainContent.appendChild(sectionEl);
-      });
-
-      const railMount = document.getElementById('rail-mount');
-      railMount.appendChild(buildProgressRail(sections));
-
-      initScrollEngine('.snap-section', (activeId) => {
-        updateActiveRail(activeId);
-      });
-    }
-
-    initLanding();
-  </script>
+  <!-- External Application Logic -->
+  <script type="module" src="/src/landing/main.js"></script>
 </body>
 </html>

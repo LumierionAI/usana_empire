@@ -3,152 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Genealogy Simulator - USANA Empire</title>
+  <title>USANA Empire | Genealogy Simulator</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
   <link rel="stylesheet" href="/styles/tokens.css" />
-  <style>
-    body, html {
-      margin: 0; padding: 0;
-      font-family: var(--font-sans);
-      background: var(--color-bg);
-      color: var(--color-text);
-    }
-    /* Shared ToolShell styles */
-    .tool-shell { max-width: 1200px; margin: 0 auto; padding: var(--spacing-md); }
-    .tool-header {
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 2px solid var(--color-primary);
-      padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-lg);
-    }
-    .back-link { text-decoration: none; color: var(--color-secondary); font-weight: bold; }
-    .btn-export, .btn-import { display: none; } /* Hidden for Simulator as there is no persistent DB data */
-    
-    /* Layout */
-    .simulator-layout { display: grid; gap: var(--spacing-lg); grid-template-columns: 1fr; }
-    @media (orientation: landscape) and (min-width: 768px) {
-      .simulator-layout { grid-template-columns: 300px 1fr; }
-    }
-    
-    .controls { background: var(--color-surface); padding: var(--spacing-md); border-radius: 8px; }
-    .control-group { margin-bottom: var(--spacing-md); }
-    .control-group label { display: block; font-weight: bold; margin-bottom: var(--spacing-sm); }
-    .control-group input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-    
-    .results { background: var(--color-surface); padding: var(--spacing-md); border-radius: 8px; border-left: 4px solid var(--color-accent); }
-    .disclaimer { font-size: 0.85rem; color: var(--color-error); font-weight: bold; margin-top: var(--spacing-md); }
-    
-    .tree-view { margin-top: var(--spacing-lg); padding: var(--spacing-md); background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow-x: auto; text-align: center; }
-    .node { display: inline-block; padding: var(--spacing-sm) var(--spacing-md); background: var(--color-primary); color: #fff; border-radius: 4px; margin: 4px; font-size: 0.9rem; }
-  </style>
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/genealogy.css" />
 </head>
 <body>
-  <div id="app-mount"></div>
+  <div id="nav-mount"></div>
 
-  <script type="module">
-    import { createToolShell } from '../../src/shared/components/ToolShell.js';
-    import { calculateGenealogyOutcome } from '../../src/shared/calc-engine/genealogy-calc.js';
-
-    function renderSimulator() {
-      const container = document.createElement('div');
-      container.className = 'simulator-layout';
-
-      container.innerHTML = `
-        <aside class="controls">
-          <h3>Assumptions</h3>
-          <div class="control-group">
-            <label for="input-levels">Levels Deep</label>
-            <input type="number" id="input-levels" min="1" max="6" value="3" />
-          </div>
-          <div class="control-group">
-            <label for="input-recruits">Recruits per Person</label>
-            <input type="number" id="input-recruits" min="1" max="10" value="2" />
-          </div>
-          <div class="control-group">
-            <label for="input-psv">PSV per Person</label>
-            <input type="number" id="input-psv" min="0" value="100" />
-          </div>
-        </aside>
-        <section class="results-pane">
-          <div class="results" id="results-display"></div>
-          <div class="tree-view" id="tree-display"></div>
-        </section>
-      `;
-      return container;
-    }
-
-    const appMount = document.getElementById('app-mount');
-    const contentNode = renderSimulator();
-    appMount.appendChild(createToolShell('Genealogy Simulator', contentNode));
-
-    const inLevels = document.getElementById('input-levels');
-    const inRecruits = document.getElementById('input-recruits');
-    const inPsv = document.getElementById('input-psv');
-    const resultsDisplay = document.getElementById('results-display');
-    const treeDisplay = document.getElementById('tree-display');
-
-    function loadState() {
-      try {
-        const saved = JSON.parse(localStorage.getItem('usana-tools:genealogy-last-inputs'));
-        if (saved) {
-          inLevels.value = saved.levels || 3;
-          inRecruits.value = saved.recruits || 2;
-          inPsv.value = saved.psv || 100;
-        }
-      } catch (e) {}
-    }
-
-    function saveState() {
-      localStorage.setItem('usana-tools:genealogy-last-inputs', JSON.stringify({
-        levels: Number(inLevels.value),
-        recruits: Number(inRecruits.value),
-        psv: Number(inPsv.value)
-      }));
-    }
-
-    function updateSimulation() {
-      saveState();
-      
-      const outcome = calculateGenealogyOutcome(null, {
-        levels: inLevels.value,
-        recruitsPerLevel: inRecruits.value,
-        psvPerPerson: inPsv.value
-      });
-
-      resultsDisplay.innerHTML = `
-        <h3>Simulated Outcome</h3>
-        <p><strong>Total Organization Size:</strong> ${outcome.totalPeople.toLocaleString()} distributors</p>
-        <p><strong>Total Volume (SVP):</strong> ${outcome.totalSvp.toLocaleString()}</p>
-        <p><strong>Estimated Bonus:</strong> $${outcome.estimatedBonus.toLocaleString()}</p>
-        <div class="disclaimer">
-          * ALL FIGURES ARE HYPOTHETICAL AND FOR ILLUSTRATIVE PURPOSES ONLY. This does not represent actual income or a guarantee of earnings.
+  <div class="tool-layout">
+    <aside class="panel">
+      <h2 class="panel-title">Simulation Parameters</h2>
+      <form id="simulator-form" onsubmit="event.preventDefault();">
+        
+        <div class="form-group">
+          <label>Business Center Structure</label>
+          <select id="bcCount" name="bcCount">
+            <option value="1">1 Business Center (BC1)</option>
+            <option value="3" selected>3 Business Centers (BC1, BC2, BC3)</option>
+          </select>
         </div>
-      `;
 
-      let treeHTML = '<h3>Organization Structure</h3>';
-      let currentWidth = 1;
+        <div class="form-group">
+          <label>Personal Sales Points (PSP)</label>
+          <input type="number" id="psp" name="psp" value="200" min="0">
+        </div>
+
+        <div class="form-group">
+          <label>Currency Exchange Rate (₱)</label>
+          <input type="number" id="exchangeRate" name="exchangeRate" value="55" step="0.1">
+        </div>
+        
+        <p style="font-size: 0.85rem; color: #666; margin-top: 1.5rem; line-height: 1.5; padding: 1rem; background: #f8fafc; border-radius: 4px; border: 1px solid #e2e8f0;">
+          <strong>How to use:</strong> Build your organization manually by clicking <strong>+ L</strong> or <strong>+ R</strong> on the nodes to the right. Set volume directly on the newest partners to see the points flow upwards in real time.
+        </p>
+      </form>
+    </aside>
+    
+    <section class="panel">
+      <h2 class="panel-title">Projected Outcomes</h2>
+      <div id="error-banner" class="error-banner"></div>
       
-      for (let i = 0; i <= Number(inLevels.value); i++) {
-        if (i === 0) {
-          treeHTML += '<div><span class="node">You</span></div>';
-        } else {
-          currentWidth *= Number(inRecruits.value);
-          const displayNodes = Math.min(currentWidth, 50); 
-          const extra = currentWidth > 50 ? ` + ${currentWidth - 50} more` : '';
-          
-          let nodesStr = '';
-          for (let j = 0; j < displayNodes; j++) nodesStr += '<span class="node">Distributor</span>';
-          
-          treeHTML += `<div style="margin-top: 15px;"><strong>Level ${i}:</strong><br/> ${nodesStr} ${extra}</div>`;
-        }
-      }
-      treeDisplay.innerHTML = treeHTML;
-    }
+      <!-- Visual Binary Tree Mount Point -->
+      <div id="tree-mount" class="tree-container"></div>
+      
+      <div class="results-grid">
+        <div class="metric-card">
+          <div class="metric-label">Total Network Size</div>
+          <p class="metric-value" id="out-people">0</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total Group Sales Points</div>
+          <p class="metric-value" id="out-volume">0</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Commission Points (CP)</div>
+          <p class="metric-value" id="out-cp">0</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Projected Commission</div>
+          <p class="metric-value highlight" id="out-currency">₱0.00</p>
+        </div>
+      </div>
+      
+      <p style="font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 2rem;">
+        *Disclaimer: This is a strictly mathematical simulation of the Binary Tree mechanics. Actual earnings depend heavily on individual effort, localized sales, and exact placement within the binary tree. It does not account for matching bonuses, rank advancements, or Leadership bonuses.
+      </p>
+    </section>
+  </div>
 
-    [inLevels, inRecruits, inPsv].forEach(input => {
-      input.addEventListener('input', updateSimulation);
-    });
-
-    loadState();
-    updateSimulation();
-  </script>
+  <script type="module" src="/src/tools/genealogy/main.js"></script>
 </body>
 </html>

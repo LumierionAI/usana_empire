@@ -1,12 +1,11 @@
 :root {
-  /* Placeholder palette pending brand assets confirmation */
-  --color-primary: #003359; 
-  --color-secondary: #006699;
-  --color-accent: #C5A97C;
-  --color-bg: #FFFFFF;
-  --color-text: #333333;
-  --color-surface: #F5F7FA;
-  --color-error: #D32F2F;
+  --color-primary: #0A192F; /* Navy Blue from logo */
+  --color-secondary: #1F2937;
+  --color-accent: #C5A059; /* Gold from logo */
+  --color-bg: #F3F4F6;
+  --color-text: #1F2937;
+  --color-surface: #FFFFFF;
+  --color-error: #DC2626;
 
   --font-sans: system-ui, -apple-system, sans-serif;
   

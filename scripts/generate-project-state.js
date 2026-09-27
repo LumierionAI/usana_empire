@@ -41,6 +41,17 @@
  * ---------------------------------------------------------------------
  */
 
+
+/**
+ * generate-project-state.js
+ * ---------------------------------------------------------------------
+ * Scans the repository and writes PROJECT_STATE.md at the repo root.
+ * Designed to provide an AI agent with comprehensive, zero-shot context
+ * of the project's purpose, architecture, state, recent momentum, and
+ * full historical changelog.
+ * ---------------------------------------------------------------------
+ */
+
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
@@ -52,13 +63,13 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT_FILE = path.join(ROOT, 'PROJECT_STATE.md');
 const CHECKLIST_FILE = path.join(__dirname, 'project-checklist.json');
+const PACKAGE_JSON_FILE = path.join(ROOT, 'package.json');
 
 const IGNORE_DIRS = new Set([
   'node_modules', '.git', 'dist', 'build', '.vite', 'coverage',
   '.cache', '.github',
 ]);
 
-// Removed .md to prevent flagging spec documents as technical debt[cite: 4]
 const TEXT_EXTENSIONS = new Set([
   '.js', '.mjs', '.cjs', '.ts', '.jsx', '.tsx', '.html', '.css', '.json'
 ]);
@@ -174,17 +185,32 @@ function loadChecklist() {
   }
 }
 
+function loadDependencies() {
+  if (!fs.existsSync(PACKAGE_JSON_FILE)) return '_No package.json found._';
+  try {
+    const pkg = JSON.parse(fs.readFileSync(PACKAGE_JSON_FILE, 'utf8'));
+    const deps = { ...pkg.dependencies };
+    const devDeps = { ...pkg.devDependencies };
+    let out = [];
+    if (Object.keys(deps).length > 0) {
+      out.push('**Dependencies:**\n' + Object.entries(deps).map(([k, v]) => `- \`${k}\`: ${v}`).join('\n'));
+    }
+    if (Object.keys(devDeps).length > 0) {
+      out.push('**Dev Dependencies:**\n' + Object.entries(devDeps).map(([k, v]) => `- \`${k}\`: ${v}`).join('\n'));
+    }
+    return out.length > 0 ? out.join('\n\n') : '_No dependencies listed in package.json._';
+  } catch (err) {
+    return '_Error parsing package.json._';
+  }
+}
+
 function buildGitSection() {
   if (!isGitRepo()) {
     return '_This directory is not (yet) a git repository. Run `git init` to start tracking history._';
   }
   
-  let branch = safeRun('git branch --show-current');
-  if (!branch) {
-    branch = safeRun('git rev-parse --abbrev-ref HEAD') || 'No commits yet (main)';
-  }
-  
-  const log = safeRun('git log -10 --pretty=format:"- %h  %ad  %s" --date=short') || '_no commits yet_';
+  let branch = safeRun('git branch --show-current') || safeRun('git rev-parse --abbrev-ref HEAD') || 'No commits yet (main)';
+  const diffStat = safeRun('git log -3 --stat --oneline') || '_no recent changes to display_';
   const statusRaw = safeRun('git status --porcelain') || '';
   
   let staged = [];
@@ -217,12 +243,21 @@ function buildGitSection() {
   return [
     `**Current branch:** \`${branch}\``,
     '',
-    '**Last 10 commits:**',
-    log,
+    '**Recent File Changes (Last 3 commits):**',
+    '```text',
+    diffStat,
+    '```',
     '',
     '**Uncommitted changes:**',
     uncommitted,
   ].join('\n');
+}
+
+function buildChangelogSection() {
+  if (!isGitRepo()) return '_No git repository found. Changelog unavailable._';
+  const logRaw = safeRun('git log --pretty=format:"- **%ad** | \`%h\` | %s" --date=short');
+  if (!logRaw) return '_No commits yet._';
+  return logRaw;
 }
 
 function buildChecklistSection(checklist) {
@@ -232,13 +267,10 @@ function buildChecklistSection(checklist) {
   let doneItems = 0;
 
   for (const phase of checklist.phases) {
+    if (!phase.items || phase.items.length === 0) continue;
     out.push(`### ${phase.name}`);
     for (const item of phase.items) {
       totalItems += 1;
-      if (item.manual) {
-        out.push(`- [ ] ${item.label} — _needs manual confirmation, not file-checkable_`);
-        continue;
-      }
       const status = checkPathStatus(item.check);
       if (status.exists) doneItems += 1;
       const box = status.exists ? '[x]' : '[ ]';
@@ -248,34 +280,27 @@ function buildChecklistSection(checklist) {
   }
 
   const pct = totalItems > 0 ? Math.round((doneItems / totalItems) * 100) : 0;
-  const header = `**Overall file-checkable progress: ${doneItems}/${totalItems} items present (${pct}%)** — manual-QA items are not counted in this percentage.\n`;
+  const header = `**Automated file progress: ${doneItems}/${totalItems} items present (${pct}%)**\n`;
   return header + '\n' + out.join('\n');
 }
 
-function buildOpenDecisionsSection(checklist) {
-  if (!checklist || !checklist.openDecisions || checklist.openDecisions.length === 0) return '_No open decisions listed._';
-  return checklist.openDecisions.map(d => `- ${d}`).join('\n');
-}
-
-function buildMarkersSection(files) {
-  const hits = scanForMarkers(files);
-  if (hits.length === 0) return '_No TODO / FIXME / HACK / OPEN DECISION markers found in source files._';
-  return hits.map(h => `- \`${h.file}:${h.line}\` — ${h.text}`).join('\n');
-}
-
-function findNextStep(checklist) {
-  if (!checklist) return 'Recreate scripts/project-checklist.json.';
-  for (const phase of checklist.phases) {
-    const incomplete = phase.items.filter(item => {
-      if (item.manual) return true;
-      return !checkPathStatus(item.check).exists;
-    });
-    if (incomplete.length > 0) {
-      return `**${phase.name}** is the first incomplete phase. Next unfinished items:\n` +
-        incomplete.slice(0, 5).map(i => `- ${i.label}`).join('\n');
-    }
+function buildManualTasksSection(checklist) {
+  if (!checklist || !checklist.manualTasks || checklist.manualTasks.length === 0) return '_No pending manual tasks._';
+  let out = [];
+  for (const task of checklist.manualTasks) {
+    out.push(`- [ ] **${task.label}**\n  > ${task.instructions}`);
   }
-  return 'All file-checkable items across all phases are present.';
+  return out.join('\n\n');
+}
+
+function buildMetadataSection(checklist) {
+  if (!checklist || !checklist.projectMetadata) return '_No project metadata defined in checklist._';
+  const meta = checklist.projectMetadata;
+  const arch = Object.entries(meta.architecture || {})
+    .map(([key, val]) => `- **${key}:** ${val}`)
+    .join('\n');
+
+  return `**Description:** ${meta.description}\n\n**Architecture & Stack:**\n${arch}`;
 }
 
 function main() {
@@ -284,67 +309,78 @@ function main() {
   const tree = buildTree(ROOT) || '_(empty — nothing built yet)_';
   const timestamp = new Date().toISOString();
 
-  const specNote = checklist && checklist.specFile
-    ? `The authoritative spec is **${checklist.specFile}**. If it's not in this repo yet, copy it in — it is the source of truth for architecture, schemas, and rules, and this file only tracks *progress against it*, it does not replace it.`
-    : 'No spec file is referenced in project-checklist.json — add one.';
+  const projectName = checklist?.projectName || 'Project';
+  const specNote = checklist?.specFile
+    ? `The authoritative spec is **${checklist.specFile}**. It is the source of truth for architecture, schemas, and rules. Do not deviate from it without updating it first.`
+    : 'No spec file is referenced in project-checklist.json.';
 
-  const md = `# PROJECT STATE — USANA Empire
+  const md = `# PROJECT STATE — ${projectName}
 
 **Generated:** ${timestamp}
-**Generated by:** \`scripts/generate-project-state.js\` — re-run this any time with \`npm run state\` (or \`node scripts/generate-project-state.js\`) to refresh this file.
+**Generated by:** \`scripts/generate-project-state.js\`
 
 ---
 
-## Read this first (resume instructions)
+## 1. Project Context & Architecture
 
-If you are starting a new session — new chat window, new tool, new contributor, or just picking this back up after a break — read in this order:
-1. **This file**, for exactly what exists right now and what's next.
-2. **${checklist ? checklist.specFile : 'the Final Technical Specification'}**, for *why* things are built the way they are, the full architecture, data schemas, and the binding implementation rules (§14). Do not deviate from it without updating it first.
-3. The **Open Decisions** section below — these are the things nobody has answered yet; check whether they've been resolved since this file was last generated before starting work that depends on them.
+${buildMetadataSection(checklist)}
 
-${specNote}
+**Dependencies:**
+${loadDependencies()}
 
 ---
 
-## Suggested next step
+## 2. Read This First (Resume Instructions)
 
-${findNextStep(checklist)}
+1. **Review this file** to understand exactly what exists right now, recent changes, and unresolved tasks.
+2. **Review ${checklist ? checklist.specFile : 'the Technical Specification'}**. ${specNote}
+3. **Check Open Decisions** below to ensure your work does not conflict with blocked tasks.
 
 ---
 
-## Phase checklist (auto-detected from files on disk)
+## 3. Phase Checklist (Auto-detected from files)
 
 ${buildChecklistSection(checklist)}
 
 ---
 
-## Open decisions (from the spec — verify current status before relying on these)
+## 4. Manual Verification Tasks
 
-${buildOpenDecisionsSection(checklist)}
+These tasks cannot be verified by scanning the file system and require human QA or external confirmation.
+
+${buildManualTasksSection(checklist)}
 
 ---
 
-## Git status
+## 5. Open Decisions (Pending Resolution)
+
+${checklist?.openDecisions ? checklist.openDecisions.map(d => `- ${d}`).join('\n') : '_None_'}
+
+---
+
+## 6. Git Status & Active Working Tree
 
 ${buildGitSection()}
 
 ---
 
-## TODO / FIXME / HACK / OPEN DECISION markers found in source
+## 7. Action Items (TODO / FIXME / HACK)
 
-${buildMarkersSection(files)}
+${scanForMarkers(files).length > 0 ? scanForMarkers(files).map(h => `- \`${h.file}:${h.line}\` — ${h.text}`).join('\n') : '_No markers found._'}
 
 ---
 
-## Full directory tree
+## 8. Full Git Changelog
+
+${buildChangelogSection()}
+
+---
+
+## 9. Full Directory Tree
 
 \`\`\`
 ${tree}
 \`\`\`
-
----
-
-*End of auto-generated snapshot. Re-run \`npm run state\` after your next work session.*
 `;
 
   fs.writeFileSync(OUTPUT_FILE, md, 'utf8');

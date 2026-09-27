@@ -1,52 +1,50 @@
 [
   {
     "id": "hero",
-    "title": "Welcome to USANA",
-    "content": "A premier cellular nutrition and wellness company."
+    "theme": "dark",
+    "image": "hero.png",
+    "kicker": "The Cellular Nutrition Company",
+    "title": "Master Your Potential.",
+    "content": "A life of uncompromised health and limitless vitality begins at the cellular level. Discover the science of exceptional wellness."
   },
   {
-    "id": "about",
-    "title": "About USANA",
-    "content": "Driven by science and dedicated to quality manufacturing."
+    "id": "origin",
+    "theme": "light",
+    "image": "origin.png",
+    "kicker": "Our Foundation",
+    "title": "Built by a Scientist. Not a Marketer.",
+    "content": "Founded by Dr. Myron Wentz, an internationally recognized microbiologist, immunologist, and Albert Einstein Award laureate. We shifted the focus from diagnosing disease to sustaining proactive, lifelong health."
   },
   {
-    "id": "eligibility",
-    "title": "Eligibility & Legal",
-    "content": "Basic requirements and ethical standards to join as a distributor."
+    "id": "standard",
+    "theme": "gold",
+    "image": "standard.png",
+    "kicker": "The Global Standard",
+    "title": "Zero Tolerance for Error.",
+    "content": "We manufacture our own supplements in a state-of-the-art, FDA-registered facility. Validated by NSF International, ConsumerLab, and a NutriSearch Platinum+ rating. Because your health requires absolute certainty."
   },
   {
-    "id": "why-join",
-    "title": "Why Join",
-    "content": "The advantages of partnering with an established wellness brand."
+    "id": "innovation",
+    "theme": "dark",
+    "image": "innovation.png",
+    "kicker": "InCelligence Technology®",
+    "title": "Nourish. Protect. Renew.",
+    "content": "The USANA CellSentials go beyond basic nutrition. Our proprietary technology supports your body's natural cellular communication, unlocking its innate ability to protect and renew itself against modern oxidative stress."
   },
   {
-    "id": "business-model",
-    "title": "Business Model Summary",
-    "content": "Direct sales, relationship building, and team development."
+    "id": "trust",
+    "theme": "light",
+    "image": "trust.png",
+    "kicker": "Elite Performance",
+    "title": "Trusted by Champions.",
+    "content": "When your career depends on your physical health, you don't compromise. Thousands of elite professional athletes and Olympians worldwide trust USANA to fuel their performance safely and legally."
   },
   {
-    "id": "leverage",
-    "title": "MLM Leverage vs. Traditional Business",
-    "content": "Lower overhead and scalable effort through network growth."
-  },
-  {
-    "id": "earnings",
-    "title": "Earnings Roadmap",
-    "content": "Illustrative examples of commission potential based on hypothetical volume. This is illustrative math, not a guarantee of income."
-  },
-  {
-    "id": "ranks",
-    "title": "Ranks & Benefits",
-    "content": "Milestones for growth, leadership bonuses, and organizational depth."
-  },
-  {
-    "id": "reality",
-    "title": "Effort & Reality",
-    "content": "Building a successful independent business requires consistent hard work, time, and dedication."
-  },
-  {
-    "id": "disclaimers",
-    "title": "Disclaimers",
-    "content": "Review official policies and income disclosure statements before enrolling."
+    "id": "opportunity",
+    "theme": "dark",
+    "image": "dark.png",
+    "kicker": "NYSE: USNA",
+    "title": "The Next Trillion-Dollar Shift.",
+    "content": "Wellness is a global movement. Partner with an internationally recognized leader to build a flexible, home-based business on your terms. Turn your pursuit of health into a legacy of freedom."
   }
 ]

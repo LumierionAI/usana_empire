@@ -1,4 +1,14 @@
 {
+  "projectName": "USANA Empire",
+  "projectMetadata": {
+    "description": "A comprehensive web suite for independent USANA distributors, featuring a public-facing landing page and private, offline-first business tools.",
+    "architecture": {
+      "frontend": "Vanilla JS, HTML, CSS (Vite build tool)",
+      "stateManagement": "Local IndexedDB via custom storage-adapter.js (Offline-first)",
+      "styling": "Custom CSS with design tokens",
+      "deployment": "GitHub Pages (via Actions)"
+    }
+  },
   "specFile": "USANA-Empire-Final-Technical-Specification.md",
   "phases": [
     {
@@ -45,13 +55,6 @@
       ]
     },
     {
-      "name": "Phase 4 — UI/UX polish",
-      "items": [
-        { "label": "Portrait/landscape composition pass (manual QA)", "check": null, "manual": true },
-        { "label": "Accessibility pass — keyboard nav, contrast, reduced-motion (manual QA)", "check": null, "manual": true }
-      ]
-    },
-    {
       "name": "Phase 5 — Integration",
       "items": [
         { "label": "json-backup.js (full workspace export/import)", "check": "src/shared/import-export/json-backup.js" },
@@ -64,19 +67,27 @@
         { "label": "Unit tests directory populated", "check": "tests/unit" },
         { "label": "E2E tests directory populated", "check": "tests/e2e" }
       ]
+    }
+  ],
+  "manualTasks": [
+    {
+      "label": "Portrait/Landscape Composition Pass (Phase 4)",
+      "instructions": "Manually test all views on both mobile (portrait) and desktop (landscape) viewport dimensions. Verify that data tables scroll horizontally without breaking layout, sidebars collapse correctly, and touch targets are adequately sized on mobile."
     },
     {
-      "name": "Phase 7 — Deployment",
-      "items": [
-        { "label": "Deployed to GitHub Pages at least once (manual confirmation)", "check": null, "manual": true }
-      ]
+      "label": "Accessibility (a11y) Pass (Phase 4)",
+      "instructions": "Ensure the application is fully keyboard navigable (using Tab, Enter, and Space). Check that all text meets WCAG AA color contrast ratios against backgrounds, and verify that reduced-motion media queries are respected for animations like the landing page progress rail."
+    },
+    {
+      "label": "Initial GitHub Pages Deployment (Phase 7)",
+      "instructions": "Confirm that the `.github/workflows/deploy.yml` action has successfully completed at least one run and that the site is live, accessible, and correctly serving the Vite bundle on the expected `gh-pages` URL."
     }
   ],
   "openDecisions": [
-    "Single-admin confirmation — blocks Phase 3 multi-user/auth work only, not Phase 0-2",
-    "Existing Receipt Generator file review — blocks Phase 3 Receipt Generator specifically",
-    "Product Guidance grounding content/source — blocks Phase 3 Product Guidance specifically",
-    "Brand assets / final palette — should resolve by Phase 2, blocks Phase 4 polish",
-    "USANA distributor policy review — blocks any public content going live, not local dev"
+    "Single-admin confirmation blocks Phase 3 multi-user/auth work only",
+    "Existing Receipt Generator file review blocks Phase 3 Receipt Generator specifically",
+    "Product Guidance grounding content/source blocks Phase 3 Product Guidance specifically",
+    "Brand assets / final palette should resolve by Phase 2",
+    "USANA distributor policy review blocks any public content going live"
   ]
 }

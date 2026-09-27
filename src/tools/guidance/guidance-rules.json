@@ -1,26 +1,622 @@
-[
-  {
-    "id": "rule-foundational",
-    "match": {
-      "goals": ["foundational", "immunity", "energy"]
+{
+  "_meta": {
+    "version": "1.0",
+    "source": "Comprehensive Guide to Nutritional Product Recommendation (Dr. Ray Strand)",
+    "disclaimer": "This statement has not been evaluated by the FDA. Products are not intended to diagnose, treat, or prevent any disease. Must consult a physician before starting."
+  },
+  "foundations": {
+    "adult_minimal": {
+      "rationale": "Replenishes nutritional deficiencies and enhances nutrient levels to combat oxidative stress.",
+      "products": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner (or 2 AM, 1 PM if lunch is missed)" }
+      ]
     },
-    "recommendation": {
-      "productId": "cellsentials",
-      "productName": "CellSentials",
-      "rationale": "Provides a comprehensive foundation of essential vitamins, minerals, and antioxidants to support overall cellular health and daily energy metabolism.",
-      "source": "USANA Product Information - CellSentials (askthescientists.com)"
+    "adult_optimal": {
+      "rationale": "Provides all nutrients at ideal levels to optimize the natural immune, antioxidant, and repair systems.",
+      "products": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega / Optomega", "dose": "2 capsules or 1 tsp Breakfast, 2 capsules or 1 tsp Dinner" },
+        { "name": "MagneCal D / Active Calcium", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Fibergy", "dose": "1-2 scoops daily" }
+      ]
+    },
+    "children": {
+      "age_1_to_4": [
+        { "name": "Usanimals", "dose": "1 daily (crushed/sprinkled)" },
+        { "name": "Optomega", "dose": "1 tsp daily" }
+      ],
+      "age_5_to_8": [
+        { "name": "Usanimals", "dose": "1 twice daily" },
+        { "name": "Active Calcium Chewable", "dose": "1 daily" },
+        { "name": "Optomega", "dose": "1 tsp daily" }
+      ],
+      "age_9_to_12": [
+        { "name": "Body Rox", "dose": "1-2 daily (based on weight)" },
+        { "name": "Active Calcium Chewable", "dose": "2 daily" },
+        { "name": "Optomega", "dose": "2 tsp daily" }
+      ],
+      "age_13_to_18": [
+        { "name": "Body Rox", "dose": "3 daily" },
+        { "name": "Active Calcium Chewable", "dose": "3-4 daily" },
+        { "name": "BiOmega", "dose": "3-4 capsules daily" }
+      ]
     }
   },
-  {
-    "id": "rule-cardio-joint",
-    "match": {
-      "goals": ["heart", "joints", "brain"]
+  "conditions": [
+    {
+      "id": "acne",
+      "name": "Acne",
+      "rationale": "Supports the body against excessive oil secretion and infection of blocked glands.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Probiotic", "dose": "Optional for gut support" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
     },
-    "recommendation": {
-      "productId": "biomega",
-      "productName": "BiOmega",
-      "rationale": "Supplies high-quality, ultra-pure omega-3 fatty acids which are clinically shown to support healthy cardiovascular function and joint comfort.",
-      "source": "USANA Product Information - BiOmega (askthescientists.com)"
+    {
+      "id": "aids",
+      "name": "AIDS / HIV",
+      "rationale": "Builds up the natural antioxidant defense system to delay illness progression.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ]
+    },
+    {
+      "id": "asthma",
+      "name": "Asthma",
+      "rationale": "Rebuilds natural antioxidant and immune defenses to optimal levels to combat inflammation.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ]
+    },
+    {
+      "id": "als",
+      "name": "ALS (Lou Gehrig's Disease)",
+      "rationale": "Targets severe oxidative stress and genetic defects in the superoxide dismutase antioxidant defense system.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "3 Breakfast, 3 Dinner" },
+        { "name": "E Prime", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": []
+    },
+    {
+      "id": "alzheimers",
+      "name": "Alzheimer's Dementia",
+      "rationale": "Protects the brain from severe oxidative damage to preserve function.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Gingko PS", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "E Prime", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "aneurysms",
+      "name": "Aneurysms",
+      "rationale": "Supports arterial health and mitigates risks associated with atheromatous plaque rupture.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "ankylosing-spondylitis",
+      "name": "Ankylosing Spondylitis",
+      "rationale": "Addresses inflammatory disorders primarily affecting the spine and other joints.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Procosa", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "arthritis",
+      "name": "Arthritis",
+      "rationale": "Combats the degenerative process within the joints to alleviate pain and disability.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Procosa", "dose": "2 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "add-adhd",
+      "name": "Attention Deficit Disorder (ADD/ADHD)",
+      "rationale": "Provides broad-spectrum neural support to assist with concentration and focus.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "bells-palsy",
+      "name": "Bell's Palsy",
+      "rationale": "Aims to reduce swelling and nerve compression caused by underlying viral infections.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "bipolar",
+      "name": "Bipolar Disorder",
+      "rationale": "Enhances traditional therapy by providing comprehensive nutritional support for brain chemistry.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "immune-building",
+      "name": "Building Your Immune System",
+      "rationale": "Optimizes the body's natural defense systems against illness and environmental stressors.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proglucamune", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast" }
+      ]
+    },
+    {
+      "id": "cancer-breast",
+      "name": "Cancer - Breast",
+      "rationale": "Provides aggressive antioxidant support to complement traditional therapies.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Pure Rest", "dose": "1-2 tablets 30-60 mins before sleeping" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": []
+    },
+    {
+      "id": "cancer-colon",
+      "name": "Cancer - Colon",
+      "rationale": "Provides aggressive antioxidant support to complement traditional therapies.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": []
+    },
+    {
+      "id": "cancer-prostate",
+      "name": "Cancer - Prostate",
+      "rationale": "Combines robust cellular nutrition with specific prostate support.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Palmetto Plus", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "Palmetto Plus", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "cardiomyopathy",
+      "name": "Cardiomyopathy",
+      "rationale": "Delivers targeted cardiovascular support to improve heart muscle function.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "copd",
+      "name": "Chronic Obstructive Pulmonary Disease (COPD)",
+      "rationale": "Supports respiratory function and combats cellular damage in the lungs.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "migraines",
+      "name": "Cluster / Migraine Headaches",
+      "rationale": "Mitigates arterial inflammation and endothelial dysfunction associated with migraines.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "diabetes-1",
+      "name": "Diabetes Mellitus Type 1",
+      "rationale": "Combats the autoimmune process and resulting oxidative stress.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "diabetes-2",
+      "name": "Diabetes Mellitus Type 2",
+      "rationale": "Supports insulin sensitivity and metabolic health.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "elevated-cholesterol",
+      "name": "Elevated Cholesterol",
+      "rationale": "Targets low-grade chronic arterial inflammation, minimizing oxidized LDL cholesterol.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Garlic EC", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Fibergy", "dose": "1 scoop daily" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Fibergy", "dose": "1 scoop Breakfast, 1 scoop Dinner" }
+      ]
+    },
+    {
+      "id": "hepatitis",
+      "name": "Hepatitis (B & C)",
+      "rationale": "Supports liver detoxification and protects against advancing cirrhosis or cellular damage.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1-2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "hypertension",
+      "name": "Hypertension (High Blood Pressure)",
+      "rationale": "Reduces risks of heart attack and stroke by supporting arterial elasticity.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "ibs",
+      "name": "Irritable Bowel Syndrome (IBS)",
+      "rationale": "Soothes abnormal bowel contractions and helps the GI tract adapt to stress.",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Fibergy", "dose": "1 scoop Breakfast, 1 scoop Dinner" }
+      ]
+    },
+    {
+      "id": "lupus",
+      "name": "Lupus",
+      "rationale": "Combats the intense inflammatory response caused when the immune system attacks connective tissue[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "macular-degeneration",
+      "name": "Macular Degeneration",
+      "rationale": "Reduces free radical damage to the macula caused by high-energy ultraviolet and blue light[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Visionex", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "menopause",
+      "name": "Menopause / Perimenopause",
+      "rationale": "Supports hormonal balance and bone density transitions during perimenopause and menopause[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "PhytoEstrin", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "PhytoEstrin", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "multiple-sclerosis",
+      "name": "Multiple Sclerosis (MS)",
+      "rationale": "Supports the myelin sheath and addresses oxidative stress surrounding demyelination[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Poly C", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "osteoporosis",
+      "name": "Osteoporosis",
+      "rationale": "Replenishes bone density and structure with optimal calcium and magnesium balances[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ]
+    },
+    {
+      "id": "parkinsons",
+      "name": "Parkinson's Disease",
+      "rationale": "Combats oxidative stress causing cell death in the substantia nigra (dopamine production)[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "Required support (Dosing per physician guidance)" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "pregnancy",
+      "name": "Pregnancy",
+      "rationale": "Provides foundational vitamins, minerals, and essential fats needed for fetal development[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Optomega / BiOmega", "dose": "2 tsp Breakfast OR 1 capsule Breakfast/Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ]
+    },
+    {
+      "id": "rheumatoid-arthritis",
+      "name": "Rheumatoid Arthritis",
+      "rationale": "Aggressively targets the autoimmune inflammatory response and resulting joint degeneration[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ]
+    },
+    {
+      "id": "ulcerative-colitis",
+      "name": "Ulcerative Colitis",
+      "rationale": "Counters the overwhelming demand on the colon's antioxidant defense system due to autoimmune inflammation[cite: 12].",
+      "optimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "name": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "name": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "name": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ]
     }
-  }
-]
+
+  ]
+}

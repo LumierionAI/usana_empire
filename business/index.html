@@ -3,147 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business - USANA Empire</title>
+  <title>USANA Empire | The Business Opportunity</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="/styles/tokens.css" />
-  <style>
-    body, html {
-      margin: 0; padding: 0;
-      font-family: var(--font-sans);
-      background: var(--color-bg);
-      color: var(--color-text);
-    }
-    .page-container {
-      padding: var(--spacing-xl) var(--spacing-md);
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    section {
-      margin-bottom: var(--spacing-xl);
-    }
-    h2 { border-bottom: 2px solid var(--color-primary); padding-bottom: var(--spacing-sm); }
-    .ethics-box {
-      background: var(--color-surface);
-      border-left: 4px solid var(--color-primary);
-      padding: var(--spacing-md);
-      border-radius: 4px;
-    }
-    .comp-grid {
-      display: grid;
-      gap: var(--spacing-md);
-    }
-    .comp-card {
-      padding: var(--spacing-md);
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-    /* SVG Chart styling */
-    .chart-container {
-      margin: var(--spacing-lg) 0;
-      background: #fff;
-      padding: var(--spacing-md);
-      border-radius: 8px;
-      border: 1px solid #eee;
-    }
-  </style>
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/landing.css" />
+  <link rel="stylesheet" href="/styles/business.css" />
 </head>
 <body>
   <div id="nav-mount"></div>
-  <main class="page-container">
-    <h1>The Business Opportunity</h1>
-    
-    <section>
-      <h2>Business Model</h2>
-      <p>The USANA business model centers on direct sales and relationship building. Instead of spending revenue on traditional retail overhead and advertising, compensation is paid directly to independent distributors who generate product sales and develop organizations of other distributors and preferred customers.</p>
-    </section>
+  <aside id="rail-mount"></aside>
+  <main id="main-content" class="snap-container"></main>
 
-    <section>
-      <h2>Ethical Business Practice</h2>
-      <div class="ethics-box">
-        <p><strong>Compliance is mandatory.</strong> As a distributor, you must:</p>
-        <ul>
-          <li>Never make claims that products can cure, treat, diagnose, or prevent any disease.</li>
-          <li>Never guarantee income or present hypothetical earnings as typical.</li>
-          <li>Always represent the time and effort required to build a sustainable business authentically.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Compensation Plan Breakdown</h2>
-      <div class="chart-container" id="svg-chart-mount"></div>
-      <div id="comp-list" class="comp-grid"></div>
-    </section>
-  </main>
-
-  <script type="module">
-    import { createNavBar } from '../src/shared/components/NavBar.js';
-    document.getElementById('nav-mount').appendChild(createNavBar());
-
-    async function loadCompensation() {
-      try {
-        const response = await fetch('/content/compensation.json');
-        const compData = await response.json();
-        
-        const listMount = document.getElementById('comp-list');
-        compData.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'comp-card';
-          card.innerHTML = `
-            <h3>${item.name} <small>(${item.type})</small></h3>
-            <p>${item.description}</p>
-            <small style="color: #666;">Source: ${item.source.title} v${item.source.version} (Effective: ${item.source.effectiveDate})</small>
-          `;
-          listMount.appendChild(card);
-        });
-
-        renderSVGChart(compData);
-      } catch (e) {
-        console.error("Failed to load compensation data", e);
-      }
-    }
-
-    // Generates a native SVG visual breakdown
-    function renderSVGChart(data) {
-      const mount = document.getElementById('svg-chart-mount');
-      const svgNS = "http://www.w3.org/2000/svg";
-      const svg = document.createElementNS(svgNS, "svg");
-      svg.setAttribute("width", "100%");
-      svg.setAttribute("height", "100");
-      svg.setAttribute("viewBox", "0 0 1000 100");
-
-      let currentX = 0;
-      const totalWidth = 1000;
-      const sectionWidth = totalWidth / data.length;
-      const colors = ['var(--color-primary)', 'var(--color-secondary)', 'var(--color-accent)', '#999'];
-
-      data.forEach((item, index) => {
-        const rect = document.createElementNS(svgNS, "rect");
-        rect.setAttribute("x", currentX);
-        rect.setAttribute("y", "20");
-        rect.setAttribute("width", sectionWidth - 10);
-        rect.setAttribute("height", "60");
-        rect.setAttribute("fill", colors[index % colors.length]);
-        rect.setAttribute("rx", "4");
-        
-        const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", currentX + (sectionWidth / 2) - 5);
-        text.setAttribute("y", "55");
-        text.setAttribute("fill", "#fff");
-        text.setAttribute("font-family", "sans-serif");
-        text.setAttribute("font-size", "14");
-        text.setAttribute("font-weight", "bold");
-        text.setAttribute("text-anchor", "middle");
-        text.textContent = item.name;
-
-        svg.appendChild(rect);
-        svg.appendChild(text);
-        currentX += sectionWidth;
-      });
-
-      mount.appendChild(svg);
-    }
-
-    loadCompensation();
-  </script>
+  <script type="module" src="/src/business/main.js"></script>
 </body>
 </html>

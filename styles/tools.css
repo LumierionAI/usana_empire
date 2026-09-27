@@ -1,0 +1,108 @@
+/* Override absolute positioning for standard scrolling */
+body { 
+  height: auto; 
+  overflow-y: auto; 
+  padding-top: 80px; /* Accounts for the fixed global navbar */
+  background-color: var(--color-bg);
+}
+
+.workspace-header {
+  text-align: center;
+  padding: var(--spacing-xl) 5% var(--spacing-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid #eaeaea;
+}
+
+.workspace-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 0 0 1rem 0;
+  color: var(--color-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.workspace-subtitle {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.85;
+  margin: 0 auto; 
+  color: #666;
+  max-width: 600px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 4rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .tools-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+}
+
+.tool-card {
+  background: var(--color-surface);
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* Premium top border animation on hover */
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+  border-color: #d1d5db;
+}
+
+.tool-card:hover::before {
+  transform: scaleX(1);
+  background: var(--color-accent);
+}
+
+.tool-indicator {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.tool-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin: 0 0 1rem 0;
+}
+
+.tool-desc {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.8;
+}
