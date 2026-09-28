@@ -25,63 +25,88 @@
 
   <div class="tool-layout">
     <aside class="panel">
-      <h2 class="panel-title">Simulation Parameters</h2>
+      <h2 class="panel-title">Global Parameters</h2>
       <form id="simulator-form" onsubmit="event.preventDefault();">
         
         <div class="form-group">
-          <label>Business Center Structure</label>
-          <select id="bcCount" name="bcCount">
-            <option value="1">1 Business Center (BC1)</option>
-            <option value="3" selected>3 Business Centers (BC1, BC2, BC3)</option>
+          <label>Display Currency</label>
+          <select id="currencySymbol" name="currencySymbol">
+            <option value="PHP" selected>Philippine Peso (₱)</option>
+            <option value="USD">US Dollar ($)</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Personal Sales Points (PSP)</label>
-          <input type="number" id="psp" name="psp" value="200" min="0">
+          <label>Conversion Rate</label>
+          <input type="number" id="exchangeRate" name="exchangeRate" value="55" step="0.1" min="1">
         </div>
-
-        <div class="form-group">
-          <label>Currency Exchange Rate (₱)</label>
-          <input type="number" id="exchangeRate" name="exchangeRate" value="55" step="0.1">
+        
+        <div style="margin-top: 2rem;">
+          <button id="btn-reset-tree" class="btn-outline" style="width: 100%; border-color: #ef4444; color: #ef4444; padding: 0.75rem; border-radius: 4px; font-weight: bold; cursor: pointer; background: transparent;">
+            Reset Genealogy
+          </button>
         </div>
         
         <p style="font-size: 0.85rem; color: #666; margin-top: 1.5rem; line-height: 1.5; padding: 1rem; background: #f8fafc; border-radius: 4px; border: 1px solid #e2e8f0;">
-          <strong>How to use:</strong> Build your organization manually by clicking <strong>+ L</strong> or <strong>+ R</strong> on the nodes to the right. Set volume directly on the newest partners to see the points flow upwards in real time.
+          <strong>How to use:</strong> Start by joining USANA. Build your organization manually by clicking <strong>+ L</strong> or <strong>+ R</strong>. Nodes carry their own Personal Sales Points (PSP) which instantly convert to Group Sales Points (GSP) for their upline.
         </p>
       </form>
     </aside>
     
     <section class="panel">
-      <h2 class="panel-title">Projected Outcomes</h2>
+      <h2 class="panel-title" style="border: none; padding-bottom: 0;">Business Status</h2>
       <div id="error-banner" class="error-banner"></div>
       
-      <!-- Visual Binary Tree Mount Point -->
-      <div id="tree-mount" class="tree-container"></div>
-      
-      <div class="results-grid">
-        <div class="metric-card">
-          <div class="metric-label">Total Network Size</div>
-          <p class="metric-value" id="out-people">0</p>
+      <!-- TOP METRICS DASHBOARD -->
+      <div class="top-dashboard">
+        <div class="rank-card level-none" id="rank-card">
+          <div class="rank-icon" id="rank-icon"><div style="width:12px; height:12px; border-radius:50%; background:#cbd5e1;"></div></div>
+          <div class="rank-info">
+            <span class="rank-label">Projected Rank</span>
+            <h3 class="rank-name" id="out-rank">None</h3>
+          </div>
         </div>
         <div class="metric-card">
-          <div class="metric-label">Total Group Sales Points</div>
-          <p class="metric-value" id="out-volume">0</p>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Commission Points (CP)</div>
+          <div class="metric-label">Total Commission Points</div>
           <p class="metric-value" id="out-cp">0</p>
         </div>
         <div class="metric-card">
-          <div class="metric-label">Projected Commission</div>
+          <div class="metric-label">Projected Income</div>
           <p class="metric-value highlight" id="out-currency">₱0.00</p>
         </div>
       </div>
       
-      <p style="font-size: 0.85rem; color: #666; line-height: 1.5; margin-top: 2rem;">
-        *Disclaimer: This is a strictly mathematical simulation of the Binary Tree mechanics. Actual earnings depend heavily on individual effort, localized sales, and exact placement within the binary tree. It does not account for matching bonuses, rank advancements, or Leadership bonuses.
+      <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+        *Disclaimer: This is a strictly mathematical simulation of the Binary Tree mechanics. Rank calculations assume the CP is maintained for the required weekly durations. It does not account for matching bonuses, rank advancements, or Leadership bonuses.
       </p>
+      
+      <!-- Visual Binary Tree Mount Point -->
+      <div id="tree-mount" class="tree-container"></div>
+      
     </section>
+  </div>
+
+  <!-- Enrollment Modal -->
+  <div id="enrollment-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="enroll-title">Join USANA</h3>
+      <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1rem;">Select the enrollment package to establish the Business Center structure and inject initial Personal Sales Points (PSP).</p>
+      
+      <div class="enroll-options">
+        <button class="enroll-btn" data-type="1bc">
+          <strong>1 Business Center</strong>
+          <span>200 PSP</span>
+        </button>
+        <button class="enroll-btn" data-type="3bc" style="border-color: var(--color-primary); background: #f8fafc;">
+          <strong>3 Business Centers</strong>
+          <span>500 PSP</span>
+        </button>
+      </div>
+      
+      <div style="text-align: right;">
+        <button id="btn-close-modal" style="background: none; border: none; color: #64748b; font-weight: bold; cursor: pointer; padding: 0.5rem 1rem;">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="../../../src/tools/genealogy/main.js"></script>

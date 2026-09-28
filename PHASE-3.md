@@ -1,3 +1,99 @@
+# PHASE 3 — Core Features (System B): Execution & Close-Out Guide
+
+**Written against:** `PROJECT_STATE.md` as of 2026-09-28.
+**Spec version aligned to:** `FINAL-TECHNICAL-SPECIFICATION.md` ("Approved for coding").
+**Supersedes:** The original Phase 3 close-out guide. This revision explicitly prioritizes the Genealogy Simulator overhaul before addressing broader system compliance tasks.
+
+---
+
+## 1. Phase 3 Execution Rules
+
+These operating principles govern all remaining work in Phase 3. They are non-negotiable and override previous roadmaps.
+
+1. **Genealogy First:** The Genealogy Simulator is the immediate and highest priority. All planned improvements for it must be completed and refined before moving to any other Phase 3 work. Do not let broader refactoring, React migration, public-page work, or future commercialization distract from completing Genealogy unless they are a direct dependency.
+2. **PROJECT_STATE.md is the Compass:** Use `PROJECT_STATE.md` to establish shared context, but actively verify against the actual source code when implementation details matter. Do not redo completed work. Keep the state/checklist synchronized after significant work.
+3. **Coding Consistency:** Maintain strict separation of concerns (HTML → structure, CSS → styling, JS → logic/behavior). Reuse existing project patterns and abstractions before introducing new ones.
+4. **Routing and GitHub Pages:** GitHub Pages compatibility is a first-class requirement. The project uses the `resolvePath` base-path helper. Use it consistently. Do not introduce competing path-resolution mechanisms or hard-coded root paths.
+5. **Safe, Sequential Changes:** For every task: Inspect → Decide → Implement → Verify → Update State → Proceed. Preserve working functionality unless the current task explicitly requires changing it.
+
+---
+
+## 2. Part 1: Genealogy Simulator Overhaul (ACTIVE PRIORITY)
+
+The following sequence must be completed, tested, and verified before any other Phase 3 tasks are initiated.
+
+**Task 1.1 — Blank Starting Canvas & Enrollment Flow**
+- Remove the default loading of a 1BC or 3BC structure.
+- The simulator must start with a blank genealogy canvas featuring a clear "Join USANA" action.
+- Triggering the action presents a choice: 200 PSP (1BC) or 500 PSP (3BC).
+- The selected option generates the corresponding initial nodes.
+
+**Task 1.2 — Add-Node Flow for Existing Legs**
+- Replaces the immediate creation of blank nodes on `+ L` and `+ R` clicks.
+- Clicking an empty leg triggers the same enrollment choice (200 PSP / 1BC or 500 PSP / 3BC) to generate the new downline structure.
+
+**Task 1.3 — Correct PSP to GSP Data Flow**
+- Differentiate PSP (Personal Sales Points) and GSP (Group Sales Points).
+- **Rule:** A newly born node receives its PSP, but starts with 0 GSP.
+- **Rule:** The PSP used to create a new node immediately becomes GSP for its direct upline(s).
+
+**Task 1.4 — Resolve GSP Accumulation Bug**
+- Fix the existing bug where adding a child node destroys or resets the mother node's existing GSP.
+- New GSP contributions must strictly append/accumulate to the existing upline volume.
+
+**Task 1.5 — Preserve & Clarify CP Calculations**
+- 1BC Calculation: `Final matched GSP × 20% = CP`.
+- 3BC Calculation: `(Matched GSP BC1 + Matched GSP BC2 + Matched GSP BC3) × 20% = Total CP`.
+- Ensure the UI clearly distinguishes between PSP, GSP, Final GSP, and CP.
+
+**Task 1.6 — Implement Rank System Evaluator**
+- Implement an evaluator that checks CP against the following tiers:
+  - **Sharer:** 50 CP
+  - **Believer:** 100 CP
+  - **Builder:** 200 CP
+  - **Achiever:** 400 CP
+  - **Director:** 600 CP
+  - **Bronze Director:** 800 CP
+  - **Silver Director:** 1,000 CP
+  - **Gold Director:** 1,000 CP (4 weeks)
+  - **Ruby Director:** 2,000 CP (4 weeks)
+  - **Emerald Director:** 3,000 CP (4 weeks)
+  - **Diamond Director:** 4,000 CP (4 weeks)
+  - **Star Diamond Director:** +1,000 CP increments (4 weeks)
+- *Note:* Architect this to support future weekly historical array inputs, rather than hardcoding a single static integer check.
+
+**Task 1.7 — Currency Toggle**
+- Implement a UI toggle to switch the display currency between Dollars ($) and Pesos (₱).
+- Retain the editable conversion rate input to calculate the final projected income from the generated CP.
+
+---
+
+## 3. Part 2: System B Tools Close-Out (DEFERRED)
+
+These tasks are explicitly frozen until Part 1 is 100% complete and verified.
+
+**Task 2.1 — Schema Reconciliation (Decide & Apply)**
+- Resolve `Purchase.lineItems` field mismatches between spec §6.2 (`{productName, quantity, unitPrice}`) and code (`{desc, qty, price}`).
+- Resolve `paymentStatus` enum mismatches between spec (`paid|pending|partial`) and code (`Paid|Unpaid`).
+- Add missing `source` and `responseOutcome` fields to the Prospect Planner, and resolve the unreachable `"inactive"` status.
+
+**Task 2.2 — Wire CSV Import/Export**
+- Connect `csv.js` and `ImportWizard.js` to the Receipt, Ledger, and Prospect tools.
+- Implement the validate → preview → duplicate-check → confirm sequence per spec §6.5.
+
+**Task 2.3 — Product Guidance Disclaimers**
+- Modify `generateProtocol()` in `guidance/main.js` to visibly render `_meta.source` and `_meta.disclaimer` from `guidance-rules.json` into the generated UI.
+
+---
+
+## 4. Acceptance Criteria for Phase 3 Exit
+
+1. The Genealogy Simulator successfully loads from a blank state, accurately models 1BC/3BC enrollments, distinctively tracks PSP vs. GSP without overwriting previous volumes, calculates CP correctly, evaluates rank, and toggles currency.
+2. All three CSV-enabled tools (Receipts, Ledger, Prospects) successfully pass export/re-import round-trip tests using the reconciled data schemas.
+3. Product Guidance visibly displays provenance and disclaimers.
+4. All tool pages resolve every asset correctly under a production build utilizing `resolvePath`.
+5. No console errors/warnings are present in the final build.
+
 # PHASE 3 — Core Features (System B): Close-Out Guide
 
 **Written against:** `PROJECT_STATE.md` as of the session that reviewed
