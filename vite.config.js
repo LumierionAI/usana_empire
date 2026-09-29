@@ -1,9 +1,13 @@
 import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   // Hardcode the subpath so Dev, Build, and Preview all match GitHub Pages exactly
   base: '/usana_empire/',
+  
+  // Enable React JSX processing
+  plugins: [react()],
   
   build: {
     rollupOptions: {

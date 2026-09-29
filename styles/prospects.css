@@ -1,0 +1,122 @@
+/* Layout (Stacked instead of Sidebar) */
+.crm-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Top Panel / Form Ribbon */
+.panel {
+  background: var(--color-surface);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.panel h2 { margin-top: 0; font-size: 1.1rem; padding-bottom: 0.5rem; color: var(--color-primary); }
+
+/* Make the form flow horizontally */
+#prospect-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-sm) var(--spacing-md);
+  align-items: end;
+}
+.form-row { display: contents; } 
+
+.form-group { margin-bottom: 0; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.25rem; font-size: 0.8rem; color: #475569; }
+.form-group input[type="text"], .form-group input[type="date"], .form-group textarea, .form-group select { 
+  width: 100%; padding: 0.4rem; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; font-family: inherit; font-size: 0.85rem; height: 32px;
+}
+.form-group textarea { height: 32px; resize: vertical; }
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  grid-column: 1 / -1; /* Stretch across bottom of the ribbon */
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+.btn { padding: 0.5rem 1.5rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.85rem; height: 36px; }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-secondary { background: #e5e7eb; color: #374151; }
+
+/* UX Upgrades: Segmented Toggles (Radio Buttons styled as pills) */
+.toggle-group { display: flex; flex-wrap: wrap; gap: 4px; background: #f3f4f6; padding: 3px; border-radius: 4px; height: 32px; box-sizing: border-box;}
+.toggle-group label {
+  flex: 1; text-align: center; padding: 0.2rem; font-size: 0.75rem; font-weight: bold;
+  color: #4b5563; cursor: pointer; border-radius: 3px; transition: all 0.2s; margin: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.toggle-group input[type="radio"] { display: none; }
+.toggle-group input[type="radio"]:checked + label { background: #fff; color: var(--color-primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+/* UX Upgrades: Checkbox Grid */
+.checkbox-grid { display: flex; justify-content: space-between; gap: 0.25rem; height: 32px;}
+.checkbox-label {
+  display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; cursor: pointer;
+  background: #f8fafc; padding: 0 0.4rem; border-radius: 4px; border: 1px solid #e2e8f0; flex: 1; justify-content: center; font-weight: 600; color: #475569;
+}
+.checkbox-label input { cursor: pointer; margin: 0; }
+
+/* Views & Global Sort Controls */
+.view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md); flex-wrap: wrap; gap: 1rem; }
+.view-controls, .sort-controls { display: flex; gap: var(--spacing-sm); align-items: center; }
+.view-btn, .sort-btn { padding: 0.4rem 0.8rem; border: 1px solid var(--color-primary); background: transparent; color: var(--color-primary); border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.85rem;}
+.view-btn.active, .sort-btn.active { background: var(--color-primary); color: #fff; }
+
+.view-container { display: none; }
+.view-container.active { display: block; }
+
+/* Kanban Board View */
+.board-container {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-md);
+  align-items: flex-start;
+}
+.board-column {
+  background: #f3f4f6;
+  border-radius: 6px;
+  min-width: 280px;
+  max-width: 280px;
+  padding: var(--spacing-sm);
+  border: 1px solid #e5e7eb;
+}
+.board-column h3 { margin: 0 0 var(--spacing-sm) 0; font-size: 0.95rem; color: #4b5563; text-transform: uppercase; border-bottom: 2px solid #d1d5db; padding-bottom: 4px; }
+
+/* Prospect Cards */
+.prospect-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.prospect-card:hover { border-color: var(--color-primary); }
+.prospect-card .name { font-weight: bold; font-size: 1rem; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: flex-start;}
+.prospect-card .meta { font-size: 0.8rem; color: #6b7280; }
+
+/* Badges */
+.badges-container { display: flex; gap: 6px; align-items: center; }
+.temp-badge { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.temp-hot { background-color: #ef4444; }
+.temp-warm { background-color: #f59e0b; }
+.temp-cold { background-color: #3b82f6; }
+
+.priority-badge { font-size: 0.65rem; padding: 2px 6px; border-radius: 99px; font-weight: bold; background: #e2e8f0; color: #475569;}
+.priority-p3 { background: #dcfce7; color: #166534; } 
+.priority-p2 { background: #fef08a; color: #854d0e; } 
+.priority-p1 { background: #ffedd5; color: #9a3412; } 
+
+/* Excel-Style Table Overrides */
+.data-table-container { background: #fff; border-radius: 4px; overflow-x: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; border: 1px solid #cbd5e1; }
+.data-table th { background: #f8fafc; color: #334155; padding: 0.5rem 0.75rem; border: 1px solid #cbd5e1; font-weight: 600; white-space: nowrap; }
+.data-table td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; vertical-align: middle; }
+.data-table tr:hover { background-color: #f1f5f9; }
