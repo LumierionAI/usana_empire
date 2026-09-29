@@ -159,3 +159,14 @@ body { padding-top: 80px; background: var(--color-bg); }
 .pc-label { font-size: 0.7rem; font-weight: 700; color: #b49148; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.5px; }
 .pc-psp-input { width: 100%; text-align: center; border: 1px solid #cbd5e1; border-radius: 4px; padding: 6px; font-size: 0.85rem; font-weight: 600; color: var(--color-primary); box-sizing: border-box; }
 .pc-psp-input:focus { outline: none; border-color: #b49148; }
+
+/* --- PART 6: NSB Badges & Modal Additions --- */
+.g-node { position: relative; } /* Ensure badges attach properly to the node */
+
+.node-badges { position: absolute; top: -10px; right: -10px; display: flex; gap: 4px; z-index: 5; }
+.badge-sponsored { background: #e0f2fe; color: #0284c7; font-size: 0.65rem; padding: 2px 6px; border-radius: 99px; font-weight: bold; border: 1px solid #7dd3fc; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.badge-nsb { background: #fef08a; color: #ca8a04; font-size: 0.65rem; padding: 2px 6px; border-radius: 99px; font-weight: bold; border: 1px solid #facc15; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+.partner-options-container { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; display: none; }
+.partner-option-label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.9rem; font-weight: 600; color: var(--color-primary); cursor: pointer; }
+.partner-option-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }

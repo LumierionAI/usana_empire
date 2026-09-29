@@ -69,6 +69,9 @@
         <div class="metric-card">
           <div class="metric-label">Total Commission Points</div>
           <p class="metric-value" id="out-cp">0</p>
+          <div style="font-size: 0.75rem; color: #10b981; margin-top: 4px; font-weight: 600; display: none;" id="out-nsb">
+            Includes <span id="out-nsb-val">0</span> CP from NSB
+          </div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Projected Income</div>
@@ -92,6 +95,17 @@
       <h3 id="enroll-title">Join USANA</h3>
       <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1rem;">Select the enrollment package to establish the Business Center structure and inject initial Personal Sales Points (PSP).</p>
       
+      <div id="partner-options" class="partner-options-container">
+        <label class="partner-option-label">
+          <input type="checkbox" id="chk-sponsored" />
+          Personally Sponsored
+        </label>
+        <label class="partner-option-label" style="color: #64748b;">
+          <input type="checkbox" id="chk-nsb" disabled />
+          NSB Active (Within First 6 Months)
+        </label>
+      </div>
+
       <div class="enroll-options">
         <button class="enroll-btn" data-type="1bc">
           <strong>1 Business Center</strong>

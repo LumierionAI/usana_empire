@@ -25,16 +25,23 @@ export function evaluateRank(weeklyCps) {
 
 export function simulateInteractiveTree(tree, pcState, exchangeRate) {
   let totalCp = 0;
+  let totalNsbCp = 0; // Track NSB independently
   let rootPsp = 0;
   let pcPsp = Number(pcState?.psp) || 0;
   let hasBc2 = false;
   let hasBc3 = false;
 
-  // 1. Calculate Root Qualification dynamically based on node PSP
+  // 1. Calculate Root Qualification dynamically based on node PSP + Activation Volume
   if (tree) {
-    rootPsp += Number(tree.psp) || 0;
-    if (tree.left && tree.left.isBc2) { rootPsp += Number(tree.left.psp) || 0; hasBc2 = true; }
-    if (tree.right && tree.right.isBc3) { rootPsp += Number(tree.right.psp) || 0; hasBc3 = true; }
+    rootPsp += (Number(tree.psp) || 0) + (Number(tree.activationVol) || 0);
+    if (tree.left && tree.left.isBc2) { 
+      rootPsp += (Number(tree.left.psp) || 0) + (Number(tree.left.activationVol) || 0); 
+      hasBc2 = true; 
+    }
+    if (tree.right && tree.right.isBc3) { 
+      rootPsp += (Number(tree.right.psp) || 0) + (Number(tree.right.activationVol) || 0); 
+      hasBc3 = true; 
+    }
   }
   
   // Preferred Customer PSP contributes to owner qualification
@@ -60,9 +67,15 @@ export function simulateInteractiveTree(tree, pcState, exchangeRate) {
     node.rightVol = rightVol; // Assign Right GSP
 
     const nodePsp = Number(node.psp) || 0;
+    const activationVol = Number(node.activationVol) || 0;
     
-    // GSP passed upwards = Left GSP + Right GSP + Node's Own PSP
-    const nodeTotal = leftVol + rightVol + nodePsp;
+    // Calculate NSB. (10% of this node's total generated volume).
+    if (node.isPersonallySponsored && node.nsbActive) {
+      totalNsbCp += (nodePsp + activationVol) * 0.10;
+    }
+    
+    // GSP passed upwards = Left GSP + Right GSP + Editable PSP + Activation Volume
+    const nodeTotal = leftVol + rightVol + nodePsp + activationVol;
 
     // Calculate capped matching volume for root Business Centers
     let isNodeActive = false;
@@ -91,17 +104,19 @@ export function simulateInteractiveTree(tree, pcState, exchangeRate) {
     totalCp = 0;
   } else if (tree) {
     // Apply exact CP formulas combining Owner PSP (BC1 + PC) and Matched GSP
+    // IMPORTANT: Activation Volume does NOT yield a 20% self-bonus.
     let ownerPsp = (Number(tree.psp) || 0) + pcPsp;
 
     if (activeBcs === 3) {
-      totalCp = (ownerPsp + bc1Matched + bc2Matched + bc3Matched) * 0.20;
+      // NSB is calculated outside the 20% multiplier to yield a true 10% bonus
+      totalCp = ((ownerPsp + bc1Matched + bc2Matched + bc3Matched) * 0.20) + totalNsbCp;
       
       // Distribute display CP for the UI nodes
       tree.cp = (ownerPsp + bc1Matched) * 0.20;
       if (tree.left) tree.left.cp = bc2Matched * 0.20;
       if (tree.right) tree.right.cp = bc3Matched * 0.20;
     } else if (activeBcs === 1) {
-      totalCp = (ownerPsp + bc1Matched) * 0.20;
+      totalCp = ((ownerPsp + bc1Matched) * 0.20) + totalNsbCp;
       tree.cp = totalCp;
     }
   }
@@ -109,6 +124,7 @@ export function simulateInteractiveTree(tree, pcState, exchangeRate) {
   return {
     error,
     commissionPoints: totalCp,
+    nsbCp: totalNsbCp, // Return NSB for UI display
     localCurrency: totalCp * exchangeRate,
     rankData: tree ? evaluateRank([totalCp]) : { name: "None", level: "none", stars: 0 }
   };
