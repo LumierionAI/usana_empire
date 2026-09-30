@@ -6,66 +6,20 @@
   <meta name="diagnostic-id" content="15661635">
   <title>USANA Empire | Business Workspace</title>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/png" href="../../favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="shortcut icon" href="../../favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
-  <link rel="manifest" href="../../site.webmanifest" />
-
-  <!-- External Stylesheets -->
-  <link rel="stylesheet" href="../../styles/tokens.css" />
-  <link rel="stylesheet" href="../../styles/base.css" />
-  <link rel="stylesheet" href="../../styles/tools.css" />
-</head>
-<body>
-  <div id="nav-mount"></div>
-
-  <header class="workspace-header">
-    <h1 class="workspace-title">Business Workspace</h1>
-    <p class="workspace-subtitle">Your private operations toolkit. All data is stored locally and securely on your device.</p>
-  </header>
-
-  <main class="tools-grid">
-    <a href="./guidance/" class="tool-card">
-      <span class="tool-indicator">Consultation</span>
-      <h2 class="tool-name">Product Guidance</h2>
-      <p class="tool-desc">Generate rule-based product recommendations utilizing compliance-approved logic.</p>
-    </a>
-
-    <a href="./genealogy/" class="tool-card">
-      <span class="tool-indicator">Analysis</span>
-      <h2 class="tool-name">Genealogy Simulator</h2>
-      <p class="tool-desc">Model downline growth, project structural volume, and estimate potential commissions.</p>
-    </a>
-
-    <a href="./receipts/" class="tool-card">
-      <span class="tool-indicator">Operations</span>
-      <h2 class="tool-name">Receipt Generator</h2>
-      <p class="tool-desc">Create professional customer invoices and automate replenishment reminders.</p>
-    </a>
-
-    <a href="./ledger/" class="tool-card">
-      <span class="tool-indicator">Finance</span>
-      <h2 class="tool-name">Financial Ledger</h2>
-      <p class="tool-desc">Track local retail revenues, operational expenses, and calculate total net profit.</p>
-    </a>
-
-    <a href="./prospects/" class="tool-card">
-      <span class="tool-indicator">Pipeline</span>
-      <h2 class="tool-name">Prospect Planner</h2>
-      <p class="tool-desc">Manage your contact network, track follow-ups, and monitor enrollment status.</p>
-    </a>
-
-
-  </main>
-
-  <script type="module">
-    import { createNavBar } from '../../src/shared/components/NavBar.js';
-    document.getElementById('nav-mount').appendChild(createNavBar());
+  
+  <!-- Mantine dark mode flash prevention -->
+  <script>
+    let colorScheme = localStorage.getItem('mantine-color-scheme-value') || 'light';
+    document.documentElement.setAttribute('data-mantine-color-scheme', colorScheme);
   </script>
+</head>
+<body style="margin: 0; background-color: #f8fafc;">
+  <div id="app-mount"></div>
+  <script type="module" src="../../src/tools/main.jsx"></script>
 </body>
 </html>

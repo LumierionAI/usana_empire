@@ -3,126 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="diagnostic-id" content="15661635">
   <title>USANA Empire | Genealogy Simulator</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  
-  <link rel="icon" type="image/png" href="../../../favicon-96x96.png" sizes="96x96" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
-  <link rel="shortcut icon" href="../../../favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png" />
-  <link rel="manifest" href="../../../site.webmanifest" />
-
-  <link rel="stylesheet" href="../../../styles/tokens.css" />
-  <link rel="stylesheet" href="../../../styles/base.css" />
-  <link rel="stylesheet" href="../../../styles/genealogy.css" />
+  <script>
+    let colorScheme = localStorage.getItem('mantine-color-scheme-value') || 'light';
+    document.documentElement.setAttribute('data-mantine-color-scheme', colorScheme);
+  </script>
 </head>
-<body>
-  <div id="nav-mount"></div>
-
-  <div class="tool-layout">
-    <aside class="panel">
-      <h2 class="panel-title">Global Parameters</h2>
-      <form id="simulator-form" onsubmit="event.preventDefault();">
-        
-        <div class="form-group">
-          <label>Display Currency</label>
-          <select id="currencySymbol" name="currencySymbol">
-            <option value="PHP" selected>Philippine Peso (₱)</option>
-            <option value="USD">US Dollar ($)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Conversion Rate</label>
-          <input type="number" id="exchangeRate" name="exchangeRate" value="55" step="0.1" min="1">
-        </div>
-        
-        <div style="margin-top: 2rem;">
-          <button id="btn-reset-tree" class="btn-outline" style="width: 100%; border-color: #ef4444; color: #ef4444; padding: 0.75rem; border-radius: 4px; font-weight: bold; cursor: pointer; background: transparent;">
-            Reset Genealogy
-          </button>
-        </div>
-        
-        <p style="font-size: 0.85rem; color: #666; margin-top: 1.5rem; line-height: 1.5; padding: 1rem; background: #f8fafc; border-radius: 4px; border: 1px solid #e2e8f0;">
-          <strong>How to use:</strong> Start by joining USANA. Build your organization manually by clicking <strong>+ L</strong> or <strong>+ R</strong>. Nodes carry their own Personal Sales Points (PSP) which instantly convert to Group Sales Points (GSP) for their upline.
-        </p>
-      </form>
-    </aside>
-    
-    <section class="panel">
-      <h2 class="panel-title" style="border: none; padding-bottom: 0;">Business Status</h2>
-      <div id="error-banner" class="error-banner"></div>
-      
-      <!-- TOP METRICS DASHBOARD -->
-      <div class="top-dashboard">
-        <div class="rank-card level-none" id="rank-card">
-          <div class="rank-icon" id="rank-icon"><div style="width:12px; height:12px; border-radius:50%; background:#cbd5e1;"></div></div>
-          <div class="rank-info">
-            <span class="rank-label">Projected Rank</span>
-            <h3 class="rank-name" id="out-rank">None</h3>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Total Commission Points</div>
-          <p class="metric-value" id="out-cp">0</p>
-          <div style="font-size: 0.75rem; color: #10b981; margin-top: 4px; font-weight: 600; display: none;" id="out-nsb">
-            Includes <span id="out-nsb-val">0</span> CP from NSB
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Projected Income</div>
-          <p class="metric-value highlight" id="out-currency">₱0.00</p>
-        </div>
-      </div>
-      
-      <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
-        *Disclaimer: This is a strictly mathematical simulation of the Binary Tree mechanics. Rank calculations assume the CP is maintained for the required weekly durations. It does not account for matching bonuses, rank advancements, or Leadership bonuses.
-      </p>
-      
-      <!-- Visual Binary Tree Mount Point -->
-      <div id="tree-mount" class="tree-container"></div>
-      
-    </section>
-  </div>
-
-  <!-- Enrollment Modal -->
-  <div id="enrollment-modal" class="modal-overlay">
-    <div class="modal-content">
-      <h3 id="enroll-title">Join USANA</h3>
-      <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1rem;">Select the enrollment package to establish the Business Center structure and inject initial Personal Sales Points (PSP).</p>
-      
-      <div id="partner-options" class="partner-options-container">
-        <label class="partner-option-label">
-          <input type="checkbox" id="chk-sponsored" />
-          Personally Sponsored
-        </label>
-        <label class="partner-option-label" style="color: #64748b;">
-          <input type="checkbox" id="chk-nsb" disabled />
-          NSB Active (Within First 6 Months)
-        </label>
-      </div>
-
-      <div class="enroll-options">
-        <button class="enroll-btn" data-type="1bc">
-          <strong>1 Business Center</strong>
-          <span>200 PSP</span>
-        </button>
-        <button class="enroll-btn" data-type="3bc" style="border-color: var(--color-primary); background: #f8fafc;">
-          <strong>3 Business Centers</strong>
-          <span>500 PSP</span>
-        </button>
-      </div>
-      
-      <div style="text-align: right;">
-        <button id="btn-close-modal" style="background: none; border: none; color: #64748b; font-weight: bold; cursor: pointer; padding: 0.5rem 1rem;">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <script type="module" src="../../../src/tools/genealogy/main.js"></script>
+<body style="margin: 0; background-color: #f8fafc;">
+  <div id="app-mount"></div>
+  <script type="module" src="../../../src/tools/genealogy/main.jsx"></script>
 </body>
 </html>

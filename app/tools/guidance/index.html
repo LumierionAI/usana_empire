@@ -3,76 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="diagnostic-id" content="15661635">
-  <title>Product Guidance | USANA Empire</title>
+  <title>Product Guidance - USANA Empire</title>
   
-<!-- Favicons -->
-  <link rel="icon" type="image/png" href="../../../favicon-96x96.png" sizes="96x96" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
-  <link rel="shortcut icon" href="../../../favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png" />
-  <link rel="manifest" href="../../../site.webmanifest" />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="../../../styles/tokens.css" />
-  <link rel="stylesheet" href="../../../styles/base.css" />
-  <link rel="stylesheet" href="../../../styles/tools.css" />
-</head>
-<body class="tool-page">
-  <div id="nav-mount"></div>
   
-  <main class="tool-layout">
-    <header class="tool-header" style="padding: 2rem;">
-      <h1>Clinical Assessment</h1>
-    </header>
-
-    <section class="guidance-grid" style="display: flex; gap: 2rem; padding: 0 2rem;">
-      
-      <!-- Input Panel (Sidebar) -->
-      <aside class="assessment-panel" style="flex: 0 0 300px;">
-        <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="age-group" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Client Age Group</label>
-          <select id="age-group" style="width: 100%; padding: 0.5rem;">
-            <option value="adult">Adult (19+ years)</option>
-            <option value="child_1_4">Child (1-4 years)</option>
-            <option value="child_5_8">Child (5-8 years)</option>
-            <option value="child_9_12">Child (9-12 years)</option>
-            <option value="child_13_18">Teen (13-18 years)</option>
-          </select>
-        </div>
-        
-        <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="intensity" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Protocol Intensity</label>
-          <select id="intensity" style="width: 100%; padding: 0.5rem;">
-            <option value="optimal">Optimal (Aggressive Support)</option>
-            <option value="minimal">Minimal (Foundational)</option>
-          </select>
-        </div>
-        
-        <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="health-focus" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Primary Health Focus</label>
-          <select id="health-focus" style="width: 100%; padding: 0.5rem;">
-            <option value="general">General Proactive Health</option>
-            <!-- Javascript will dynamically inject conditions here -->
-          </select>
-        </div>
-        
-        <button id="btn-generate" class="btn btn-primary" style="width: 100%; padding: 1rem; background-color: var(--color-brand-dark, #0f172a); color: white; border: none; font-weight: bold; cursor: pointer;">
-          GENERATE PROTOCOL
-        </button>
-      </aside>
-        
-        <div id="results-mount" style="border: 1px dashed #cbd5e1; padding: 2rem; border-radius: 8px; background: white; min-height: 200px;">
-          <div class="empty-state" style="text-align: center; color: #64748b;">
-            Select parameters and click Generate Protocol.
-          </div>
-        </div>
-      </article>
-
-    </section>
-  </main>
-
-  <!-- Notice the module import points to the src directory, not the app directory -->
-  <script type="module" src="../../../src/tools/guidance/main.js"></script>
+  <script>
+    let colorScheme = localStorage.getItem('mantine-color-scheme-value') || 'light';
+    document.documentElement.setAttribute('data-mantine-color-scheme', colorScheme);
+  </script>
+</head>
+<body style="margin: 0; background-color: #f8fafc;">
+  <div id="app-mount"></div>
+  <script type="module" src="../../../src/tools/guidance/main.jsx"></script>
 </body>
 </html>

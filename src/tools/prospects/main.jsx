@@ -13,17 +13,17 @@ import '@mantine/core/styles.css';
 
 import { storageAdapter } from '../../shared/storage-adapter.js';
 import { exportToCSV, parseCSV } from '../../shared/import-export/csv.js';
+import { resolvePath } from '../../shared/base-path.js';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-// --- Dark Mode Toggle ---
 function ThemeToggle() {
   const { toggleColorScheme } = useMantineColorScheme();
   const computedScheme = useComputedColorScheme('light');
   const isDark = computedScheme === 'dark';
   
   return (
-    <Button variant="light" color="gray" size="sm" onClick={() => toggleColorScheme()}>
+    <Button variant="default" size="sm" onClick={() => toggleColorScheme()}>
       {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
     </Button>
   );
@@ -94,7 +94,6 @@ function ProspectPlanner() {
     setIsEditing(true);
   }, []);
 
-  // --- CSV Handlers ---
   const handleExport = () => {
     exportToCSV(prospects, `prospects_export_${new Date().toISOString().split('T')[0]}.csv`);
   };
@@ -139,13 +138,9 @@ function ProspectPlanner() {
     }
   };
 
-  // --- Beautiful CRM Cell Renderers ---
   const columnDefs = useMemo(() => [
     { 
-      field: 'name', 
-      headerName: 'Prospect', 
-      flex: 1.2, 
-      filter: true,
+      field: 'name', headerName: 'Prospect', flex: 1.2, filter: true,
       cellRenderer: (params) => {
         const name = params.value || 'Unknown';
         const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
@@ -158,20 +153,13 @@ function ProspectPlanner() {
       }
     },
     { 
-      field: 'contact', 
-      headerName: 'Contact Info', 
-      flex: 1.2,
+      field: 'contact', headerName: 'Contact Info', flex: 1.2,
       cellRenderer: (params) => (
-        <Group h="100%" align="center">
-          <Text size="sm" c="dimmed" truncate="end">{params.value || '—'}</Text>
-        </Group>
+        <Group h="100%" align="center"><Text size="sm" c="dimmed" truncate="end">{params.value || '—'}</Text></Group>
       )
     },
     { 
-      field: 'status', 
-      headerName: 'Pipeline Stage', 
-      width: 160,
-      filter: true,
+      field: 'status', headerName: 'Pipeline Stage', width: 160, filter: true,
       cellRenderer: (params) => (
         <Group h="100%" align="center">
           <Badge color={getStatusColor(params.value)} variant="light" size="md" radius="sm" fw={700}>{params.value}</Badge>
@@ -179,9 +167,7 @@ function ProspectPlanner() {
       ) 
     },
     { 
-      field: 'temperature', 
-      headerName: 'Temp', 
-      width: 100,
+      field: 'temperature', headerName: 'Temp', width: 100,
       cellRenderer: (params) => {
         const colors = { hot: 'red', warm: 'orange', cold: 'cyan' };
         return (
@@ -192,9 +178,7 @@ function ProspectPlanner() {
       }
     },
     { 
-      field: 'priorityScore', 
-      headerName: 'MAN', 
-      width: 90, 
+      field: 'priorityScore', headerName: 'MAN', width: 90, 
       cellRenderer: (params) => (
         <Group h="100%" align="center">
           <Text size="sm" fw={700} c={params.value > 0 ? undefined : 'dimmed'}>P{params.value || 0}</Text>
@@ -202,16 +186,9 @@ function ProspectPlanner() {
       )
     },
     { 
-      field: 'nextFollowupDate', 
-      headerName: 'Follow Up', 
-      sort: 'asc', 
-      width: 130,
+      field: 'nextFollowupDate', headerName: 'Follow Up', sort: 'asc', width: 130,
       cellRenderer: (params) => {
-        if (!params.value) return (
-          <Group h="100%" align="center">
-            <Text size="sm" c="dimmed">No date</Text>
-          </Group>
-        );
+        if (!params.value) return (<Group h="100%" align="center"><Text size="sm" c="dimmed">No date</Text></Group>);
         const [y, m, d] = params.value.split('-');
         const localDate = new Date(y, m - 1, d);
         return (
@@ -222,10 +199,7 @@ function ProspectPlanner() {
       }
     },
     { 
-      field: 'notes', 
-      headerName: 'Notes', 
-      flex: 1.5,
-      // Added truncate so long notes don't ruin the table layout
+      field: 'notes', headerName: 'Notes', flex: 1.5,
       cellRenderer: (params) => (
         <Group h="100%" align="center" style={{ overflow: 'hidden' }}>
           <Text size="sm" c="dimmed" truncate="end" title={params.value}>{params.value || '—'}</Text>
@@ -233,10 +207,7 @@ function ProspectPlanner() {
       )
     },
     {
-      headerName: 'Actions',
-      width: 140,
-      sortable: false,
-      filter: false,
+      headerName: 'Actions', width: 140, sortable: false, filter: false,
       cellRenderer: (params) => (
         <Group gap="xs" wrap="nowrap" h="100%" align="center">
           <Button size="compact-xs" variant="light" onClick={() => handleEdit(params.data)}>Edit</Button>
@@ -246,7 +217,6 @@ function ProspectPlanner() {
     }
   ], [handleEdit, handleDelete]);
 
-  // --- AG Grid v33 Theming API ---
   const gridTheme = useMemo(() => 
     themeQuartz
       .withPart(isDark ? colorSchemeDark : colorSchemeLight)
@@ -266,23 +236,39 @@ function ProspectPlanner() {
   );
 
   return (
-    <AppShell header={{ height: 60 }} bg={isDark ? 'dark.8' : 'gray.0'}>
-      <AppShell.Header>
-        <Group h="100%" px="md" justify="space-between">
-          <Group>
-            <a href="../" style={{ textDecoration: 'none', color: 'var(--mantine-color-blue-filled)', fontWeight: '600' }}>&larr; Back to Tools</a>
-            <Text fw={700} size="lg" ml="sm" c={isDark ? 'white' : 'dark.9'}>USANA Empire | CRM</Text>
+    <AppShell header={{ height: 64 }} bg={isDark ? 'dark.8' : 'gray.0'}>
+      <AppShell.Header withBorder={true}>
+        <Container size="xl" h="100%">
+          <Group justify="space-between" h="100%">
+            
+            {/* Premium Global Navigation */}
+            <Group gap="xl" h="100%">
+              <Group gap="sm" component="a" href={resolvePath('')} style={{ textDecoration: 'none' }}>
+                <Avatar src={resolvePath('favicon.svg')} size={26} radius="sm" style={{ background: 'transparent' }} />
+                <Title order={4} c={isDark ? 'white' : 'dark.9'} style={{ letterSpacing: '-0.5px', marginTop: 2 }}>
+                  USANA Empire
+                </Title>
+              </Group>
+
+              <Group component="nav" gap="sm" visibleFrom="sm" h="100%">
+                <Button component="a" href={resolvePath('app/product/')} variant="subtle" color="gray" radius="md">Product</Button>
+                <Button component="a" href={resolvePath('app/business/')} variant="subtle" color="gray" radius="md">Business</Button>
+                <Button component="a" href={resolvePath('app/tools/')} variant="light" color="blue" radius="md">Workspace</Button>
+              </Group>
+            </Group>
+            
+            {/* Tool-Specific Action Area */}
+            <Group>
+              <Button variant="default" size="sm" onClick={handleExport}>Export CSV</Button>
+              <Button variant="default" size="sm" onClick={() => setIsImportOpen(true)}>Import CSV</Button>
+              <ThemeToggle />
+            </Group>
           </Group>
-          <Group>
-            <Button variant="default" size="sm" onClick={handleExport}>Export CSV</Button>
-            <Button variant="default" size="sm" onClick={() => setIsImportOpen(true)}>Import CSV</Button>
-            <ThemeToggle />
-          </Group>
-        </Group>
+        </Container>
       </AppShell.Header>
 
       <AppShell.Main>
-        <Container size="xl" h="calc(100vh - 80px)" style={{ display: 'flex', flexDirection: 'column' }}>
+        <Container size="xl" h="calc(100vh - 84px)" style={{ display: 'flex', flexDirection: 'column' }}>
           
           <Paper p="xl" radius="md" withBorder shadow="sm" mb="md" mt="md">
             <Group justify="space-between" mb="lg">
@@ -299,12 +285,7 @@ function ProspectPlanner() {
                   <TextInput label="Contact Info" placeholder="Phone or Email" value={formData.contact} onChange={(e) => setFormData({...formData, contact: e.target.value})} />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, md: 3 }}>
-                  <Select 
-                    label="Pipeline Status" 
-                    data={pipelineOptions}
-                    value={formData.status} 
-                    onChange={(val) => setFormData({...formData, status: val})} 
-                  />
+                  <Select label="Pipeline Status" data={pipelineOptions} value={formData.status} onChange={(val) => setFormData({...formData, status: val})} />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, md: 3 }}>
                   <TextInput type="date" label="Next Follow-up" value={formData.nextFollowupDate} onChange={(e) => setFormData({...formData, nextFollowupDate: e.target.value})} />
@@ -312,12 +293,7 @@ function ProspectPlanner() {
 
                 <Grid.Col span={{ base: 12, md: 3 }}>
                   <Text size="sm" fw={500} mb={3}>Temperature</Text>
-                  <SegmentedControl 
-                    fullWidth
-                    data={[{ label: 'Cold', value: 'cold' }, { label: 'Warm', value: 'warm' }, { label: 'Hot', value: 'hot' }]}
-                    value={formData.temperature} 
-                    onChange={(val) => setFormData({...formData, temperature: val})}
-                  />
+                  <SegmentedControl fullWidth data={[{ label: 'Cold', value: 'cold' }, { label: 'Warm', value: 'warm' }, { label: 'Hot', value: 'hot' }]} value={formData.temperature} onChange={(val) => setFormData({...formData, temperature: val})} />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, md: 3 }}>
                   <Checkbox.Group label="Qualification (MAN)" value={['hasMeans', 'hasAuthority', 'hasNeeds'].filter(key => formData[key])} onChange={(vals) => setFormData({ ...formData, hasMeans: vals.includes('hasMeans'), hasAuthority: vals.includes('hasAuthority'), hasNeeds: vals.includes('hasNeeds') })}>
@@ -364,21 +340,9 @@ function ProspectPlanner() {
         </Container>
       </AppShell.Main>
 
-      <Modal 
-        opened={isImportOpen} 
-        onClose={() => { setIsImportOpen(false); setImportData(null); }} 
-        title={<Text fw={700}>Import Prospects (CSV)</Text>}
-        centered
-      >
+      <Modal opened={isImportOpen} onClose={() => { setIsImportOpen(false); setImportData(null); }} title={<Text fw={700}>Import Prospects (CSV)</Text>} centered>
         {!importData ? (
-          <FileInput 
-            label="Upload CSV File" 
-            placeholder="Click to select file" 
-            accept=".csv"
-            onChange={handleFileSelect}
-            size="md"
-            mb="md"
-          />
+          <FileInput label="Upload CSV File" placeholder="Click to select file" accept=".csv" onChange={handleFileSelect} size="md" mb="md" />
         ) : (
           <Stack>
             <Text fw={600} c="green">Validated! Ready to import {importData.length} records.</Text>

@@ -6,25 +6,16 @@
   <meta name="diagnostic-id" content="15661635">
   <title>Financial Ledger - USANA Empire</title>
   
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="../../../favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
-  <link rel="shortcut icon" href="../../../favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png" />
-  <link rel="manifest" href="../../../site.webmanifest" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="../../../styles/tokens.css" />
-  <link rel="stylesheet" href="../../../styles/ledger.css" />
+  
+  <script>
+    let colorScheme = localStorage.getItem('mantine-color-scheme-value') || 'light';
+    document.documentElement.setAttribute('data-mantine-color-scheme', colorScheme);
+  </script>
 </head>
-<body>
-  <!-- The component architecture dynamically mounts the UI here -->
+<body style="margin: 0; background-color: #f8fafc;">
   <div id="app-mount"></div>
-
-  <!-- External App Logic -->
-  <script type="module" src="../../../src/tools/ledger/main.js"></script>
+  <script type="module" src="../../../src/tools/ledger/main.jsx"></script>
 </body>
 </html>

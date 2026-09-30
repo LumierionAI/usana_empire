@@ -1,0 +1,1044 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "source": "Comprehensive Guide to Nutritional Product Recommendation (Dr. Ray Strand) & USANA Clinical Research",
+    "disclaimer": "These protocols are for educational purposes and do not constitute medical advice. Products are not intended to diagnose, treat, cure, or prevent any disease. Always consult a physician or certified healthcare provider before beginning any supplementation, diet, or exercise program, especially if you have a pre-existing medical condition or are taking medication."
+  },
+  "conditions": [
+    {
+      "id": "foundational_health",
+      "name": "Daily Foundational Health",
+      "rationale": "Replenishes nutritional deficiencies, enhances nutrient levels to combat oxidative stress, and optimizes the natural immune and repair systems.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 gelcaps Breakfast, 2 gelcaps Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1-2 scoops daily" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner (or 2 AM, 1 PM if lunch is missed)" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Prioritize a whole-food diet rich in lean proteins, complex carbohydrates, and healthy fats.",
+          "Aim for at least 5 servings of deeply colored vegetables and fruits daily for natural phytonutrients.",
+          "Drink at least 2.5 to 3 liters of water daily to support cellular hydration and toxin flushing."
+        ],
+        "workout": [
+          "Cardiovascular: 150 minutes of moderate-intensity aerobic exercise per week.",
+          "Strength: 2 days of full-body resistance training per week to maintain bone density and muscle mass.",
+          "Mobility: 10 minutes of daily stretching or yoga to preserve joint health."
+        ]
+      }
+    },
+    {
+      "id": "pediatric_health",
+      "name": "Pediatric Foundational Health (Ages 2-12)",
+      "rationale": "Supports healthy growth, cognitive development, and robust immune function during critical childhood development windows.",
+      "optimal": [
+        { "productName": "Usanimals", "dose": "Ages 2-4: 1 tablet daily. Ages 5-12: 2 tablets daily (chewed or crushed)." },
+        { "productName": "BiOmega", "dose": "1 gelcap daily (can be punctured and squeezed into food for younger children) for brain development." },
+        { "productName": "USANA Probiotic", "dose": "1/2 to 1 stick pack every other day for digestive and immune support." }
+      ],
+      "minimal": [
+        { "productName": "Usanimals", "dose": "Ages 2-4: 1 tablet daily. Ages 5-12: 2 tablets daily." }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Limit added sugars and fruit juices, which displace nutrient-dense calories and spike blood sugar.",
+          "Prioritize calcium-rich foods (dairy, fortified plant milks, leafy greens) for growing bones.",
+          "Incorporate healthy fats (avocados, nut butters) for neural development."
+        ],
+        "workout": [
+          "Active Play: Minimum of 60 minutes of unstructured, moderate-to-vigorous physical activity daily.",
+          "Limit recreational screen time to under 2 hours per day to encourage physical movement and protect sleep quality."
+        ]
+      }
+    },
+    {
+      "id": "teen_health",
+      "name": "Teen Foundational Health (Ages 13-18)",
+      "rationale": "Fills critical nutritional gaps during the rapid growth, hormonal shifts, and intense cognitive demands of adolescence.",
+      "optimal": [
+        { "productName": "Mini CellSentials", "dose": "2 tablets Core Minerals & 2 tablets Vita Antioxidant daily (easier to swallow for teens)." },
+        { "productName": "MagneCal D", "dose": "1 tablet twice daily to support peak bone mass accrual (which occurs primarily during the teen years)." },
+        { "productName": "BiOmega", "dose": "1 gelcap twice daily for cognitive focus and emotional balance." }
+      ],
+      "minimal": [
+        { "productName": "Mini CellSentials", "dose": "2 tablets Core Minerals & 2 tablets Vita Antioxidant daily." }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Iron Awareness: Increased iron needs, especially for menstruating females. Encourage lean meats, beans, and spinach.",
+          "Hydration: Teens often substitute water with sodas or energy drinks. Enforce water as the primary beverage.",
+          "Protein: Ensure adequate protein intake to support rapid muscle and tissue growth."
+        ],
+        "workout": [
+          "Structured Exercise: 60 minutes daily, incorporating both aerobic activities (sports, running) and bone-loading activities (jumping, resistance training).",
+          "Sleep Hygiene: Teens biologically need 8-10 hours of sleep. Remove screens from the bedroom 1 hour before sleep to prevent blue light disruption."
+        ]
+      }
+    },
+    {
+      "id": "acne",
+      "name": "Acne & Skin Clarity",
+      "rationale": "Supports the body against excessive oil secretion and infection of blocked glands while addressing systemic inflammation and gut health.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack every other day for gut-skin axis support" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Adopt a low-glycemic diet; insulin spikes from refined sugars directly increase sebum (oil) production.",
+          "Eliminate or heavily reduce conventional dairy, which contains hormones that can trigger acne in sensitive individuals.",
+          "Increase intake of zinc-rich foods (pumpkin seeds, lentils) and Vitamin A-rich foods (sweet potatoes, carrots)."
+        ],
+        "workout": [
+          "Hygiene Protocol: Always wash face immediately post-workout with a gentle cleanser (e.g., Celavive Creamy Foam Cleanser) to prevent sweat and bacteria from clogging pores.",
+          "Avoid touching the face while handling gym equipment."
+        ]
+      }
+    },
+    {
+      "id": "aids",
+      "name": "AIDS / HIV Support",
+      "rationale": "Builds up the natural antioxidant defense system to delay illness progression and support aggressive immune resilience.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Strict Food Safety: Avoid raw meats, unpasteurized dairy, and unwashed produce to prevent opportunistic gastrointestinal infections.",
+          "High Protein Intake: Aim for 1.2-1.5g of protein per kg of body weight to prevent lean muscle wasting (cachexia).",
+          "Ensure adequate caloric surplus if unwanted weight loss is occurring."
+        ],
+        "workout": [
+          "Progressive Resistance Training: Highly recommended (3-4 times a week) to actively combat muscle wasting and preserve lean body mass.",
+          "Moderate Aerobic Exercise: Aids in cardiovascular health but avoid overtraining, which can temporarily suppress immune function."
+        ]
+      }
+    },
+    {
+      "id": "asthma",
+      "name": "Asthma & Airway Health",
+      "rationale": "Rebuilds natural antioxidant and immune defenses to optimal levels to combat severe respiratory inflammation.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Anti-Inflammatory Focus: Strictly limit trans fats and highly processed seed oils; emphasize Omega-3s.",
+          "Identify and eliminate personal food allergens or sensitivities (commonly dairy or gluten) which can trigger histamine responses.",
+          "Increase intake of dietary magnesium (spinach, almonds) to help relax bronchial smooth muscle."
+        ],
+        "workout": [
+          "Always perform a prolonged, 15-20 minute gradual warm-up before intense exercise to prevent Exercise-Induced Bronchoconstriction (EIB).",
+          "If exercising outdoors, monitor air quality and pollen counts; breathe through the nose to warm and filter incoming air.",
+          "Swimming is highly recommended due to the warm, humid environment which soothes airways."
+        ]
+      }
+    },
+    {
+      "id": "als",
+      "name": "ALS (Lou Gehrig's Disease)",
+      "rationale": "Targets severe oxidative stress and genetic defects in the superoxide dismutase antioxidant defense system.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "3 Breakfast, 3 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 2 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Texture-Modified Diet: As dysphagia (difficulty swallowing) progresses, transition to pureed foods and thickened liquids to prevent aspiration.",
+          "Nutrient Density: Focus on high-calorie, highly nutritious foods (avocados, nut butters) to combat rapid weight loss and hypermetabolism.",
+          "Ensure optimal hydration, modifying liquid consistency as needed."
+        ],
+        "workout": [
+          "Energy Conservation: Avoid fatiguing workouts; focus purely on maintaining range of motion.",
+          "Daily passive stretching and assisted range-of-motion exercises to prevent painful muscle contractures.",
+          "Aquatic therapy is excellent for unweighted movement and joint relief."
+        ]
+      }
+    },
+    {
+      "id": "alzheimers",
+      "name": "Alzheimer's Dementia & Cognitive Decline",
+      "rationale": "Protects the brain from severe oxidative damage, preserves neural function, and supports healthy cellular energy in the brain.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "CopaPrime+", "dose": "2 tablets daily for targeted cognitive and memory support" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CopaPrime+", "dose": "2 tablets daily" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Adhere to the MIND Diet: A hybrid of the Mediterranean and DASH diets strictly prioritizing berries, leafy greens, nuts, beans, and olive oil.",
+          "Limit saturated fats, red meat, and refined sugars, which exacerbate neuro-inflammation.",
+          "Ensure steady blood sugar control, as Alzheimer's is frequently referred to clinically as 'Type 3 Diabetes' of the brain."
+        ],
+        "workout": [
+          "Aerobic Exercise: 30-40 minutes of brisk walking 4-5 times a week has been shown to increase hippocampal volume (the brain's memory center).",
+          "Cognitive Stimulation: Pair physical movement with cognitive tasks (e.g., dancing, which requires memorizing steps and coordination)."
+        ]
+      }
+    },
+{
+      "id": "aneurysms",
+      "name": "Aneurysms (Cardiovascular Support)",
+      "rationale": "Supports arterial health, promotes elasticity, and mitigates risks associated with atheromatous plaque rupture and vascular weakness.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Strict Blood Pressure Control: Adopt the DASH diet, heavily restricting sodium and processed foods.",
+          "Prioritize potassium-rich foods (bananas, sweet potatoes, spinach) to help relax blood vessel walls.",
+          "Eliminate stimulants like excess caffeine and nicotine, which acutely spike blood pressure."
+        ],
+        "workout": [
+          "Avoid the Valsalva Maneuver: Never hold your breath during physical exertion; avoid heavy, max-effort weightlifting.",
+          "Focus on steady-state, moderate aerobic exercise (walking, light cycling) to maintain cardiovascular conditioning without dangerous pressure spikes."
+        ]
+      }
+    },
+    {
+      "id": "ankylosing-spondylitis",
+      "name": "Ankylosing Spondylitis",
+      "rationale": "Addresses chronic systemic inflammation primarily affecting the spine and sacroiliac joints, supporting cartilage and joint mobility.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Procosa", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Anti-Inflammatory Protocol: Emphasize Omega-3 fatty acids (fatty fish, flax) to naturally modulate the immune response.",
+          "Gut-Joint Axis: Consider a trial elimination of gluten or dairy, as gut permeability is highly correlated with autoimmune arthritic flare-ups.",
+          "Increase antioxidant-rich foods (berries, dark leafy greens)."
+        ],
+        "workout": [
+          "Postural Training: Daily extension exercises (like prone press-ups or Cobra pose) to combat the natural forward-flexion progression of the disease.",
+          "Aquatic Therapy: Swimming is highly recommended as it provides full-body extension without spinal compression.",
+          "Deep breathing exercises to maintain ribcage mobility and lung capacity."
+        ]
+      }
+    },
+    {
+      "id": "arthritis",
+      "name": "Arthritis (Osteo & General)",
+      "rationale": "Combats the degenerative process within the joints, supports cartilage synthesis, and alleviates localized oxidative stress to improve mobility.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Procosa", "dose": "2 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Weight Management: Every 1 lb of body weight lost removes 4 lbs of pressure from the knees.",
+          "Mediterranean Diet: High in olive oil, fish, and vegetables to suppress inflammatory cytokines.",
+          "Limit refined carbohydrates and sugars, which trigger advanced glycation end-products (AGEs) that stiffen cartilage."
+        ],
+        "workout": [
+          "Low-Impact Movement: Cycling, elliptical training, and swimming keep joints lubricated without impact trauma.",
+          "Isometric Strength: Strengthen the muscles surrounding the joint (e.g., quadriceps for knee arthritis) to act as shock absorbers.",
+          "Motion is Lotion: Gentle, daily movement is superior to extended periods of total rest."
+        ]
+      }
+    },
+    {
+      "id": "add-adhd",
+      "name": "Attention Deficit Disorder (ADD/ADHD)",
+      "rationale": "Provides broad-spectrum neural support, protects brain lipids from oxidation, and assists with neurotransmitter balance for concentration and focus.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "CopaPrime+", "dose": "2 tablets daily for cognitive focus and working memory" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High Protein Breakfast: Tyrosine from protein is a direct precursor to dopamine, improving morning focus and medication efficacy.",
+          "Eliminate artificial food dyes (like Red 40) and high-fructose corn syrup, which are clinically linked to hyperactivity.",
+          "Ensure steady blood sugar; glucose crashes heavily impair executive function in the prefrontal cortex."
+        ],
+        "workout": [
+          "Vigorous Aerobic Exercise: 30-45 minutes daily acts similarly to stimulant medication by naturally elevating dopamine and norepinephrine levels.",
+          "Complex Motor Skills: Martial arts, gymnastics, or dance require intense focus and help build neural pathways for sustained attention."
+        ]
+      }
+    },
+    {
+      "id": "bells-palsy",
+      "name": "Bell's Palsy",
+      "rationale": "Aims to reduce swelling, protect against oxidative nerve damage, and support the healing of viral-induced nerve compression.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Soft Diet: If chewing is impaired, focus on nutrient-dense smoothies and pureed soups to prevent malnutrition.",
+          "Chew on the unaffected side of the mouth to prevent cheek biting and fatigue.",
+          "Focus on immune-boosting foods (garlic, ginger, citrus) to help the body clear latent viral activity."
+        ],
+        "workout": [
+          "Facial Physiotherapy: Perform gentle, mirror-guided facial exercises (smiling, frowning, raising eyebrows) to maintain muscle tone and stimulate the facial nerve.",
+          "Eye Care: If the eyelid cannot close, use lubricating drops and physically tape the eye shut at night to prevent severe corneal scratching."
+        ]
+      }
+    },
+    {
+      "id": "bipolar",
+      "name": "Bipolar Disorder",
+      "rationale": "Enhances traditional therapy by providing comprehensive nutritional support for brain chemistry, neuro-inflammation, and mood stabilization.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High-Dose EPA/DHA: Omega-3 fatty acids are heavily researched for their mood-stabilizing effects in bipolar patients.",
+          "Consistent Meal Timing: Erratic eating can cause blood sugar swings that mimic or trigger mood episodes.",
+          "Monitor Caffeine/Alcohol: Caffeine can trigger hypomania, while alcohol can induce severe depressive episodes and interact dangerously with medications."
+        ],
+        "workout": [
+          "Strict Circadian Routine: Exercise at the exact same time every day. Circadian rhythm disruption is a primary trigger for bipolar episodes.",
+          "Moderate Intensity: Avoid extreme, exhaustive physical overexertion during hypomanic phases to prevent metabolic crashing."
+        ]
+      }
+    },
+    {
+      "id": "immune-building",
+      "name": "Building Your Immune System",
+      "rationale": "Optimizes the body's natural defense systems, stimulates macrophage activity, and builds resilience against illness and environmental stressors.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proglucamune", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Prioritize Zinc and Vitamin C rich foods (citrus, bell peppers, pumpkin seeds) to support white blood cell function.",
+          "Maintain a healthy gut microbiome with fermented foods (yogurt, kimchi), as 70% of the immune system resides in the gut.",
+          "Eliminate refined sugars, which temporarily paralyze phagocyte (immune cell) activity for hours after ingestion."
+        ],
+        "workout": [
+          "Moderate Exercise: 30-45 minutes of brisk walking or light jogging daily enhances immune surveillance by circulating immune cells.",
+          "Avoid Overtraining: Exhaustive, prolonged endurance exercise (like marathon training) creates an 'open window' of impaired immunity for 3-72 hours post-workout.",
+          "Prioritize Sleep: 7-9 hours is strictly required for the production of infection-fighting cytokines."
+        ]
+      }
+    },
+    {
+      "id": "cancer-breast",
+      "name": "Cancer - Breast Support",
+      "rationale": "Provides aggressive antioxidant support to complement traditional therapies, protect healthy cells, and support liver clearance of hormone metabolites.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Pure Rest SF", "dose": "1-2 tablets 30-60 mins before sleeping" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Cruciferous Focus: Heavy intake of broccoli, Brussels sprouts, and cabbage. They contain DIM/I3C which helps the liver safely metabolize estrogens.",
+          "Strictly limit alcohol consumption, which is directly linked to increased breast cancer risk.",
+          "Maintain a healthy body weight; excess adipose (fat) tissue produces peripheral estrogen."
+        ],
+        "workout": [
+          "Survivorship Training: 150 minutes of moderate aerobic exercise weekly has been clinically shown to reduce the risk of recurrence and improve survival rates.",
+          "Resistance training is highly encouraged to combat fatigue and maintain bone density, especially if undergoing hormone-blocking therapies."
+        ]
+      }
+    },
+    {
+      "id": "cancer-colon",
+      "name": "Cancer - Colon Support",
+      "rationale": "Provides aggressive antioxidant support to complement traditional therapies, focusing on cellular repair and optimal gastrointestinal transit.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1 scoop daily for bowel motility" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack every other day" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack every other day" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High Fiber: Transition to a plant-heavy diet to increase stool bulk and dilute carcinogens in the colon.",
+          "Strictly avoid processed meats (bacon, hot dogs) and heavily charred/barbecued meats, which contain carcinogenic heterocyclic amines.",
+          "Ensure high calcium and Vitamin D intake, which are protective against colon cell proliferation."
+        ],
+        "workout": [
+          "Daily Physical Activity: Regular exercise stimulates peristalsis (bowel contractions), reducing the transit time of waste and toxins through the colon.",
+          "Core strengthening to support abdominal function and post-surgical recovery."
+        ]
+      }
+    },
+    {
+      "id": "cancer-prostate",
+      "name": "Cancer - Prostate Support",
+      "rationale": "Combines robust cellular nutrition with specific prostate support to protect healthy cells against oxidative damage.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Palmetto Plus", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "Palmetto Plus", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Lycopene Rich Diet: Increase consumption of cooked tomatoes, watermelon, and pink grapefruit, which provide potent prostate-specific antioxidants.",
+          "Plant-Based Focus: Replace red meat and high-fat dairy with plant proteins (soy, legumes) and fish.",
+          "Green tea consumption is encouraged for its high concentration of EGCG antioxidants."
+        ],
+        "workout": [
+          "Pelvic Floor Exercises (Kegels): Critical for maintaining urinary continence, especially if undergoing prostate treatments or surgery.",
+          "Resistance Training: Helps counteract the muscle loss and bone thinning associated with androgen deprivation therapy (ADT)."
+        ]
+      }
+    },
+    {
+      "id": "cardiomyopathy",
+      "name": "Cardiomyopathy",
+      "rationale": "Delivers targeted cardiovascular support to improve heart muscle function, mitochondrial energy production, and endothelial health.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Fluid & Sodium Restriction: If heart failure symptoms are present, strict sodium (<2000mg) and fluid monitoring is required to prevent pulmonary edema.",
+          "Eat small, frequent meals to reduce the metabolic burden and blood flow demand on the heart during digestion.",
+          "Eliminate alcohol completely."
+        ],
+        "workout": [
+          "Supervised Cardiac Rehab: Exercise must be carefully paced and monitored by a medical professional.",
+          "Avoid isometric exercises (planks, heavy gripping, breath-holding) which spike blood pressure and strain the left ventricle.",
+          "Focus on gentle, progressive walking programs."
+        ]
+      }
+    },
+    {
+      "id": "copd",
+      "name": "Chronic Obstructive Pulmonary Disease (COPD)",
+      "rationale": "Supports respiratory function, combats cellular damage in the lungs from inhaled toxins, and supports immune defense to prevent exacerbations.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Poly C", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High Protein & Healthy Fats: Breathing requires 10x more calories for a COPD patient. Emphasize energy-dense, easy-to-chew foods to prevent malnutrition.",
+          "Eat small, frequent meals; large meals distend the stomach and compress the diaphragm, making breathing harder.",
+          "Adequate hydration is critical to thin respiratory mucus for easier expectoration."
+        ],
+        "workout": [
+          "Pulmonary Rehabilitation: Focus on specialized breathing techniques (pursed-lip breathing, diaphragmatic breathing).",
+          "Upper Body Resistance Training: Strengthening the chest, shoulders, and back greatly assists the accessory muscles used for respiration.",
+          "Paced walking with frequent rest intervals."
+        ]
+      }
+    },
+    {
+      "id": "migraines",
+      "name": "Cluster / Migraine Headaches",
+      "rationale": "Mitigates arterial inflammation, endothelial dysfunction, and excessive platelet aggregation associated with severe vascular headaches.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Trigger Identification: Maintain a strict food diary to isolate triggers (commonly aged cheeses, red wine, nitrates, artificial sweeteners, or MSG).",
+          "Hypoglycemia Prevention: Do not skip meals; fasting or low blood sugar is a major trigger for migraines.",
+          "High dietary magnesium intake is clinically proven to reduce migraine frequency."
+        ],
+        "workout": [
+          "Stress Management: Incorporate daily yoga, meditation, or biofeedback. Physical and emotional stress are primary triggers.",
+          "Consistent Routine: Maintain exact sleep and wake times, even on weekends. The brain thrives on circadian predictability."
+        ]
+      }
+    },
+    {
+      "id": "diabetes-1",
+      "name": "Diabetes Mellitus Type 1",
+      "rationale": "Combats the autoimmune process, supports mitochondrial health, and provides heavy antioxidant defense against systemic oxidative stress.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Precise Carbohydrate Counting: Match insulin dosing accurately to carbohydrate intake to maintain tight glycemic control.",
+          "Focus on high-fiber, low-glycemic carbohydrates to slow glucose absorption into the bloodstream.",
+          "Always carry fast-acting glucose (tabs, juice) to immediately treat severe hypoglycemia."
+        ],
+        "workout": [
+          "Careful Monitoring: Check blood glucose before, during, and after exercise. Physical activity drastically increases insulin sensitivity.",
+          "Exercise Timing: Avoid exercising during peak insulin action times to prevent crashes.",
+          "Consistent aerobic and resistance training to protect cardiovascular health (a major secondary risk of Type 1)."
+        ]
+      }
+    },
+    {
+      "id": "diabetes-2",
+      "name": "Diabetes Mellitus Type 2",
+      "rationale": "Supports insulin sensitivity, blunts glycemic spikes, and combats the metabolic syndrome cascade.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1 scoop daily to blunt blood sugar spikes" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1 scoop daily" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Low Glycemic Load: Eliminate refined sugars, white bread, and liquid calories. Prioritize complex carbs paired with fats/protein.",
+          "Food Sequencing: Eat vegetables first, proteins second, and carbohydrates last to drastically reduce the post-meal glucose spike.",
+          "Intermittent Fasting: (If cleared by a physician) A 12-16 hour fasting window allows insulin levels to drop and restores receptor sensitivity."
+        ],
+        "workout": [
+          "Post-Meal Walks: A 10-15 minute walk immediately after meals is one of the most effective non-pharmacological tools to lower blood sugar.",
+          "Hypertrophy (Muscle Building): Muscle tissue is the body's largest glucose sink. Increasing muscle mass permanently improves glucose tolerance."
+        ]
+      }
+    },
+{
+      "id": "elevated-cholesterol",
+      "name": "Elevated Cholesterol (Hyperlipidemia)",
+      "rationale": "Targets low-grade chronic arterial inflammation, minimizes the dangerous oxidation of LDL cholesterol, and promotes healthy lipid clearance.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner to prevent LDL oxidation" },
+        { "productName": "Fibergy Active", "dose": "1-2 scoops daily to bind and excrete excess cholesterol" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1 scoop Breakfast, 1 scoop Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Increase Soluble Fiber: Oats, beans, lentils, and apples act as a sponge in the digestive tract to bind cholesterol and remove it from the body.",
+          "Eliminate Trans Fats: Strictly avoid partially hydrogenated oils (found in fried foods and commercial baked goods) which aggressively raise LDL and lower HDL.",
+          "Prioritize Phytosterols: Consume nuts, seeds, and legumes which naturally block cholesterol absorption in the intestines."
+        ],
+        "workout": [
+          "Cardiovascular Exercise: Moderate to vigorous aerobic activity (brisk walking, cycling) is clinically proven to raise protective HDL cholesterol levels.",
+          "Consistency Over Intensity: Aim for at least 30 minutes of continuous movement 5 days a week to maintain lipid metabolism."
+        ]
+      }
+    },
+    {
+      "id": "hepatitis",
+      "name": "Hepatitis (B & C) & Liver Support",
+      "rationale": "Supports deep liver detoxification pathways, enhances glutathione production, and protects hepatic cells from advancing cirrhosis or oxidative damage.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1-2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Absolute Alcohol Abstinence: Alcohol is directly hepatotoxic and drastically accelerates liver damage in the presence of hepatitis.",
+          "Avoid High-Dose Acetaminophen: Limit OTC pain relievers processed by the liver.",
+          "Lean Proteins: Choose poultry, fish, and plant proteins over fatty red meats to reduce the digestive and metabolic burden on the liver."
+        ],
+        "workout": [
+          "Energy Pacing: Chronic fatigue is a hallmark of hepatitis. Exercise should be light to moderate (walking, yoga) and strictly tailored to daily energy levels.",
+          "Avoid severe exhaustion or heavy weightlifting during active flare-ups to allow the body to direct resources toward hepatic repair."
+        ]
+      }
+    },
+    {
+      "id": "hypertension",
+      "name": "Hypertension (High Blood Pressure)",
+      "rationale": "Reduces risks of heart attack and stroke by supporting arterial elasticity, endothelial function, and vascular relaxation.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "DASH Diet Compliance: Dietary Approaches to Stop Hypertension. Focus strictly on fruits, vegetables, whole grains, and lean proteins.",
+          "Sodium Restriction: Limit sodium to under 1,500mg per day. Avoid canned soups, deli meats, and restaurant sauces.",
+          "Increase Potassium: Potassium naturally relaxes blood vessel walls and helps excrete sodium through urine (spinach, avocados, bananas)."
+        ],
+        "workout": [
+          "Daily Aerobic Exercise: 30 minutes of moderate cardio acts as a natural vasodilator, lowering blood pressure for up to 24 hours post-workout.",
+          "Breathing Techniques: Incorporate deep, diaphragmatic breathing post-workout to calm the central nervous system and lower resting heart rate."
+        ]
+      }
+    },
+    {
+      "id": "ibs",
+      "name": "Irritable Bowel Syndrome (IBS)",
+      "rationale": "Soothes abnormal bowel contractions, rebuilds a healthy gut microbiome, and helps the gastrointestinal tract adapt to stress.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack every other day to restore microbiome balance" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Fibergy Active", "dose": "1 scoop daily (Titrate slowly to assess tolerance)" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack every other day" },
+        { "productName": "Fibergy Active", "dose": "1 scoop daily" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Low-FODMAP Diet: Temporarily eliminate fermentable carbs (onions, garlic, wheat, certain fruits) that draw water into the gut and cause severe bloating/gas.",
+          "Hydration: Maintain steady water intake, avoiding carbonated beverages and excessive caffeine which stimulate bowel spasms.",
+          "Peppermint: Consume peppermint tea to naturally relax the smooth muscle of the intestines."
+        ],
+        "workout": [
+          "Gut Motility: Light to moderate cardiovascular exercise (walking, cycling) helps regulate normal intestinal contractions and relieve gas.",
+          "Stress Reduction: The gut-brain connection in IBS is profound. Yoga, meditation, and stretching can directly reduce functional gut symptoms."
+        ]
+      }
+    },
+    {
+      "id": "lupus",
+      "name": "Lupus (Systemic Lupus Erythematosus)",
+      "rationale": "Combats the intense inflammatory response caused when the immune system attacks connective tissue, supporting joint comfort and organ protection.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Avoid Alfalfa Sprouts: Alfalfa contains L-canavanine, an amino acid explicitly clinically linked to triggering severe lupus flares.",
+          "Anti-Inflammatory Base: Focus heavily on Omega-3 fatty acids (salmon, flaxseeds) to naturally suppress autoimmune inflammatory markers.",
+          "Bone Health: Corticosteroid treatments for Lupus cause rapid bone loss; prioritize calcium and Vitamin D-rich foods."
+        ],
+        "workout": [
+          "Sun Protection: Lupus patients are highly photosensitive. If exercising outdoors, wear UPF clothing and broad-spectrum sunscreen to prevent sun-induced systemic flares.",
+          "Pacing: Alternate between low-impact exercise (swimming, stationary cycling) and rest. Respect profound fatigue during active disease flares."
+        ]
+      }
+    },
+    {
+      "id": "macular-degeneration",
+      "name": "Macular Degeneration",
+      "rationale": "Reduces free radical damage to the macula caused by high-energy ultraviolet and blue light, preserving long-term visual acuity.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Visionex", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Poly C", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Visionex", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Lutein & Zeaxanthin: Consume large amounts of dark leafy greens (kale, spinach, collards) and egg yolks to build macular pigment density.",
+          "Omega-3s: DHA is a primary structural component of the retina. Ensure consistent intake of fatty fish.",
+          "Avoid high glycemic index foods, which are linked to a faster progression of advanced AMD."
+        ],
+        "workout": [
+          "Cardiovascular Health is Eye Health: The retina has a massive network of micro-blood vessels. Regular aerobic exercise keeps these tiny vessels clear and functioning.",
+          "UV Protection: Always wear high-quality, UV-blocking sunglasses and a wide-brimmed hat when exercising or walking outdoors."
+        ]
+      }
+    },
+{
+      "id": "menopause",
+      "name": "Menopause / Perimenopause",
+      "rationale": "Supports hormonal balance, mitigates hot flashes, and provides critical bone density support during the sharp estrogen decline of perimenopause and menopause.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner for accelerated bone support" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Dietary Phytoestrogens: Incorporate organic edamame, tofu, and flaxseeds to gently bind to estrogen receptors and ease transition symptoms.",
+          "Calcium-Rich Foods: Prioritize leafy greens, sardines with bones, and high-quality dairy to combat rapid bone demineralization.",
+          "Limit spicy foods, caffeine, and hot beverages if experiencing severe vasomotor symptoms (hot flashes)."
+        ],
+        "workout": [
+          "Heavy Resistance Training: The absolute best defense against menopausal bone loss and sarcopenia (muscle loss). Lift challenging weights 3x a week.",
+          "Plyometrics: Light jumping or skipping rope (if joints permit) stimulates osteoblast (bone-building) activity far better than walking."
+        ]
+      }
+    },
+    {
+      "id": "multiple-sclerosis",
+      "name": "Multiple Sclerosis (MS)",
+      "rationale": "Supports the myelin sheath, addresses intense oxidative stress surrounding demyelination, and promotes optimal nervous system energy.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Poly C", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "2 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High Vitamin D Focus: Maintain high clinical levels of Vitamin D, which is deeply correlated with reduced MS relapse rates.",
+          "Anti-Inflammatory Diet: Strict adherence to Omega-3s and antioxidants to suppress central nervous system inflammation.",
+          "Monitor swallowing difficulties (dysphagia) and adjust food textures accordingly during flare-ups."
+        ],
+        "workout": [
+          "Cooling Strategies: Avoid overheating (Uhthoff's phenomenon), which temporarily worsens MS symptoms. Exercise in highly air-conditioned rooms or use cooling vests.",
+          "Balance & Proprioception: Yoga and Tai Chi are phenomenal for maintaining neural pathways related to spatial awareness and preventing falls."
+        ]
+      }
+    },
+    {
+      "id": "osteoporosis",
+      "name": "Osteoporosis & Osteopenia",
+      "rationale": "Replenishes bone density and structural integrity with optimal calcium, magnesium, and collagen balances.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "USANA Advanced Collagen", "dose": "1 scoop daily to provide the flexible protein matrix for bone mineralization" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Adequate Protein: Bone is 50% protein by volume. Ensure 1.0-1.2g of protein per kg of body weight to maintain the bone matrix.",
+          "Vitamin K2: Consume fermented foods (natto, sauerkraut) or dark leafy greens to direct calcium into the bones and keep it out of the arteries.",
+          "Avoid excess sodium and excessive caffeine, both of which increase urinary excretion of calcium."
+        ],
+        "workout": [
+          "Impact Training: Bones strictly respond to mechanical stress (Wolff's Law). Walking, hiking, and light jogging are superior to swimming for bone density.",
+          "Fall Prevention: Incorporate single-leg balance exercises to prevent the falls that lead to catastrophic fractures."
+        ]
+      }
+    },
+    {
+      "id": "parkinsons",
+      "name": "Parkinson's Disease",
+      "rationale": "Combats oxidative stress causing cell death in the substantia nigra (dopamine production center) and supports mitochondrial energy.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "2-4 gelcaps daily (Titrate per physician guidance for mitochondrial support)" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Protein Timing: If taking Levodopa (L-dopa), dietary protein competes with the medication for absorption. Consume the bulk of daily protein at dinner rather than breakfast/lunch.",
+          "Hydration & Fiber: Parkinson's significantly slows gut motility. High fiber and water intake are critical to prevent severe constipation.",
+          "Antioxidant Load: Prioritize deeply pigmented berries and vegetables to protect surviving dopamine neurons."
+        ],
+        "workout": [
+          "Forced Exaggerated Movement: Boxing (e.g., Rock Steady Boxing) and wide-step dancing force the brain to override bradykinesia (slow movements).",
+          "Rhythmic Auditory Stimulation: Walking to a metronome or music with a strong beat helps prevent \"freezing\" episodes."
+        ]
+      }
+    },
+    {
+      "id": "pregnancy",
+      "name": "Pregnancy & Prenatal Support",
+      "rationale": "Provides foundational vitamins, critical minerals, and essential omega-3 fats needed for fetal neural development and maternal health.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "BiOmega", "dose": "1 capsule Breakfast, 2 capsules Dinner for fetal brain development" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Folate vs Folic Acid: Ensure high dietary intake of natural folate (spinach, asparagus, lentils) for neural tube development.",
+          "Iron and Vitamin C: Pair iron-rich foods (lean meats, beans) with Vitamin C (citrus, bell peppers) to maximize absorption and prevent maternal anemia.",
+          "Safe Seafood: Rely on ultra-pure supplements like BiOmega, or choose low-mercury fish (salmon, sardines) strictly avoiding high-mercury species (tuna, swordfish)."
+        ],
+        "workout": [
+          "Pelvic Floor & Core: Practice safe pelvic floor exercises (Kegels) and diaphragmatic breathing.",
+          "Postural Shifts: Avoid exercises lying flat on the back (supine) after the first trimester to prevent compression of the vena cava.",
+          "Moderate intensity only; if you cannot hold a conversation while exercising, you are pushing too hard."
+        ]
+      }
+    },
+    {
+      "id": "rheumatoid-arthritis",
+      "name": "Rheumatoid Arthritis",
+      "rationale": "Aggressively targets the autoimmune inflammatory response, quells systemic cytokines, and supports resulting joint degeneration.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "Procosa", "dose": "2 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "High-Dose EPA/DHA: Omega-3s are clinically proven to reduce morning stiffness and the number of tender joints in RA patients.",
+          "Nightshade Elimination Trial: Some autoimmune patients experience relief by temporarily eliminating tomatoes, eggplants, and peppers.",
+          "Gut Permeability: Address 'leaky gut' by removing gluten and excess sugars, which can leak into the bloodstream and trigger systemic immune attacks."
+        ],
+        "workout": [
+          "Respect the Flare: During acute inflammation, stick to passive range-of-motion stretching only. Do not lift weights with actively inflamed, hot joints.",
+          "Hand/Grip Care: Use larger grips on weights and avoid heavy gripping exercises that stress the small joints of the hands."
+        ]
+      }
+    },
+    {
+      "id": "ulcerative-colitis",
+      "name": "Ulcerative Colitis & Crohn's",
+      "rationale": "Counters the overwhelming demand on the colon's antioxidant defense system due to autoimmune inflammation and promotes mucosal healing.",
+      "optimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "MagneCal D", "dose": "1 Breakfast, 1 Lunch, 2 Dinner" },
+        { "productName": "Proflavanol C100", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "CoQuinone 30", "dose": "1 Breakfast, 1 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack daily to support mucosal barrier integrity" },
+        { "productName": "Hepasil DTX", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Lunch, 2 Dinner" }
+      ],
+      "minimal": [
+        { "productName": "CellSentials", "dose": "1 Breakfast, 1 Lunch, 1 Dinner" },
+        { "productName": "USANA Probiotic", "dose": "1 stick pack daily" },
+        { "productName": "BiOmega", "dose": "2 Breakfast, 2 Dinner" }
+      ],
+      "lifestyle": {
+        "nutrition": [
+          "Low-Residue Diet During Flares: When actively bleeding or flaring, strictly avoid raw vegetables, seeds, nuts, and whole grains to give the colon mechanical rest.",
+          "Nutrient Density: Chronic diarrhea leads to severe malabsorption of iron, B12, and electrolytes. Rely on highly bioavailable supplements and bone broths.",
+          "Identify strict personal trigger foods through a guided elimination diet."
+        ],
+        "workout": [
+          "Stress is a Primary Trigger: The central nervous system directly regulates gut inflammation. Prioritize restorative yoga and deep meditation.",
+          "Avoid exhaustive cardio (like long-distance running), which diverts blood flow away from the ischemic bowel and can trigger 'runner's diarrhea'."
+        ]
+      }
+    }
+  ]
+}
