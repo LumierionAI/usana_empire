@@ -107,9 +107,13 @@ const GamifiedRankCard = ({ rankData, isDark }) => {
       bg: isDark ? 'linear-gradient(135deg, var(--mantine-color-orange-9), var(--mantine-color-yellow-9))' : 'linear-gradient(135deg, var(--mantine-color-orange-5), var(--mantine-color-yellow-5))',
       text: 'white', icon: IconSword, glow: isDark ? '0 0 20px rgba(217, 72, 15, 0.5)' : '0 4px 15px rgba(253, 126, 20, 0.4)'
     };
-    if (lvl === 'silver') return {
+if (lvl === 'silver') return {
       bg: isDark ? 'linear-gradient(135deg, var(--mantine-color-gray-7), var(--mantine-color-gray-9))' : 'linear-gradient(135deg, var(--mantine-color-gray-3), var(--mantine-color-gray-4))',
       text: isDark ? 'white' : 'var(--mantine-color-dark-9)', icon: IconSword, glow: '0 4px 15px rgba(134, 142, 150, 0.3)'
+    };
+    if (lvl === 'gold') return {
+      bg: isDark ? 'linear-gradient(135deg, var(--mantine-color-yellow-7), var(--mantine-color-orange-7))' : 'linear-gradient(135deg, var(--mantine-color-yellow-4), var(--mantine-color-orange-5))',
+      text: isDark ? 'white' : 'var(--mantine-color-dark-9)', icon: IconCrown, glow: isDark ? '0 0 25px rgba(245, 159, 0, 0.6)' : '0 4px 20px rgba(250, 176, 5, 0.4)'
     };
     if (lvl === 'ruby') return {
       bg: isDark ? 'linear-gradient(135deg, var(--mantine-color-red-9), var(--mantine-color-pink-9))' : 'linear-gradient(135deg, var(--mantine-color-red-6), var(--mantine-color-pink-6))',

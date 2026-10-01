@@ -6,13 +6,14 @@
 export function evaluateRank(weeklyCps) {
   const currentCp = weeklyCps[0] || 0;
   
-  if (currentCp >= 4000) {
-    const stars = Math.floor((currentCp - 4000) / 1000);
+  if (currentCp >= 16000) {
+    const stars = Math.floor((currentCp - 16000) / 1000);
     if (stars > 0) return { name: `${stars}-Star Diamond Director`, level: 'star-diamond', stars };
     return { name: "Diamond Director", level: 'diamond', stars: 0 };
   }
-  if (currentCp >= 3000) return { name: "Emerald Director", level: 'emerald', stars: 0 };
-  if (currentCp >= 2000) return { name: "Ruby Director", level: 'ruby', stars: 0 };
+  if (currentCp >= 12000) return { name: "Emerald Director", level: 'emerald', stars: 0 };
+  if (currentCp >= 8000) return { name: "Ruby Director", level: 'ruby', stars: 0 };
+  if (currentCp >= 4000) return { name: "Gold Director", level: 'gold', stars: 0 };
   if (currentCp >= 1000) return { name: "Silver Director", level: 'silver', stars: 0 }; 
   if (currentCp >= 800) return { name: "Bronze Director", level: 'bronze', stars: 0 };
   if (currentCp >= 600) return { name: "Director", level: 'director', stars: 0 };
