@@ -4,7 +4,7 @@ import {
   MantineProvider, AppShell, Group, Title, Text, Button, 
   Container, Paper, Stack, Avatar, Progress, Loader, Center, Alert,
   Grid, Badge, ScrollArea, TextInput, Card, Divider, ThemeIcon,
-  useMantineColorScheme, useComputedColorScheme
+  SegmentedControl, useMantineColorScheme, useComputedColorScheme
 } from '@mantine/core';
 import { 
   IconSun, IconMoon, IconAlertCircle, IconArrowRight, IconArrowLeft,
@@ -282,10 +282,11 @@ const ProductImageBox = ({ product, isDark }) => (
    </div>
 );
 
-function ProductDiscoveryScreen({ state, guidanceData, productCatalog, onBack, onComplete }) {
+function ProductDiscoveryScreen({ state, setState, guidanceData, productCatalog, onBack, onComplete }) {
   const isDark = useComputedColorScheme('light') === 'dark';
   const condition = guidanceData.conditions.find(c => c.id === state.primaryFocus);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
 
   const recommendedProducts = useMemo(() => {
      if (!condition) return [];
@@ -311,8 +312,26 @@ function ProductDiscoveryScreen({ state, guidanceData, productCatalog, onBack, o
   }
 
   const activeProduct = recommendedProducts[activeIndex];
-  const prevProduct = activeIndex > 0 ? recommendedProducts[activeIndex - 1] : null;
-  const nextProduct = activeIndex < recommendedProducts.length - 1 ? recommendedProducts[activeIndex + 1] : null;
+
+  const onTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = (e) => {
+    if (!touchStart) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEndX;
+    const isLeftSwipe = distance > 50; 
+    const isRightSwipe = distance < -50; 
+
+    if (isLeftSwipe && activeIndex < recommendedProducts.length - 1) {
+      setActiveIndex(prev => prev + 1);
+    }
+    if (isRightSwipe && activeIndex > 0) {
+      setActiveIndex(prev => prev - 1);
+    }
+    setTouchStart(null);
+  };
 
   return (
      <Stack style={fadeStyles} h="100%" justify="space-between" pb="xl">
@@ -322,12 +341,45 @@ function ProductDiscoveryScreen({ state, guidanceData, productCatalog, onBack, o
             <Button variant="light" color="blue" onClick={onComplete} rightSection={<IconArrowRight size={16} />}>View Final Summary</Button>
           </Group>
           <Title order={2} ta="center" size="2rem">{condition.name}</Title>
-          <Text ta="center" c="dimmed" maw={700} mx="auto" mt="sm">{condition.rationale}</Text>
+          <Text ta="center" c="dimmed" maw={700} mx="auto" mt="sm" mb="md">{condition.rationale}</Text>
+          
+          <Center mb="lg">
+            <SegmentedControl
+              size="sm"
+              radius="xl"
+              color="blue"
+              value={state.intensity}
+              onChange={(val) => {
+                setState({ ...state, intensity: val });
+                setActiveIndex(0); // Reset index to prevent out-of-bounds on array shrink
+              }}
+              data={[
+                { label: 'Optimal Support', value: 'optimal' },
+                { label: 'Minimal / Foundational', value: 'minimal' }
+              ]}
+              fw={600}
+            />
+          </Center>
         </div>
 
-        <Grid mt="xl" align="center" style={{ flexGrow: 1 }}>
+        <Grid mt="sm" align="center" style={{ flexGrow: 1 }}>
           <Grid.Col span={{ base: 12, md: 6 }} style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ position: 'relative', width: '100%', height: '45vh', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1000px' }}>
+            
+            <div 
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                height: '45vh', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                perspective: '1000px',
+                overflow: 'hidden',    
+                touchAction: 'pan-y'   
+              }}
+            >
               {recommendedProducts.map((product, idx) => {
                 const offset = idx - activeIndex;
                 const absOffset = Math.abs(offset);
@@ -352,7 +404,8 @@ function ProductDiscoveryScreen({ state, guidanceData, productCatalog, onBack, o
                       zIndex,
                       cursor: clickable ? 'pointer' : 'default',
                       width: '100%',
-                      maxWidth: '320px'
+                      maxWidth: '320px',
+                      userSelect: 'none'
                     }}
                   >
                     <ProductImageBox product={product} isDark={isDark} />
@@ -386,7 +439,7 @@ function ProductDiscoveryScreen({ state, guidanceData, productCatalog, onBack, o
   );
 }
 
-function FinalSummaryScreen({ state, guidanceData, productCatalog, onBack }) {
+function FinalSummaryScreen({ state, setState, guidanceData, productCatalog, onBack }) {
   const isDark = useComputedColorScheme('light') === 'dark';
   const summaryRef = useRef(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -402,7 +455,8 @@ function FinalSummaryScreen({ state, guidanceData, productCatalog, onBack }) {
         ...rec,
         productName: rec.productName || rec.name || 'Unknown Product',
         category: rich.category || "Supplement",
-        image: rich.image ? resolvePath(`images/${rich.image}`) : resolvePath('favicon.svg')
+        image: rich.image ? resolvePath(`images/${rich.image}`) : resolvePath('favicon.svg'),
+        dose: rec.dose
       };
     });
   }, [condition, state.intensity, productCatalog]);
@@ -423,7 +477,6 @@ function FinalSummaryScreen({ state, guidanceData, productCatalog, onBack }) {
     if (!summaryRef.current) return;
     try {
       setIsGenerating(true);
-      // Dynamically load html2canvas to avoid breaking the bundle if not installed yet
       const { default: html2canvas } = await import('html2canvas');
       
       const canvas = await html2canvas(summaryRef.current, { 
@@ -502,7 +555,23 @@ function FinalSummaryScreen({ state, guidanceData, productCatalog, onBack }) {
 
         <Divider my="xl" />
 
-        <Title order={3} mb="md" c="blue">Recommended Products</Title>
+        <Group justify="space-between" align="center" mb="md">
+          <Title order={3} c="blue">Recommended Products</Title>
+          <SegmentedControl
+            size="sm"
+            radius="xl"
+            color="blue"
+            value={state.intensity}
+            onChange={(val) => setState({ ...state, intensity: val })}
+            data={[
+              { label: 'Optimal Support', value: 'optimal' },
+              { label: 'Minimal / Foundational', value: 'minimal' }
+            ]}
+            className="no-print"
+            fw={600}
+          />
+        </Group>
+
         <Stack gap="md" mb="xl">
           {recommendedProducts.map((p, idx) => (
             <Card key={idx} withBorder radius="md" bg={isDark ? 'dark.6' : 'gray.0'} className="summary-card">
@@ -772,8 +841,8 @@ function ProductGuidance() {
             {currentStep === 1 && <AgeQuestion state={wizardState} onSelect={handleAgeSelect} onBack={() => setCurrentStep(0)} />}
             {currentStep === 2 && <SexQuestion state={wizardState} onSelect={handleSexSelect} onBack={() => setCurrentStep(1)} />}
             {currentStep === 3 && <FocusQuestion state={wizardState} onSelect={handleFocusSelect} guidanceData={guidanceData} onBack={() => setCurrentStep(2)} />}
-            {currentStep === 4 && <ProductDiscoveryScreen state={wizardState} guidanceData={guidanceData} productCatalog={productCatalog} onBack={handleBackFromProducts} onComplete={() => setCurrentStep(5)} />}
-            {currentStep === 5 && <FinalSummaryScreen state={wizardState} guidanceData={guidanceData} productCatalog={productCatalog} onBack={() => setCurrentStep(4)} />}
+            {currentStep === 4 && <ProductDiscoveryScreen state={wizardState} setState={setWizardState} guidanceData={guidanceData} productCatalog={productCatalog} onBack={handleBackFromProducts} onComplete={() => setCurrentStep(5)} />}
+            {currentStep === 5 && <FinalSummaryScreen state={wizardState} setState={setWizardState} guidanceData={guidanceData} productCatalog={productCatalog} onBack={() => setCurrentStep(4)} />}
           </div>
 
         </Container>
