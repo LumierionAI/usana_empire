@@ -20,6 +20,7 @@
     "ag-grid-community": "^36.2.0",
     "ag-grid-react": "^36.2.0",
     "framer-motion": "^13.4.6",
+    "html2canvas": "^1.4.1",
     "idb": "^8.0.2",
     "papaparse": "^5.5.2",
     "react": "^19.3.0",

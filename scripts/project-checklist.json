@@ -1,5 +1,6 @@
 {
   "projectName": "USANA Empire",
+  "specFile": "MDs/FINAL-TECHNICAL-SPECIFICATION.md",
   "projectMetadata": {
     "description": "A comprehensive web suite for independent USANA distributors. Features a cinematic, gamified public-facing suite (System A) and private, offline-first business tools (System B).",
     "architecture": {
@@ -7,106 +8,73 @@
       "stateManagement": "Local IndexedDB via custom storage-adapter.js (Offline-first)",
       "styling": "CSS Modules/Tokens + Framer Motion Animations",
       "deployment": "GitHub Pages (via Actions)"
-    },
-    "importantNote": "The FINAL-TECHNICAL-SPECIFICATION is outdated regarding System A. Always countercheck with MDs/PHASE-5.md as the absolute source of truth for the public UI."
+    }
   },
-  "specFile": "MDs/FINAL-TECHNICAL-SPECIFICATION.md",
-  "activePhaseDoc": "MDs/PHASE-5.md",
   "phases": [
     {
-      "name": "Phase 0 — Foundation/setup",
+      "name": "Phase 1 — Core architecture & Calc Engine",
       "items": [
-        { "label": "Vite project initialized (package.json)", "check": "package.json", "kind": "file" },
-        { "label": "Vite config", "check": "vite.config.js", "kind": "file" },
-        { "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml", "kind": "file" },
-        { "label": "Design tokens stylesheet", "check": "styles/tokens.css", "kind": "file" }
-      ]
-    },
-    {
-      "name": "Phase 1 — Core architecture",
-      "items": [
-        { "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js", "kind": "file" },
-        { "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js", "kind": "file" },
-        { "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js", "kind": "file" },
-        { "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js", "kind": "file" }
+        { "kind": "file", "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js" },
+        { "kind": "file", "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js" },
+        { "kind": "file", "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js" },
+        { "kind": "file", "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js" }
       ]
     },
     {
       "name": "Phase 2 — Core features (System A - Cinematic Web Suite)",
       "items": [
-        { "label": "sections.json content", "check": "public/content/sections.json", "kind": "file" },
-        { "label": "products.json content", "check": "public/data/products.json", "kind": "file" },
-        { "label": "compensation.json content", "check": "public/content/compensation.json", "kind": "file" },
-        { "label": "Landing page React entry", "check": "src/landing/main.jsx", "kind": "file" },
-        { "label": "Product page React entry", "check": "src/product/main.jsx", "kind": "file" },
-        { "label": "Business page React entry", "check": "src/business/main.jsx", "kind": "file" },
-        { "label": "CinematicSection & Framer Motion Engine", "kind": "manual", "instructions": "Build the custom Framer Motion scroll container and interactive morphing components to replace legacy Vanilla JS scroll-engine and progress-rail." },
-        { "label": "Rich Media / YouTube Integration", "kind": "manual", "instructions": "Implement a seamless, custom video player overlay for YouTube assets within the CinematicSection." }
+        { "kind": "file", "label": "Landing page React entry", "check": "src/landing/main.jsx" },
+        { "kind": "file", "label": "Product page React entry", "check": "src/product/main.jsx" },
+        { "kind": "file", "label": "Business page React entry", "check": "src/business/main.jsx" },
+        { "kind": "manual", "label": "CinematicSection & Framer Motion Engine", "instructions": "Build the custom Framer Motion scroll container and interactive morphing components to replace legacy Vanilla JS scroll-engine." },
+        { "kind": "manual", "label": "Rich Media / YouTube Integration", "instructions": "Implement a seamless, custom video player overlay for YouTube assets within the CinematicSection." }
       ]
     },
     {
-      "name": "Phase 3 — Core features (System B - Workspace Complete)",
+      "name": "Phase 3 — Core features (System B - React Overhaul)",
       "items": [
-        { "label": "Genealogy Simulator view", "check": "app/tools/genealogy/index.html", "kind": "file" },
-        { "label": "Receipt Generator view", "check": "app/tools/receipts/index.html", "kind": "file" },
-        { "label": "Financial Ledger view", "check": "app/tools/ledger/index.html", "kind": "file" },
-        { "label": "Prospect Planner view", "check": "app/tools/prospects/index.html", "kind": "file" },
-        { "label": "Product Guidance view", "check": "app/tools/guidance/index.html", "kind": "file" },
-        { "label": "guidance-rules.json", "check": "public/data/guidance-rules.json", "kind": "file" }
+        { "kind": "file", "label": "Genealogy Simulator Component", "check": "src/tools/genealogy/main.jsx" },
+        { "kind": "file", "label": "Receipt Generator Component", "check": "src/tools/receipts/main.jsx" },
+        { "kind": "file", "label": "Financial Ledger Component", "check": "src/tools/ledger/main.jsx" },
+        { "kind": "file", "label": "Prospect Planner Component", "check": "src/tools/prospects/main.jsx" }
       ]
     },
     {
-      "name": "Phase 4 — UI/UX polish",
-      "manual": true,
+      "name": "Phase 4 — Product Guidance UX Overhaul",
       "items": [
-        { "label": "System A Animation Performance Pass", "kind": "manual", "instructions": "Ensure Framer Motion animations run at 60fps on mobile. Verify layout morphs do not cause layout thrashing." },
-        { "label": "Portrait/Landscape Composition Pass", "kind": "manual", "instructions": "Test all views on mobile (portrait) and desktop (landscape). Verify data tables in System B scroll horizontally, and 3D/parallax effects in System A scale correctly." },
-        { "label": "Accessibility (a11y) Pass", "kind": "manual", "instructions": "Ensure keyboard navigation works in System B. Respect 'prefers-reduced-motion' media queries for System A animations." }
+        { "kind": "file", "label": "Step-Based Router & State Machine", "check": "src/tools/guidance/main.jsx" },
+        { "kind": "manual", "label": "Terminology & Disclaimers Pass", "instructions": "Replace 'Clinical Dose' with 'Recommended Dosage'. De-medicalize 'Protocol', 'Interventions', etc. Ensure 'Not Medical Advice' is cleanly presented." },
+        { "kind": "manual", "label": "Progressive Disclosure (YAZIO-style screens)", "instructions": "Implement full-screen views per question (Age, Sex, Focus) with large typography, smooth transitions, and dynamic progress bar." },
+        { "kind": "manual", "label": "Dynamic Branching Logic", "instructions": "Ensure flow skips irrelevant questions based on selected primary focus and maps precisely to guidanceData.conditions." },
+        { "kind": "manual", "label": "50/50 Split Product Discovery", "instructions": "Render prominent product imagery restricted to <= 50% viewport, utilizing swipeable cards or expanding drawers for detail." },
+        { "kind": "manual", "label": "Summary Screen & CSV/PDF Export", "instructions": "Final summary step containing clean accordions/cards, and fully wired CSV import/export functions linked to the wizardState." }
       ]
     },
     {
-      "name": "Phase 5 — Integration",
+      "name": "Phase 5 — General UI/UX Polish & Deployment",
       "items": [
-        { "label": "json-backup.js (full workspace export/import)", "check": "src/shared/import-export/json-backup.js", "kind": "file" },
-        { "label": "csv.js (CSV import/export)", "check": "src/shared/import-export/csv.js", "kind": "file" }
-      ]
-    },
-    {
-      "name": "Phase 6 — Testing",
-      "items": [
-        { "label": "Unit tests directory populated", "check": "tests/unit", "kind": "file" },
-        { "label": "E2E tests directory populated", "check": "tests/e2e", "kind": "file" }
-      ]
-    },
-    {
-      "name": "Phase 7 — Deployment",
-      "manual": true,
-      "items": [
-        { "label": "Initial GitHub Pages Deployment", "kind": "manual", "instructions": "Confirm .github/workflows/deploy.yml has completed at least one successful run and the site is live and correctly serving the Vite bundle at the expected gh-pages URL." }
+        { "kind": "manual", "label": "Portrait/Landscape Composition Pass", "instructions": "Test all views on mobile (portrait) and desktop (landscape)." },
+        { "kind": "manual", "label": "Accessibility (a11y) Pass", "instructions": "Ensure keyboard navigation works in System B. Respect 'prefers-reduced-motion'." },
+        { "kind": "file", "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml" },
+        { "kind": "manual", "label": "Initial GitHub Pages Deployment", "instructions": "Confirm .github/workflows/deploy.yml has completed at least one successful run." }
       ]
     }
   ],
   "openDecisions": [
     {
-      "id": "brand-assets",
       "text": "Brand assets / final palette not yet confirmed.",
       "status": "open",
-      "resolution": null,
-      "blocks": "Phase 2, Phase 4"
+      "blocks": "Phase 2, Phase 5"
     },
     {
-      "id": "usana-policy-review",
-      "text": "USANA distributor policy review for any PUBLIC content.",
+      "text": "USANA distributor policy review for PUBLIC content.",
       "status": "open",
-      "resolution": null,
-      "blocks": "any public launch"
+      "blocks": "Any public launch"
     },
     {
-      "id": "split-ui-architecture",
       "text": "Which React UI ecosystem/library to adopt.",
       "status": "resolved",
-      "resolution": "Split architecture adopted: Mantine UI used for data-heavy administrative System B. Custom React + Framer Motion used for cinematic, gamified System A.",
-      "blocks": null
+      "resolution": "Split architecture adopted: Mantine UI used for data-heavy administrative System B. Custom React + Framer Motion used for cinematic, gamified System A."
     }
   ]
 }

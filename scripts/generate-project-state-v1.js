@@ -69,12 +69,6 @@
  * ---------------------------------------------------------------------
  */
 
-/**
- * generate-project-state.js
- * ---------------------------------------------------------------------
- * Scans the repository and writes PROJECT_STATE.md at the repo root.
- */
-
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
@@ -97,11 +91,15 @@ const TEXT_EXTENSIONS = new Set([
   '.js', '.mjs', '.cjs', '.ts', '.jsx', '.tsx', '.html', '.css', '.json'
 ]);
 
+// Source-code-dump specific: which top-level dirs count as "project code",
+// walked with the same ignore rules as the directory tree (see collectFiles).
 const SOURCE_DUMP_ROOTS = ['app', 'src', 'public/content'];
-// BUGFIX: Added .jsx so React component files are properly dumped in the state
-const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.jsx', '.json', '.html', '.css']);
+const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.json', '.html', '.css']);
 
-const JSON_SUMMARY_THRESHOLD = 4000;
+// Any single JSON file above this size gets summarized instead of dumped
+// in full, so PROJECT_STATE.md doesn't grow linearly with content forever.
+const JSON_SUMMARY_THRESHOLD = 4000; // bytes
+
 const TODO_PATTERN = /\b(TODO|FIXME|HACK|OPEN DECISION)\b:?/i;
 
 function safeRun(cmd) {
@@ -288,6 +286,10 @@ function buildChangelogSection() {
   return logRaw;
 }
 
+// ---------------------------------------------------------------------
+// Checklist / phase completion
+// ---------------------------------------------------------------------
+
 function buildChecklistSection(checklist) {
   if (!checklist) return '_No scripts/project-checklist.json found._';
   let out = [];
@@ -333,6 +335,7 @@ function buildManualTasksSection(checklist) {
       }
     }
   }
+  // Back-compat with older checklist shapes that used a separate top-level array.
   for (const task of checklist.manualTasks || []) {
     out.push(`- [ ] **${task.label}**\n  > ${task.instructions}`);
   }
@@ -360,6 +363,7 @@ function buildOpenDecisionsSection(checklist) {
   };
 
   return decisions.map(d => {
+    // Back-compat: allow plain strings alongside the richer object shape.
     if (typeof d === 'string') return `- ${d}`;
     let line = `- **[${statusTag(d.status)}]** ${d.text}`;
     if (d.blocks) line += `\n  > Blocks: ${d.blocks}`;
@@ -368,37 +372,47 @@ function buildOpenDecisionsSection(checklist) {
   }).join('\n');
 }
 
+// ---------------------------------------------------------------------
+// Module usage graph — is anything in src/shared actually imported?
+// ---------------------------------------------------------------------
+
 function buildModuleUsageSection(allFiles) {
-  // BUGFIX: Added .jsx to candidate extensions to trace React component imports
-  const candidateExts = new Set(['.js', '.jsx', '.html']);
+  const candidateExts = new Set(['.js', '.html']);
   const selfPath = path.relative(ROOT, __filename);
   const scannable = allFiles.filter(f => {
     if (!candidateExts.has(path.extname(f))) return false;
+    // Exclude this generator itself — its own doc comments illustrate the
+    // exact `import ... from '.../Foo.js'` shape being matched for, which
+    // otherwise produces false-positive "imported by" hits against itself.
     if (path.relative(ROOT, f) === selfPath) return false;
     return true;
   });
 
   const sharedModules = scannable.filter(f => {
     const rel = path.relative(ROOT, f).split(path.sep).join('/');
-    return rel.startsWith('src/shared/') && ['.js', '.jsx'].includes(path.extname(f));
+    return rel.startsWith('src/shared/') && path.extname(f) === '.js';
   });
 
   if (sharedModules.length === 0) {
     return '_No modules found under src/shared/._';
   }
 
+  // Pre-read every scannable file once.
   const contentsByFile = new Map();
   for (const f of scannable) {
     try {
       contentsByFile.set(f, fs.readFileSync(f, 'utf8'));
-    } catch {}
+    } catch {
+      // unreadable/binary — skip
+    }
   }
 
   const rows = [];
   for (const mod of sharedModules) {
     const modRel = path.relative(ROOT, mod).split(path.sep).join('/');
     const baseName = path.basename(mod, path.extname(mod));
-    const importPattern = new RegExp(`from\\s+['"][^'"]*\\b${baseName}(\\.(js|jsx))?['"]`);
+    // Matches: import { x } from '.../ToolShell.js'  or  '.../ToolShell'
+    const importPattern = new RegExp(`from\\s+['"][^'"]*\\b${baseName}(\\.js)?['"]`);
 
     const importers = [];
     for (const [file, content] of contentsByFile) {
@@ -416,11 +430,17 @@ function buildModuleUsageSection(allFiles) {
   }
 
   return [
-    '_Every module under `src/shared/` checked against every other `.js`/`.jsx`/`.html` file in the repo for a matching `import ... from` reference._',
+    '_Every module under `src/shared/` checked against every other `.js`/`.html` file in the repo for a matching `import ... from` reference. This is a plain-text pattern match, not a bundler-accurate resolution — treat "imported by nobody" as a strong signal to investigate, not absolute proof of dead code (e.g. dynamic imports or renamed re-exports would not be caught)._',
     '',
     ...rows,
   ].join('\n');
 }
+
+// ---------------------------------------------------------------------
+// Source code dump — now walks app/, src/, public/content/ uniformly,
+// with the same ignore rules as the directory tree, and summarizes
+// oversized JSON instead of dumping it whole.
+// ---------------------------------------------------------------------
 
 function summarizeJSON(content, relPath, byteSize) {
   try {
@@ -463,7 +483,7 @@ function buildSourceCodeSection() {
       }
 
       let lang = ext.substring(1);
-      if (lang === 'js' || lang === 'jsx') lang = 'javascript';
+      if (lang === 'js') lang = 'javascript';
       codeDump += `### ${relative}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
     }
   }
@@ -475,6 +495,10 @@ function buildSourceCodeSection() {
 
   return codeDump;
 }
+
+// ---------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------
 
 function main() {
   const checklist = loadChecklist();
@@ -580,4 +604,5 @@ ${buildSourceCodeSection()}
   console.log(`PROJECT_STATE.md written to ${OUTPUT_FILE}`);
 }
 
+// Execute the script
 main();
