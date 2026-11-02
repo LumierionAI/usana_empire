@@ -1,50 +1,58 @@
 [
   {
-    "id": "hero",
+    "id": "the-question",
     "theme": "dark",
-    "image": "hero.png",
-    "kicker": "The Cellular Nutrition Company",
-    "title": "Master Your Potential.",
-    "content": "A life of uncompromised health and limitless vitality begins at the cellular level. Discover the science of exceptional wellness."
+    "image": "hero-anatomy.webp",
+    "kicker": "01 | The Question",
+    "title": "Are you giving your body what it really needs to thrive?",
+    "content": "Better health begins at the <strong>cellular level</strong>. A life of <em>uncompromised health</em> and <u>limitless vitality</u> requires an understanding of your own biology."
   },
   {
-    "id": "origin",
+    "id": "cellular-world",
+    "theme": "dark",
+    "image": "cellular-bg.webp",
+    "kicker": "02 | The Cellular World",
+    "title": "A Universe Within",
+    "content": "Every human body is a <strong>complex, microscopic ecosystem</strong>. Billions of cells work in <em>relentless harmony</em>, requiring <u>precise raw materials</u> to generate energy, defend against oxidative stress, and renew themselves."
+  },
+  {
+    "id": "biological-processes",
     "theme": "light",
-    "image": "origin.png",
-    "kicker": "Our Foundation",
-    "title": "Built by a Scientist. Not a Marketer.",
-    "content": "Founded by Dr. Myron Wentz, an internationally recognized microbiologist, immunologist, and Albert Einstein Award laureate. We shifted the focus from diagnosing disease to sustaining proactive, lifelong health."
+    "image": "processes-bg.webp",
+    "kicker": "03 | The Biological Processes",
+    "title": "Intelligent Networks",
+    "content": "Your body operates through <strong>interconnected biological systems</strong>. From <em>metabolic function</em> to <em>immune response</em>, these networks communicate constantly, relying on an <u>uninterrupted supply of essential nutrients</u> to maintain homeostasis."
   },
   {
-    "id": "standard",
+    "id": "role-of-nutrition",
+    "theme": "dark",
+    "image": "nutrition-bg.webp",
+    "kicker": "04 | The Role of Nutrition",
+    "title": "The Architecture of Health",
+    "content": "Nutrition is not merely fuel; it is <strong>biological code</strong>. The micronutrients you consume provide the <u>precise molecular instructions</u> and <em>structural components</em> required for your cells to function optimally."
+  },
+  {
+    "id": "nutritional-support",
     "theme": "gold",
-    "image": "standard.png",
-    "kicker": "The Global Standard",
-    "title": "Zero Tolerance for Error.",
-    "content": "We manufacture our own supplements in a state-of-the-art, FDA-registered facility. Validated by NSF International, ConsumerLab, and a NutriSearch Platinum+ rating. Because your health requires absolute certainty."
+    "image": "support-bg.webp",
+    "kicker": "05 | The Importance of Nutritional Support",
+    "title": "Bridging the Gap",
+    "content": "Modern environments, depleted soils, and intense lifestyle demands create <strong>nutritional deficits</strong> that diet alone <em>often cannot resolve</em>. High-quality nutritional support acts as an <u>essential safeguard</u> for long-term vitality."
   },
   {
-    "id": "innovation",
-    "theme": "dark",
-    "image": "innovation.png",
-    "kicker": "InCelligence Technology®",
-    "title": "Nourish. Protect. Renew.",
-    "content": "The USANA CellSentials go beyond basic nutrition. Our proprietary technology supports your body's natural cellular communication, unlocking its innate ability to protect and renew itself against modern oxidative stress."
-  },
-  {
-    "id": "trust",
+    "id": "usana-difference",
     "theme": "light",
-    "image": "trust.png",
-    "kicker": "Elite Performance",
-    "title": "Trusted by Champions.",
-    "content": "When your career depends on your physical health, you don't compromise. Thousands of elite professional athletes and Olympians worldwide trust USANA to fuel their performance safely and legally."
+    "image": "usana-bg.webp",
+    "kicker": "06 | The USANA Difference",
+    "title": "Zero Tolerance for Error",
+    "content": "<strong>Founded by a scientist</strong>, validated by <em>independent research</em>, and manufactured in our own <u>FDA-registered facilities</u>. We control our production to guarantee potency, purity, and scientific efficacy."
   },
   {
-    "id": "opportunity",
+    "id": "explore-products",
     "theme": "dark",
-    "image": "dark.png",
-    "kicker": "NYSE: USNA",
-    "title": "The Next Trillion-Dollar Shift.",
-    "content": "Wellness is a global movement. Partner with an internationally recognized leader to build a flexible, home-based business on your terms. Turn your pursuit of health into a legacy of freedom."
+    "image": "explore-bg.webp",
+    "kicker": "07 | Explore the Products",
+    "title": "Targeted Solutions for Your Biology",
+    "content": "Experience the <strong>next evolution</strong> of cellular nutrition. Discover products <em>meticulously formulated</em> for your <u>unique physiological demands</u> and long-term health goals."
   }
 ]

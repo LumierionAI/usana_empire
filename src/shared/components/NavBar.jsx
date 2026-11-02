@@ -1,66 +1,133 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { resolvePath } from '../base-path.js';
 
-export function NavBar() {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    // Hide nav if scrolling down and past the 150px threshold, show if scrolling up
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
-
-  return (
-    <motion.nav
-      className="global-navbar"
+// Reusable Gamified Nav Link Component
+const NavLink = ({ href, children }) => (
+  <motion.a
+    href={href}
+    style={{
+      position: 'relative',
+      color: 'var(--color-gray-300)',
+      textDecoration: 'none',
+      fontFamily: 'var(--font-ui), "Inter", sans-serif',
+      fontWeight: 600,
+      fontSize: '0.85rem',
+      letterSpacing: '1.5px',
+      textTransform: 'uppercase',
+      padding: '1.5rem 0',
+      display: 'flex',
+      alignItems: 'center'
+    }}
+    whileHover="hover"
+    initial="initial"
+  >
+    {/* Text Glow Effect */}
+    <motion.span
       variants={{
-        visible: { y: 0, opacity: 1 },
-        hidden: { y: "150%", opacity: 0 } // Pushes down off-screen when hiding
+        initial: { color: 'var(--color-gray-300)', textShadow: 'none' },
+        hover: { color: 'var(--color-white)', textShadow: '0 0 10px rgba(255, 255, 255, 0.6)' }
       }}
-      initial="visible"
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.2 }}
+    >
+      {children}
+    </motion.span>
+    
+    {/* Bottom Neon Accent Line */}
+    <motion.div
+      variants={{
+        initial: { scaleX: 0, opacity: 0 },
+        hover: { scaleX: 1, opacity: 1 }
+      }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       style={{
-        position: 'fixed',
-        bottom: '2rem', // Anchored to bottom per HeroDesign.md
+        position: 'absolute',
+        bottom: '0', 
         left: 0,
         right: 0,
+        height: '3px',
+        backgroundColor: 'var(--color-biological-teal)',
+        boxShadow: '0 -2px 10px var(--color-biological-teal)',
+        originX: 0.5,
+        borderRadius: '3px 3px 0 0'
+      }}
+    />
+  </motion.a>
+);
+
+export function NavBar() {
+  return (
+    <nav
+      className="global-navbar-docked"
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '70px',
         zIndex: 50,
+        backgroundColor: 'rgba(5, 8, 20, 0.85)',
+        backdropFilter: 'blur(24px)',
+        borderTop: '1px solid rgba(13, 148, 136, 0.3)',
+        boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
         display: 'flex',
         justifyContent: 'center',
-        pointerEvents: 'none' // Allows clicking through the invisible full-width container wrapper
+        alignItems: 'center'
       }}
     >
-      <div 
-        className="nav-container"
-        style={{
-          pointerEvents: 'auto', // Re-enables clicking on the actual navigation pill
-          display: 'flex',
-          alignItems: 'center',
-          gap: '3rem',
-          backgroundColor: 'rgba(15, 23, 42, 0.65)', // Deep navy premium styling
-          backdropFilter: 'blur(16px)',
-          padding: '0.85rem 2.5rem',
-          borderRadius: '4rem',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
-        }}
-      >
-        <a href={resolvePath('')} className="nav-brand" style={{ color: 'white', fontWeight: 600, letterSpacing: '0.5px', textDecoration: 'none', fontSize: '1.1rem' }}>
-          USANA Empire
-        </a>
-        <ul className="nav-links" style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
-          <li><a href={resolvePath('app/product/')} style={{ color: 'var(--mantine-color-gray-3)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>Product</a></li>
-          <li><a href={resolvePath('app/business/')} style={{ color: 'var(--mantine-color-gray-3)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>Business</a></li>
-          <li><a href={resolvePath('app/tools/')} style={{ color: 'var(--mantine-color-blue-4)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }}>Workspace</a></li>
-        </ul>
+      {/* 3-Column Symmetrical Grid Layout */}
+      <div style={{ 
+        width: '100%', 
+        maxWidth: '1200px', 
+        display: 'grid', 
+        gridTemplateColumns: '1fr auto 1fr', 
+        alignItems: 'center',
+        padding: '0 2rem'
+      }}>
+        
+        {/* LEFT COMPARTMENT: Products */}
+        <div style={{ display: 'flex', gap: '3rem', justifyContent: 'flex-end', paddingRight: '4rem' }}>
+          <NavLink href={resolvePath('app/product/')}>Nutritionals</NavLink>
+          <NavLink href={resolvePath('app/product/')}>Skincare</NavLink>
+        </div>
+
+        {/* CENTER COMPARTMENT: Pop-out Gamified Home Node */}
+        <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 60 }}>
+          <motion.a
+            href={resolvePath('')}
+            whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(13, 148, 136, 0.8)' }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '64px',
+              height: '64px',
+              backgroundColor: 'rgba(10, 17, 40, 0.95)',
+              border: '2px solid var(--color-biological-teal)',
+              borderRadius: '50%',
+              boxShadow: '0 0 15px rgba(13, 148, 136, 0.4)',
+              marginTop: '-40px', // Forces the circle to pop out above the navbar line
+              cursor: 'pointer',
+              outline: 'none'
+            }}
+            title="Return to Base"
+          >
+            <img 
+              src={resolvePath('favicon.svg')} 
+              alt="Home" 
+              style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.3))' }} 
+            />
+          </motion.a>
+        </div>
+
+        {/* RIGHT COMPARTMENT: Business & Systems */}
+        <div style={{ display: 'flex', gap: '3rem', justifyContent: 'flex-start', paddingLeft: '4rem' }}>
+          <NavLink href={resolvePath('app/business/')}>Business</NavLink>
+          <NavLink href={resolvePath('app/tools/')}>Workspace</NavLink>
+        </div>
+
       </div>
-    </motion.nav>
+    </nav>
   );
 }

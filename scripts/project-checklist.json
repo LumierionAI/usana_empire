@@ -1,80 +1,70 @@
 {
-  "projectName": "USANA Empire",
-  "specFile": "MDs/FINAL-TECHNICAL-SPECIFICATION.md",
+  "projectName": "USANA Web Suite",
+  "specFile": "MDs/HeroDesign.md",
   "projectMetadata": {
-    "description": "A comprehensive web suite for independent USANA distributors. Features a cinematic, gamified public-facing suite (System A) and private, offline-first business tools (System B).",
+    "description": "A premium, immersive, science-led digital experience introducing cellular biology, nutrition, and USANA products (System A), alongside private business tools (System B).",
     "architecture": {
-      "frontend": "React, Vite, Framer Motion (System A), Mantine UI (System B)",
-      "stateManagement": "Local IndexedDB via custom storage-adapter.js (Offline-first)",
-      "styling": "CSS Modules/Tokens + Framer Motion Animations",
-      "deployment": "GitHub Pages (via Actions)"
+      "frontend": "React, Vite, Framer Motion",
+      "visuals": "Cinematic scientific visualization, layered parallax",
+      "styling": "CSS Tokens (Deep navy, scientific blue, teal, champagne gold)"
     }
   },
   "phases": [
     {
-      "name": "Phase 1 — Core architecture & Calc Engine",
+      "name": "Phase 1 — Project and Architecture Assessment",
       "items": [
-        { "kind": "file", "label": "storage-adapter.js (IndexedDB)", "check": "src/shared/storage-adapter.js" },
-        { "kind": "file", "label": "calc-engine: ledger-calc.js", "check": "src/shared/calc-engine/ledger-calc.js" },
-        { "kind": "file", "label": "calc-engine: genealogy-calc.js", "check": "src/shared/calc-engine/genealogy-calc.js" },
-        { "kind": "file", "label": "calc-engine: receipts-calc.js", "check": "src/shared/calc-engine/receipts-calc.js" }
+        { "kind": "file", "label": "Migrate Landing to React/Framer Motion", "check": "src/landing/main.jsx" },
+        { "kind": "file", "label": "Migrate Product to React/Framer Motion", "check": "src/product/main.jsx" },
+        { "kind": "file", "label": "Migrate Business to React/Framer Motion", "check": "src/business/main.jsx" }
       ]
     },
     {
-      "name": "Phase 2 — Core features (System A - Cinematic Web Suite)",
+      "name": "Phase 2 — Detailed Desktop UX/UI Design (Foundation)",
       "items": [
-        { "kind": "file", "label": "Landing page React entry", "check": "src/landing/main.jsx" },
-        { "kind": "file", "label": "Product page React entry", "check": "src/product/main.jsx" },
-        { "kind": "file", "label": "Business page React entry", "check": "src/business/main.jsx" },
-        { "kind": "manual", "label": "CinematicSection & Framer Motion Engine", "instructions": "Build the custom Framer Motion scroll container and interactive morphing components to replace legacy Vanilla JS scroll-engine." },
-        { "kind": "manual", "label": "Rich Media / YouTube Integration", "instructions": "Implement a seamless, custom video player overlay for YouTube assets within the CinematicSection." }
+        { "kind": "file", "label": "Floating Bottom Global Navigation", "check": "src/shared/components/NavBar.jsx" },
+        { "kind": "file", "label": "Top Horizontal Chapter Navigation", "check": "src/landing/ChapterNav.jsx" },
+        { "kind": "file", "label": "7-Chapter Scientific Narrative Content", "check": "public/content/sections.json" }
       ]
     },
     {
-      "name": "Phase 3 — Core features (System B - React Overhaul)",
+      "name": "Phase 3 — Design System",
       "items": [
-        { "kind": "file", "label": "Genealogy Simulator Component", "check": "src/tools/genealogy/main.jsx" },
-        { "kind": "file", "label": "Receipt Generator Component", "check": "src/tools/receipts/main.jsx" },
-        { "kind": "file", "label": "Financial Ledger Component", "check": "src/tools/ledger/main.jsx" },
-        { "kind": "file", "label": "Prospect Planner Component", "check": "src/tools/prospects/main.jsx" }
+        { "kind": "file", "label": "Typography & Color Tokens (Navy, Teal, Gold)", "check": "styles/tokens.css" },
+        { "kind": "file", "label": "Viewport-Relative Spacing & Adaptive Layouts", "check": "styles/landing.css" },
+        { "kind": "manual", "label": "Motion Principles Verification", "instructions": "Ensure continuous camera movement and layered parallax per HeroDesign.md." }
       ]
     },
     {
-      "name": "Phase 4 — Product Guidance UX Overhaul",
+      "name": "Phase 4 — Desktop Implementation (The 7 Chapters)",
       "items": [
-        { "kind": "file", "label": "Step-Based Router & State Machine", "check": "src/tools/guidance/main.jsx" },
-        { "kind": "manual", "label": "Terminology & Disclaimers Pass", "instructions": "Replace 'Clinical Dose' with 'Recommended Dosage'. De-medicalize 'Protocol', 'Interventions', etc. Ensure 'Not Medical Advice' is cleanly presented." },
-        { "kind": "manual", "label": "Progressive Disclosure (YAZIO-style screens)", "instructions": "Implement full-screen views per question (Age, Sex, Focus) with large typography, smooth transitions, and dynamic progress bar." },
-        { "kind": "manual", "label": "Dynamic Branching Logic", "instructions": "Ensure flow skips irrelevant questions based on selected primary focus and maps precisely to guidanceData.conditions." },
-        { "kind": "manual", "label": "50/50 Split Product Discovery", "instructions": "Render prominent product imagery restricted to <= 50% viewport, utilizing swipeable cards or expanding drawers for detail." },
-        { "kind": "manual", "label": "Summary Screen & CSV/PDF Export", "instructions": "Final summary step containing clean accordions/cards, and fully wired CSV import/export functions linked to the wizardState." }
+        { "kind": "manual", "label": "Chapter 01-03: Cellular World & Biology", "instructions": "Implement immersive scientific environment and 3D visual transitions." },
+        { "kind": "manual", "label": "Chapter 04-05: Nutrition & Support", "instructions": "Implement layered evidence highlights and interactive research explorer." },
+        { "kind": "manual", "label": "Chapter 06: USANA Credibility", "instructions": "Design the 5 credibility dimensions without promotional clutter." },
+        { "kind": "manual", "label": "Chapter 07: Conversion Strategy", "instructions": "Finalize Explore, Buy Now, and Guidance pathways." }
       ]
     },
     {
-      "name": "Phase 5 — General UI/UX Polish & Deployment",
+      "name": "Phase 5 — Dedicated Mobile Experience",
+      "manual": true,
       "items": [
-        { "kind": "manual", "label": "Portrait/Landscape Composition Pass", "instructions": "Test all views on mobile (portrait) and desktop (landscape)." },
-        { "kind": "manual", "label": "Accessibility (a11y) Pass", "instructions": "Ensure keyboard navigation works in System B. Respect 'prefers-reduced-motion'." },
-        { "kind": "file", "label": "GitHub Actions deploy workflow", "check": ".github/workflows/deploy.yml" },
-        { "kind": "manual", "label": "Initial GitHub Pages Deployment", "instructions": "Confirm .github/workflows/deploy.yml has completed at least one successful run." }
+        { "kind": "manual", "label": "Mobile Information Architecture", "instructions": "Independently plan mobile structure; do not just shrink the desktop layout." },
+        { "kind": "manual", "label": "Touch-Friendly Navigation", "instructions": "Redesign global and chapter navigation for touch constraints." }
+      ]
+    },
+    {
+      "name": "Phase 6 — Testing and Refinement",
+      "manual": true,
+      "items": [
+        { "kind": "manual", "label": "Performance & Adaptive Rendering", "instructions": "Verify WebGL fallbacks, optimized 3D assets, and low-bandwidth loading." },
+        { "kind": "manual", "label": "Accessibility Pass", "instructions": "Check keyboard navigation, screen-reader support, and prefers-reduced-motion." }
       ]
     }
   ],
   "openDecisions": [
     {
-      "text": "Brand assets / final palette not yet confirmed.",
-      "status": "open",
-      "blocks": "Phase 2, Phase 5"
-    },
-    {
       "text": "USANA distributor policy review for PUBLIC content.",
       "status": "open",
       "blocks": "Any public launch"
-    },
-    {
-      "text": "Which React UI ecosystem/library to adopt.",
-      "status": "resolved",
-      "resolution": "Split architecture adopted: Mantine UI used for data-heavy administrative System B. Custom React + Framer Motion used for cinematic, gamified System A."
     }
   ]
 }

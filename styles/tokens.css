@@ -1,23 +1,30 @@
 :root {
-  --color-primary: #0A192F; /* Navy Blue from logo */
-  --color-secondary: #1F2937;
-  --color-accent: #C5A059; /* Gold from logo */
-  --color-bg: #F3F4F6;
-  --color-text: #1F2937;
-  --color-surface: #FFFFFF;
-  --color-error: #DC2626;
-
-  --font-sans: system-ui, -apple-system, sans-serif;
+  /* Editorial Typography: Main Chapter Headlines */
+  --font-editorial: 'Instrument Serif', serif;
   
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
-}
+  /* Geometric UI Typography: Paragraphs, Navbar, and Interface */
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Technical Typography: Measurements, Kickers, & Data */
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --scroll-behavior: auto;
-    --transition-duration: 0.01ms;
-  }
+  /* Premium Scientific Color Palette */
+  --color-deep-navy: #0A1128;
+  --color-near-black: #050814;
+  --color-scientific-blue: #1A56DB;
+  --color-biological-teal: #0D9488;
+  --color-champagne-gold: #E5C158;
+
+  /* Neutrals for Text and UI */
+  --color-white: #FFFFFF;
+  --color-gray-100: #F3F4F6;
+  --color-gray-300: #D1D5DB;
+  --color-gray-500: #6B7280;
+  --color-gray-800: #1F2937;
+  
+  /* Component Defaults */
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 2rem;
+  --border-radius-pill: 4rem;
 }

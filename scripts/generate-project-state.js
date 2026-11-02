@@ -98,7 +98,6 @@ const TEXT_EXTENSIONS = new Set([
 ]);
 
 const SOURCE_DUMP_ROOTS = ['app', 'src', 'public/content'];
-// BUGFIX: Added .jsx so React component files are properly dumped in the state
 const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.jsx', '.json', '.html', '.css']);
 
 const JSON_SUMMARY_THRESHOLD = 4000;
@@ -369,7 +368,6 @@ function buildOpenDecisionsSection(checklist) {
 }
 
 function buildModuleUsageSection(allFiles) {
-  // BUGFIX: Added .jsx to candidate extensions to trace React component imports
   const candidateExts = new Set(['.js', '.jsx', '.html']);
   const selfPath = path.relative(ROOT, __filename);
   const scannable = allFiles.filter(f => {
@@ -512,10 +510,11 @@ ${loadDependencies()}
 
 ## 2. Read This First (Resume Instructions)
 
-1. **Review this file** to understand exactly what exists right now, recent changes, and unresolved tasks.
-2. **Review ${checklist ? checklist.specFile : 'the Technical Specification'}**. ${specNote}
-3. **Check Open Decisions** (§5) to ensure your work does not conflict with blocked tasks.
-4. **Check the Module Usage Graph** (§10) before assuming a shared component is wired up anywhere.
+1. **Review \`AGENTS.md\` and \`HeroDesign.md\`**. These are the primary sources of project context and authoritative operating instructions. Do not deviate from the approved UX/UI direction or collaboration rules without explicit authorization.
+2. **Review this file (\`PROJECT_STATE.md\`)** to understand exactly what exists right now, recent changes, and unresolved tasks.
+3. **Review ${checklist ? checklist.specFile : 'the Technical Specification'}**. ${specNote}
+4. **Check Open Decisions** (§5) to ensure your work does not conflict with blocked tasks.
+5. **Check the Module Usage Graph** (§10) before assuming a shared component is wired up anywhere.
 
 ---
 
