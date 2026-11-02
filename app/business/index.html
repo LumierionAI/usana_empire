@@ -16,17 +16,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
   <link rel="manifest" href="../../site.webmanifest" />
 
-  <!-- External Stylesheets -->
   <link rel="stylesheet" href="../../styles/tokens.css" />
   <link rel="stylesheet" href="../../styles/base.css" />
   <link rel="stylesheet" href="../../styles/landing.css" />
   <link rel="stylesheet" href="../../styles/business.css" />
 </head>
 <body>
-  <div id="nav-mount"></div>
-  <aside id="rail-mount"></aside>
-  <main id="main-content" class="snap-container"></main>
+  <!-- Clean mount point for React -->
+  <div id="main-content"></div>
 
-  <script type="module" src="../../src/business/main.js"></script>
+  <!-- Updated to point to the new JSX file -->
+  <script type="module" src="../../src/business/main.jsx"></script>
 </body>
 </html>

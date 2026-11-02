@@ -21,21 +21,10 @@
   <link rel="stylesheet" href="../../styles/product.css" />
 </head>
 <body>
-  <div id="nav-mount"></div>
-  
-  <div class="view-toggles">
-    <button class="toggle-btn active" id="btn-nutritionals">Nutritionals</button>
-    <button class="toggle-btn" id="btn-celavive">Celavive Skincare</button>
-  </div>
+  <!-- Clean mount point for React -->
+  <div id="main-content"></div>
 
-  <aside id="rail-mount"></aside>
-  
-  <main id="view-nutritionals" class="snap-container"></main>
-  
-  <main id="view-celavive" class="snap-container hidden">
-    <!-- Celavive stages will be dynamically injected here in a future update -->
-  </main>
-
-  <script type="module" src="../../src/product/main.js"></script>
+  <!-- Updated to point to the new JSX file -->
+  <script type="module" src="../../src/product/main.jsx"></script>
 </body>
 </html>
