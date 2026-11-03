@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { resolvePath } from '../base-path.js';
 
 // Reusable Gamified Nav Link Component
@@ -22,7 +22,6 @@ const NavLink = ({ href, children }) => (
     whileHover="hover"
     initial="initial"
   >
-    {/* Text Glow Effect */}
     <motion.span
       variants={{
         initial: { color: 'var(--color-gray-300)', textShadow: 'none' },
@@ -33,7 +32,6 @@ const NavLink = ({ href, children }) => (
       {children}
     </motion.span>
     
-    {/* Bottom Neon Accent Line */}
     <motion.div
       variants={{
         initial: { scaleX: 0, opacity: 0 },
@@ -56,6 +54,33 @@ const NavLink = ({ href, children }) => (
 );
 
 export function NavBar() {
+  const [showWorkspace, setShowWorkspace] = useState(false);
+  const pressTimer = useRef(null);
+
+  // Interaction handlers for the 3-second long press
+  const startPress = () => {
+    pressTimer.current = setTimeout(() => {
+      setShowWorkspace(true);
+    }, 3000);
+  };
+
+  const cancelPress = () => {
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current);
+      pressTimer.current = null;
+    }
+  };
+
+  const handleHomeClick = (e) => {
+    if (showWorkspace) {
+      // If the menu is open, clicking the button again just closes it
+      setShowWorkspace(false);
+    } else {
+      // Short press immediately routes to the home/hero page
+      window.location.href = resolvePath('');
+    }
+  };
+
   return (
     <nav
       className="global-navbar-docked"
@@ -75,7 +100,6 @@ export function NavBar() {
         alignItems: 'center'
       }}
     >
-      {/* 3-Column Symmetrical Grid Layout */}
       <div style={{ 
         width: '100%', 
         maxWidth: '1200px', 
@@ -93,10 +117,49 @@ export function NavBar() {
 
         {/* CENTER COMPARTMENT: Pop-out Gamified Home Node */}
         <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 60 }}>
-          <motion.a
-            href={resolvePath('')}
+          
+          {/* Secret Workspace Popup */}
+          <AnimatePresence>
+            {showWorkspace && (
+              <motion.a
+                href={resolvePath('app/tools/')}
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                style={{
+                  position: 'absolute',
+                  top: '-70px',
+                  backgroundColor: 'rgba(13, 148, 136, 0.95)',
+                  color: 'white',
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '2rem',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-ui), sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  boxShadow: '0 5px 25px rgba(13, 148, 136, 0.6)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer'
+                }}
+              >
+                Access Workspace
+              </motion.a>
+            )}
+          </AnimatePresence>
+
+          <motion.div
             whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(13, 148, 136, 0.8)' }}
             whileTap={{ scale: 0.95 }}
+            onMouseDown={startPress}
+            onMouseUp={cancelPress}
+            onMouseLeave={cancelPress}
+            onTouchStart={startPress}
+            onTouchEnd={cancelPress}
+            onClick={handleHomeClick}
+            onContextMenu={(e) => e.preventDefault()} // Prevents native long-press menus on mobile
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -107,24 +170,33 @@ export function NavBar() {
               border: '2px solid var(--color-biological-teal)',
               borderRadius: '50%',
               boxShadow: '0 0 15px rgba(13, 148, 136, 0.4)',
-              marginTop: '-40px', // Forces the circle to pop out above the navbar line
+              marginTop: '-40px',
               cursor: 'pointer',
-              outline: 'none'
+              outline: 'none',
+              // Disables touch callouts and text selection to ensure a clean long-press
+              WebkitTouchCallout: 'none',
+              WebkitUserSelect: 'none',
+              userSelect: 'none'
             }}
-            title="Return to Base"
+            title="Hold for 3 seconds for Workspace, Tap for Home"
           >
             <img 
               src={resolvePath('favicon.svg')} 
               alt="Home" 
-              style={{ width: '32px', height: '32px', filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.3))' }} 
+              style={{ 
+                width: '32px', 
+                height: '32px', 
+                filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.3))',
+                pointerEvents: 'none' // Ensures the image doesn't steal the mouse events
+              }} 
             />
-          </motion.a>
+          </motion.div>
         </div>
 
-        {/* RIGHT COMPARTMENT: Business & Systems */}
+        {/* RIGHT COMPARTMENT: Business & Guidance */}
         <div style={{ display: 'flex', gap: '3rem', justifyContent: 'flex-start', paddingLeft: '4rem' }}>
           <NavLink href={resolvePath('app/business/')}>Business</NavLink>
-          <NavLink href={resolvePath('app/tools/')}>Workspace</NavLink>
+          <NavLink href={resolvePath('app/tools/guidance/')}>Guidance</NavLink>
         </div>
 
       </div>
