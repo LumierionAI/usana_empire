@@ -98,7 +98,6 @@ export function ChapterNav({ sections = [], activeId, onNavigate }) {
           backdropFilter: 'blur(24px)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '4rem',
-          /* By strictly using padding and flex alignment instead of a fixed height, the container naturally balances the margins */
           padding: isExpanded ? '1.5rem' : '0.5rem 0.75rem',
           width: isExpanded ? '100%' : 'auto',
           maxWidth: isExpanded ? '600px' : 'none',
@@ -109,7 +108,6 @@ export function ChapterNav({ sections = [], activeId, onNavigate }) {
         animate={{ borderRadius: isExpanded ? '1.5rem' : '4rem' }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Compact View: Perfectly Balanced Pill */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <button 
             onClick={() => setIsExpanded(!isExpanded)}
@@ -140,7 +138,6 @@ export function ChapterNav({ sections = [], activeId, onNavigate }) {
                     key={sec.id || idx}
                     onClick={() => handleSelectChapter(sec.id)}
                     style={{ 
-                      /* Restored Gamified Glow & Bookmark Styling */
                       backgroundColor: isActive ? 'rgba(13, 148, 136, 0.15)' : 'transparent',
                       border: isActive ? '1px solid rgba(13, 148, 136, 0.5)' : '1px solid transparent',
                       boxShadow: isActive ? '0 0 15px rgba(13, 148, 136, 0.35)' : 'none',
@@ -160,14 +157,17 @@ export function ChapterNav({ sections = [], activeId, onNavigate }) {
                   >
                     <IconComponent size={16} color={isActive ? 'var(--color-biological-teal)' : 'currentColor'} />
                     {isActive && (
-                      <span style={{ 
-                        fontSize: '0.75rem', 
-                        fontWeight: 600, 
-                        fontFamily: 'var(--font-mono)', 
-                        letterSpacing: '1px',
-                        textTransform: 'uppercase',
-                        color: 'var(--color-biological-teal)'
-                      }}>
+                      <span 
+                        className="desktop-only"
+                        style={{ 
+                          fontSize: '0.75rem', 
+                          fontWeight: 600, 
+                          fontFamily: 'var(--font-mono)', 
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase',
+                          color: 'var(--color-biological-teal)'
+                        }}
+                      >
                         {meta.label}
                       </span>
                     )}
@@ -179,7 +179,6 @@ export function ChapterNav({ sections = [], activeId, onNavigate }) {
           {isExpanded && <span style={{ fontWeight: 600, color: 'white', fontFamily: 'var(--font-ui)', letterSpacing: '0.5px', marginTop: '2px' }}>Chapter Index</span>}
         </div>
 
-        {/* Expanded View Content: Fully Semantic Clickable Buttons */}
         <AnimatePresence>
           {isExpanded && (
             <motion.div

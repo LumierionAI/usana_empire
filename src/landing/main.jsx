@@ -58,7 +58,6 @@ function CinematicLanding() {
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.8 }}
             className={`snap-section theme-${sec.theme}`}
-            style={{ position: 'relative', overflow: 'hidden', height: '100vh' }}
           >
             {/* Background Visual Environment */}
             <motion.div 
@@ -77,14 +76,14 @@ function CinematicLanding() {
               background: 'linear-gradient(90deg, rgba(5,8,20,0.95) 0%, rgba(5,8,20,0.85) 45%, rgba(5,8,20,0.4) 100%)'
             }} />
 
-            {/* Split Layout */}
-            <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', alignItems: 'center', height: '100vh', padding: '0 4vw' }}>
+            {/* Responsive Layout wrapper controlled by styles/landing.css */}
+            <div className="split-layout">
               
               <motion.div 
+                className="chapter-content"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', paddingRight: '2rem' }}
               >
                 <span className="kicker" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--color-biological-teal)', letterSpacing: '3px', marginBottom: '1.25rem' }}>
                   {sec.kicker}
@@ -100,7 +99,6 @@ function CinematicLanding() {
                   dangerouslySetInnerHTML={{ __html: sec.content }}
                 />
 
-                {/* Chapter 01 Primary Interaction */}
                 {sec.id === 'the-question' && nextSec && (
                   <button 
                     onClick={() => handleNavigate(nextSec.id)}
@@ -111,14 +109,12 @@ function CinematicLanding() {
                   </button>
                 )}
 
-                {/* Chapter 07 Gamified Conversion Buttons */}
                 {sec.id === 'explore-products' && (
                   <motion.div 
                     className="cta-group" 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.6 }}
-                    style={{ display: 'flex', gap: '1.25rem', marginTop: '1.5rem', flexWrap: 'wrap' }}
                   >
                     <motion.a 
                       href={resolvePath('app/product/')}

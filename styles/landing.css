@@ -135,3 +135,225 @@ body {
   background-color: var(--color-near-black);
 }
 .theme-gold .editorial-title { color: var(--color-champagne-gold); }
+
+/* --- Landing Page Mobile Overrides --- */
+
+/* Chapter Content Layout */
+.split-layout {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4vw;
+}
+
+.chapter-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-right: 2rem;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Command Center Navbar Layout */
+.bottom-nav-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-compartment-left {
+  display: flex;
+  gap: 3rem;
+  justify-content: flex-end;
+  padding-right: 4rem;
+}
+
+.nav-compartment-right {
+  display: flex;
+  gap: 3rem;
+  justify-content: flex-start;
+  padding-left: 4rem;
+}
+
+/* Mobile Breakpoint (< 768px) */
+@media (max-width: 768px) {
+  /* Collapse chapters to center-aligned single column */
+  .split-layout {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+    align-content: center;
+  }
+  
+  .chapter-content {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .cta-group {
+    justify-content: center;
+  }
+
+  /* Compress navbar gaps and font sizes */
+  .bottom-nav-grid {
+    padding: 0 0.5rem;
+  }
+
+  .nav-compartment-left {
+    gap: 1rem;
+    padding-right: 1.5rem;
+  }
+
+  .nav-compartment-right {
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .global-navbar-docked a {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+/* --- Strict Viewport & Scroll Snapping --- */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100dvh !important; /* Uses dynamic viewport height for mobile browser UI */
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- Responsive Helpers --- */
+.mobile-only { display: none !important; }
+.desktop-only { display: block !important; }
+
+/* Chapter Content Layout */
+.split-layout {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  height: 100dvh;
+  padding: 0 4vw;
+}
+
+.chapter-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-right: 2rem;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Command Center Navbar Layout */
+.bottom-nav-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-compartment-left {
+  display: flex;
+  gap: 3rem;
+  justify-content: flex-end;
+  padding-right: 4rem;
+}
+
+.nav-compartment-right {
+  display: flex;
+  gap: 3rem;
+  justify-content: flex-start;
+  padding-left: 4rem;
+}
+
+/* Mobile Breakpoint (< 768px) */
+@media (max-width: 768px) {
+  .mobile-only { display: block !important; }
+  .desktop-only { display: none !important; }
+
+  /* Collapse chapters to center-aligned single column */
+  .split-layout {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+    align-content: center;
+  }
+  
+  .chapter-content {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  /* Compress typography to fit strictly within 100dvh */
+  .chapter-content h2 {
+    font-size: 2.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .chapter-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .cta-group {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .cta-group a {
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Distribute Navbar Icons */
+  .bottom-nav-grid {
+    padding: 0 1rem;
+  }
+
+  .nav-compartment-left {
+    gap: 2rem;
+    padding-right: 1.5rem;
+  }
+
+  .nav-compartment-right {
+    gap: 2rem;
+    padding-left: 1.5rem;
+  }
+}
