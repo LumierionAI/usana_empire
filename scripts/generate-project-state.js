@@ -75,6 +75,12 @@
  * Scans the repository and writes PROJECT_STATE.md at the repo root.
  */
 
+/**
+ * generate-project-state.js
+ * ---------------------------------------------------------------------
+ * Scans the repository and writes PROJECT_STATE.md at the repo root.
+ */
+
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
@@ -94,13 +100,13 @@ const IGNORE_DIRS = new Set([
 ]);
 
 const TEXT_EXTENSIONS = new Set([
-  '.js', '.mjs', '.cjs', '.ts', '.jsx', '.tsx', '.html', '.css', '.json'
+  '.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.html', '.css', '.json'
 ]);
 
-const SOURCE_DUMP_ROOTS = ['app', 'src', 'public/content'];
-const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.jsx', '.json', '.html', '.css']);
-
+// Expanded to capture all structural UI and logic files across the entire repo
+const SOURCE_DUMP_EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs', '.json', '.html', '.css']);
 const JSON_SUMMARY_THRESHOLD = 4000;
+const MAX_CODE_SIZE_BYTES = 15000; // Optimal truncation threshold for massive files
 const TODO_PATTERN = /\b(TODO|FIXME|HACK|OPEN DECISION)\b:?/i;
 
 function safeRun(cmd) {
@@ -440,35 +446,42 @@ function summarizeJSON(content, relPath, byteSize) {
   }
 }
 
-function buildSourceCodeSection() {
+function buildSourceCodeSection(allFiles) {
   let codeDump = '';
+  
+  // Scans all files across the repo matching extensions, not restricted to hardcoded roots
+  const scannable = allFiles.filter(f => SOURCE_DUMP_EXTENSIONS.has(path.extname(f)));
+  scannable.sort();
 
-  for (const rootRel of SOURCE_DUMP_ROOTS) {
-    const rootDir = path.join(ROOT, rootRel);
-    if (!fs.existsSync(rootDir)) continue;
-    const files = collectFiles(rootDir).filter(f => SOURCE_DUMP_EXTENSIONS.has(path.extname(f)));
-    files.sort();
+  for (const fullPath of scannable) {
+    const relative = path.relative(ROOT, fullPath).split(path.sep).join('/');
+    
+    // Ignore lockfiles, outputs, and the checklist to prevent recursive bloat
+    if (relative === 'package-lock.json' || relative === 'PROJECT_STATE.md' || relative.endsWith('project-checklist.json')) continue;
 
-    for (const fullPath of files) {
-      const relative = path.relative(ROOT, fullPath).split(path.sep).join('/');
-      const ext = path.extname(fullPath);
-      const stat = fs.statSync(fullPath);
-      const content = fs.readFileSync(fullPath, 'utf-8');
+    const ext = path.extname(fullPath);
+    const stat = fs.statSync(fullPath);
+    const content = fs.readFileSync(fullPath, 'utf-8');
 
-      if (ext === '.json' && stat.size > JSON_SUMMARY_THRESHOLD) {
-        codeDump += summarizeJSON(content, relative, stat.size);
-        continue;
-      }
-
-      let lang = ext.substring(1);
-      if (lang === 'js' || lang === 'jsx') lang = 'javascript';
-      codeDump += `### ${relative}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+    if (ext === '.json' && stat.size > JSON_SUMMARY_THRESHOLD && relative !== 'package.json') {
+      codeDump += summarizeJSON(content, relative, stat.size);
+      continue;
     }
-  }
 
-  const viteConfigPath = path.join(ROOT, 'vite.config.js');
-  if (fs.existsSync(viteConfigPath)) {
-    codeDump += `### vite.config.js\n\`\`\`javascript\n${fs.readFileSync(viteConfigPath, 'utf-8')}\n\`\`\`\n\n`;
+    let lang = ext.substring(1);
+    if (['js', 'jsx', 'cjs', 'mjs'].includes(lang)) lang = 'javascript';
+    if (['ts', 'tsx'].includes(lang)) lang = 'typescript';
+
+    // Optimal Structural Extraction: If a code file is huge, preserve imports and exports
+    // but truncate the middle to prevent blowing up the token context window.
+    let displayContent = content;
+    if (stat.size > MAX_CODE_SIZE_BYTES && ext !== '.json') {
+      const top = content.slice(0, 6000);
+      const bottom = content.slice(-6000);
+      displayContent = `${top}\n\n/* ... [CODE TRUNCATED FOR SIZE OPTIMIZATION (${Math.round(stat.size/1024)}KB)] ... */\n/* ... Core structure, imports, and exports preserved ... */\n\n${bottom}`;
+    }
+
+    codeDump += `### ${relative}\n\`\`\`${lang}\n${displayContent}\n\`\`\`\n\n`;
   }
 
   return codeDump;
@@ -572,7 +585,7 @@ ${buildModuleUsageSection(files)}
 
 ## 11. Source Code Contents
 
-${buildSourceCodeSection()}
+${buildSourceCodeSection(files)}
 `;
 
   fs.writeFileSync(OUTPUT_FILE, md, 'utf8');
